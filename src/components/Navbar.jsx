@@ -102,8 +102,8 @@ export default function Navbar() {
   </div>
 </details>
 
-          <Link to="/corporate-training" onClick={()=>setOpen(false)}>Corporate Training</Link>
-          <Link to="/blog" onClick={()=>setOpen(false)}>Blog</Link>
+          <Link to="/testimonials" onClick={()=>setOpen(false)}>Testimonials</Link>
+          <Link to="/blog" onClick={()=>setOpen(false)}>Events</Link>
           <Link to="/contact" onClick={()=>setOpen(false)}>Contact</Link>
         </div>
         <div className="group">

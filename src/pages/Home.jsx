@@ -18,15 +18,15 @@ import img4 from "../assets/welcome/image4.png";
 import img5 from "../assets/welcome/image5.png";
 import img6 from "../assets/welcome/image6.png";
 import jobRoleImg from "../assets/jrp/IMG_6329.PNG";
-import practicalImg from "../assets/jrp/Practical training.png";
-import portfolioImg from "../assets/jrp/Portfolio building.png";
-import softSkillImg from "../assets/jrp/Soft skill .png";
-import mockImg from "../assets/jrp/Mock interview.png";
-import placementImg from "../assets/jrp/Placement Assistance.png";
+import practicalImg from "../assets/jrp/Practicaltraining.png";
+import portfolioImg from "../assets/jrp/Portfoliobuilding.png";
+import softSkillImg from "../assets/jrp/Softskill.png";
+import mockImg from "../assets/jrp/Mockinterview.png";
+import placementImg from "../assets/jrp/PlacementAssistance.png";
 
 
 
-import whoarewe from '../assets/courses/who are we.png'
+import whoarewe from '../assets/whoarewe.png'
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxl_6f8kPi0cMxa3XwE_FUhZMbUG6KolMIAFvSQb7PAgTXgSO1WB3Pv7eyyAw1NIZKN5w/exec";
 

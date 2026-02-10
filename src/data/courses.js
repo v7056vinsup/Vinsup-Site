@@ -13,66 +13,66 @@ import dmImage from '../assets/courses/dm.png';
 // =====================================================
 // DATA VERSE PRO TOOLS
 // =====================================================
-import dvpPython from '../assets/front end/data verse pro/PY.jpeg';
-import dvpExcel from '../assets/front end/data verse pro/EXCEL.jpeg';
-import dvpSQL from '../assets/front end/data verse pro/SQL.png';
-import dvpNumpy from '../assets/front end/data verse pro/NUMPY.png';
-import dvpTableau from '../assets/front end/data verse pro/TABLE.jpg';
-import dvpJupyter from '../assets/front end/data verse pro/JUPY.png';
-import dvpColab from '../assets/front end/data verse pro/COLOB.png';
-import dvpGemini from '../assets/front end/data verse pro/GEMNII.JPG';
-import dvpChatGPT from '../assets/front end/data verse pro/GPT.png';
-import dvpPowerBI from '../assets/front end/data verse pro/BI.png';
-import dvpLooker from '../assets/front end/data verse pro/LOOK.jpg';
-import dvpJira from '../assets/front end/data verse pro/JIRA.png';
-import dvpSeaborn from '../assets/front end/data verse pro/seaborn.svg';
+import dvpPython from '../assets/frontend/dataversepro/PY.jpeg';
+import dvpExcel from '../assets/frontend/dataversepro/EXCEL.jpeg';
+import dvpSQL from '../assets/frontend/dataversepro/SQL.png';
+import dvpNumpy from '../assets/frontend/dataversepro/NUMPY.png';
+import dvpTableau from '../assets/frontend/dataversepro/TABLE.jpg';
+import dvpJupyter from '../assets/frontend/dataversepro/JUPY.png';
+import dvpColab from '../assets/frontend/dataversepro/COLOB.png';
+import dvpGemini from '../assets/frontend/dataversepro/GEMNII.jpg';
+import dvpChatGPT from '../assets/frontend/dataversepro/GPT.png';
+import dvpPowerBI from '../assets/frontend/dataversepro/BI.png';
+import dvpLooker from '../assets/frontend/dataversepro/LOOK.jpg';
+import dvpJira from '../assets/frontend/dataversepro/JIRA.png';
+import dvpSeaborn from '../assets/frontend/dataversepro/seaborn.svg';
 
 // =====================================================
 // DATA ANALYTICS TOOLS
 // =====================================================
-import daExcel from '../assets/front end/data analytics/EXCEL.jpeg';
-import daSQL from '../assets/front end/data analytics/SQL.png';
-import daPowerBI from '../assets/front end/data analytics/PBI.png';
-import daPython from '../assets/front end/data analytics/PY.png';
-import daStat from '../assets/front end/data analytics/STAT.jpeg';
+import daExcel from '../assets/frontend/dataanalytics/EXCEL.jpeg';
+import daSQL from '../assets/frontend/dataanalytics/SQL.png';
+import daPowerBI from '../assets/frontend/dataanalytics/PBI.png';
+import daPython from '../assets/frontend/dataanalytics/PY.png';
+import daStat from '../assets/frontend/dataanalytics/STAT.jpeg';
 
 // =====================================================
 // DEVSTACK TOOLS
 // =====================================================
-import devHTML from '../assets/front end/dev stack/html.svg';
-import devCSS from '../assets/front end/dev stack/CSS.jpeg';
-import devBootstrap from '../assets/front end/dev stack/BOOT.png';
-import devJS from '../assets/front end/dev stack/js.jpg';
-import devReact from '../assets/front end/dev stack/REACT.jpeg';
-import devNode from '../assets/front end/dev stack/NODE.png';
-import devExpress from '../assets/front end/dev stack/EXPRESS.png';
-import devMongo from '../assets/front end/dev stack/MONGO.JPG';
-import devGit from '../assets/front end/dev stack/GIT.png';
-import devGitHub from '../assets/front end/dev stack/GITHUB.png';
-import devJira from '../assets/front end/dev stack/JIRA.png';
-import devJenkins from '../assets/front end/dev stack/JEN.png';
-import devDocker from '../assets/front end/dev stack/DOCK.jpeg';
+import devHTML from '../assets/frontend/devstack/html.svg';
+import devCSS from '../assets/frontend/devstack/CSS.jpeg';
+import devBootstrap from '../assets/frontend/devstack/BOOT.png';
+import devJS from '../assets/frontend/devstack/js.jpg';
+import devReact from '../assets/frontend/devstack/REACT.jpeg';
+import devNode from '../assets/frontend/devstack/NODE.png';
+import devExpress from '../assets/frontend/devstack/EXPRESS.png';
+import devMongo from '../assets/frontend/devstack/MONGO.jpg';
+import devGit from '../assets/frontend/devstack/GIT.png';
+import devGitHub from '../assets/frontend/devstack/GITHUB.png';
+import devJira from '../assets/frontend/devstack/JIRA.png';
+import devJenkins from '../assets/frontend/devstack/JEN.png';
+import devDocker from '../assets/frontend/devstack/DOCK.jpeg';
 
 // =====================================================
 // UI/UX TOOLS
 // =====================================================
-import uxFigma from '../assets/front end/uxui/FIGMA.png';
-import uxPhotoshop from '../assets/front end/uxui/PS.png';
-import uxIllustrator from '../assets/front end/uxui/AI.png';
-import uxBlender from '../assets/front end/uxui/BLEN.png';
+import uxFigma from '../assets/frontend/uxui/FIGMA.png';
+import uxPhotoshop from '../assets/frontend/uxui/PS.png';
+import uxIllustrator from '../assets/frontend/uxui/AI.png';
+import uxBlender from '../assets/frontend/uxui/BLEN.png';
 
 // =====================================================
 // DIGITAL MARKETING TOOLS
 // =====================================================
-import dmGoogleAds from '../assets/front end/digital marketing/GAD.png';
-import dmMeta from '../assets/front end/digital marketing/META.png';
-import dmHubspot from '../assets/front end/digital marketing/HUB.png';
-import dmShopify from '../assets/front end/digital marketing/123.svg';
-import dmWordPress from '../assets/front end/digital marketing/WORD.png';
-import dmCanva from '../assets/front end/digital marketing/CANVA.png';
-import dmMailchimp from '../assets/front end/digital marketing/MAIL.png';
-import dmElementor from '../assets/front end/digital marketing/ELE.png';
-import dmHrefs from '../assets/front end/digital marketing/HREF.png';
+import dmGoogleAds from '../assets/frontend/digitalmarketing/GAD.png';
+import dmMeta from '../assets/frontend/digitalmarketing/META.png';
+import dmHubspot from '../assets/frontend/digitalmarketing/HUB.png';
+import dmShopify from '../assets/frontend/digitalmarketing/123.svg';
+import dmWordPress from '../assets/frontend/digitalmarketing/WORD.png';
+import dmCanva from '../assets/frontend/digitalmarketing/CANVA.png';
+import dmMailchimp from '../assets/frontend/digitalmarketing/MAIL.png';
+import dmElementor from '../assets/frontend/digitalmarketing/ELE.png';
+import dmHrefs from '../assets/frontend/digitalmarketing/HREF.png';
 
 // =====================================================
 // COMPANY LOGOS
