@@ -1,7 +1,7 @@
 import React ,{useEffect} from "react";
 import Counter from "../components/Counter";
 import QuickEnquiry from "../components/QuickEnquiry";
-import vinsupBuilding from "../assets/vinsup_building.png";
+import vinsupBuilding from "../assets/vinsup_building.Png";
 import growthImg from "../assets/growth.png";
 import vinsupInfotech from "../assets/VINSUPINFOTECH.png";
 import srbBankers from "../assets/SRBBANKERS.png";
