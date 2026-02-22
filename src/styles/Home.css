@@ -99,6 +99,9 @@ header,
    
   }
 }
+
+
+
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -256,6 +259,7 @@ header,
     justify-content: center;
   }
 }
+
 .hero-copy h1,
 .section-title,
 .about-title,
@@ -314,6 +318,12 @@ section.key-highlights .kh-value {
 section.key-highlights .kh-label {
   color: rgba(255, 255, 255, 0.9) !important;
 }
+@media (max-width: 768px) {
+  .who-content {
+    text-align: justify;
+  }
+}
+
 
 /* Tablet */
 @media (max-width: 992px) {
@@ -1075,7 +1085,7 @@ section.key-highlights .kh-label {
 
 /* Top section heading */
 section .section-inner .section-title {
-  color: #1e4fd8 !important;
+  color: #1e4fd8     ;
 }
 
 /* Inside the enquiry card */

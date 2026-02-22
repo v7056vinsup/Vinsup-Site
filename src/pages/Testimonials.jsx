@@ -13,6 +13,16 @@ export default function Testimonials() {
   const [textTestimonials, setTextTestimonials] = useState([]);
   const carouselRef = useRef(null);
   const [loading, setLoading] = useState(true);
+  const convertToEmbed = (url) => {
+  if (url.includes("/shorts/")) {
+    return url.replace("/shorts/", "/embed/");
+  }
+  if (url.includes("watch?v=")) {
+    return url.replace("watch?v=", "embed/");
+  }
+  return url;
+};
+
 
 
   /* ===============================
@@ -87,6 +97,9 @@ export default function Testimonials() {
   }, [instagram]);
 
   return (
+     <>
+    {/* LOADER — outside <main> so nothing can overlap it */}
+    {loading && <Loader />}
     <main>
       {/* ===============================
           HERO SECTION
@@ -99,8 +112,7 @@ export default function Testimonials() {
           </p>
         </div>
       </section>
-        {/* LOADER */}
-  {loading && <Loader />}
+        
 
       {/* ===============================
           HERO YOUTUBE VIDEOS
@@ -136,17 +148,36 @@ export default function Testimonials() {
       {category.replace(/\b\w/g, c => c.toUpperCase())}
     </h2>
 
-    <div className="insta-row">
-      {instagram[category].map((vid, i) => (
-        <div className="insta-plain" key={i}>
-          <blockquote
-            className="instagram-media"
-            data-instgrm-permalink={vid.video_url}
-            data-instgrm-version="14"
-          />
-        </div>
-      ))}
-    </div>
+   <div className="insta-row">
+  {instagram[category].map((vid, i) => {
+    const url = vid.video_url;
+
+    // 👉 YouTube Shorts
+    if (url.includes("youtube.com") || url.includes("youtu.be")) {
+      return (
+        <iframe
+          key={i}
+          className="short-video"
+          src={convertToEmbed(url)}
+          title="YouTube Short"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+        />
+      );
+    }
+
+    // 👉 Instagram
+    return (
+      <blockquote
+        key={i}
+        className="instagram-media"
+        data-instgrm-permalink={url}
+        data-instgrm-version="14"
+      />
+    );
+  })}
+</div>
+
   </div>
 </section>
 
@@ -195,5 +226,6 @@ export default function Testimonials() {
         </div>
       </section>
     </main>
+     </>
   );
 }

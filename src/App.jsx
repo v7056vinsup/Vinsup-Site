@@ -12,6 +12,7 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Courses from "./pages/Courses.jsx";
+import Palcements from "./pages/Placements.jsx";
 import Testimonials from "./pages/Testimonials.jsx";
 import Contact from "./pages/Contact.jsx";
 import Login from "./pages/Login.jsx";
@@ -33,6 +34,7 @@ import FAQs from "./pages/FAQs.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Terms from "./pages/Terms.jsx";
 import RefundPolicy from "./pages/RefundPolicy.jsx";
+import Placements from "./pages/Placements.jsx";
 
 export default function App() {
   const { loading } = useContext(LoadingContext);
@@ -65,6 +67,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/placements" element={<Placements />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

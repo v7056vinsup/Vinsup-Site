@@ -77,18 +77,23 @@ export default function Footer() {
           <h4 className="f-head">Get in Touch</h4>
           <ul className="f-contact-list">
             <li> A,B, Gopalsamy, 140,<br/>Gopalsamy Koil St, Sridevi Nagar, Ganapathy, Coimbatore,<br/>Tamil Nadu 641006</li>
-            <li> 8870060607</li>
-            <li> hrvinsup@gmail.com</li>
-          </ul>
-          <div className="map-wrap">
-            <iframe
-              className="map-frame"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.0301951658284!2d76.97409037504568!3d11.036361389128652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85963b47c9905%3A0xccf88b0cf54e457e!2sVINSUP%20SKILL%20ACADEMY!5e0!3m2!1sen!2sin!4v1763537845307!5m2!1sen!2sin" 
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Institute Location"
-            />
-          </div>
+           <li>
+  <a href="tel:+918870060607">+91 88700 60607</a>
+</li>
+<li>
+  <a href="mailto:hrvinsup@gmail.com">hrvinsup@gmail.com</a>
+</li>
+
+          </ul><div className="map-wrap">
+  <iframe
+    className="map-frame"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.0301951658284!2d76.97409037504568!3d11.036361389128652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85963b47c9905%3A0xccf88b0cf54e457e!2sVINSUP%20SKILL%20ACADEMY!5e0!3m2!1sen!2sin!4v1771679150601!5m2!1sen!2sin"
+    title="Vinsup Skill Academy Location"
+    loading="lazy"
+    allowFullScreen
+    referrerPolicy="no-referrer-when-downgrade"
+  />
+</div>
         </div>
       </div>
        {/* Column 6: Location */}
@@ -98,8 +103,30 @@ export default function Footer() {
       </div>
 
       {/* Floating action buttons (optional; looks like your reference) */}
-      <a className="fab fab-whatsapp" href="https://wa.me/918870060607" target="_blank" rel="noreferrer" aria-label="WhatsApp">✆</a>
-      <a className="fab fab-call" href="tel:+918870060607" aria-label="Call">📞</a>
+     <div className="floating-icons" role="region" aria-label="Quick contact actions">
+ <a
+  className="fab fab-whatsapp"
+  href="https://wa.me/918870060607"
+  target="_blank"
+  rel="noreferrer"
+  aria-label="WhatsApp"
+>
+  <svg viewBox="0 0 32 32" width="26" height="26" fill="white">
+    <path d="M16.04 3C9.41 3 4 8.41 4 15.04c0 2.64.86 5.07 2.32 7.03L4 29l7.16-2.25c1.9 1.04 4.08 1.63 6.33 1.63 6.63 0 12.04-5.41 12.04-12.04S22.67 3 16.04 3zm0 21.86c-2.03 0-3.93-.55-5.56-1.52l-.4-.24-4.25 1.34 1.38-4.14-.26-.42a9.8 9.8 0 01-1.54-5.2c0-5.42 4.41-9.83 9.83-9.83 2.63 0 5.11 1.02 6.97 2.88a9.79 9.79 0 012.88 6.95c0 5.42-4.41 9.83-9.83 9.83zm5.39-7.37c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.69.15-.2.3-.78.97-.96 1.17-.18.2-.36.23-.66.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.5-1.79-1.68-2.09-.18-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.69-1.66-.95-2.28-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.53.08-.8.38-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.13 3.25 5.16 4.56.72.31 1.28.49 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.58-.35z"/>
+  </svg>
+</a>
+
+
+
+  <a
+    className="fab fab-call"
+    href="tel:+918870060607"
+    aria-label="Call now"
+  >
+    📞
+  </a>
+</div>
+
     </footer>
   );
 }

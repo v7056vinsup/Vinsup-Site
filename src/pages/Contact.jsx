@@ -44,7 +44,7 @@ export default function Contact() {
                 <span className="emoji">📞</span>
                 <div>
                   <h3>Phone</h3>
-                  <p>+91 98765 43210</p>
+                  <p>+91 8925 876 525</p>
                 </div>
               </div>
 

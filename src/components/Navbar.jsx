@@ -53,16 +53,17 @@ export default function Navbar() {
           </div>
 
           <Link to="/testimonials">Testimonials</Link>
-          <Link to="/blog">Events</Link>
+          <Link to="/placements">Placements</Link>
+          <Link to="/blog">What's Happening</Link>
           <Link to="/contact">Contact</Link>
         </nav>
 
         {/* Rightmost: Auth */}
-        <div className="nav-cta">
+        {/* <div className="nav-cta">
           <Link className="link" to="/login">Login</Link> 
           
           <Link className="btn" to="/register">Register</Link>
-        </div>
+        </div> */}
 
         {/* Mobile menu */}
         <button
@@ -103,13 +104,14 @@ export default function Navbar() {
 </details>
 
           <Link to="/testimonials" onClick={()=>setOpen(false)}>Testimonials</Link>
+           <Link to="/placements" onClick={()=>setOpen(false)}>Placements</Link>
           <Link to="/blog" onClick={()=>setOpen(false)}>Events</Link>
           <Link to="/contact" onClick={()=>setOpen(false)}>Contact</Link>
         </div>
-        <div className="group">
+        {/* <div className="group">
           <Link to="/login" onClick={()=>setOpen(false)}>Login</Link>
           <Link to="/register" onClick={()=>setOpen(false)}>Register</Link>
-        </div>
+        </div> */}
       </div>
     </header>
   );

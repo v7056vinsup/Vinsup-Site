@@ -5,12 +5,13 @@ import ReviewsShowcase from "../components/ReviewsShowcase";
 import QuickEnquiry from "../components/QuickEnquiry";
 import Popup from "../components/Popup";
 import '../styles/Home.css'
-import daImg from "../assets/da.png";
-import dmImg from "../assets/dm.png";
-import dvpImg from "../assets/dvp.png";
-import dvsImg from "../assets/dvs.png";
-import uxImg from "../assets/ux.png";
-import fsdImg from "../assets/fsd.png";
+import daImg from "../assets/da.PNG";
+import dmImg from "../assets/dm.PNG";
+import dvpImg from "../assets/dvp.PNG";
+import MarketingAlerts from "../components/MarketingAlerts";
+import dvsImg from "../assets/dvs.PNG";
+import uxImg from "../assets/ux.PNG";
+import fsdImg from "../assets/fsd.PNG";
 import img1 from "../assets/welcome/image1.png";
 import img2 from "../assets/welcome/image2.png";
 import img3 from "../assets/welcome/image3.png";
@@ -384,6 +385,10 @@ const [youtubeVideos, setYoutubeVideos] = useState([]);
   return (
     <main>
         <Popup />
+        {/* =========================
+                  MARKETING ALERTS
+              ========================== */}
+              {/* <MarketingAlerts /> */}
       {/* 1) FULL-WIDTH HERO CAROUSEL (450px) */}
      <section className="hero-carousel" aria-label="Homepage banner">
   {images.map((item, i) => (
@@ -397,7 +402,12 @@ const [youtubeVideos, setYoutubeVideos] = useState([]);
       aria-hidden={i !== index}
     >
       <Link to={item.link}>
-        <img src={item.src} alt={`Slide ${i + 1}`} />
+       <img 
+  src={item.src} 
+  alt={`Slide ${i + 1}`} 
+  loading="lazy"
+/>
+
       </Link>
     </div>
   ))}
@@ -425,7 +435,7 @@ const [youtubeVideos, setYoutubeVideos] = useState([]);
 
           <div className="hero-copy">
            
-            <h1>Welcome to Vinsup skill academy</h1>
+            <h1>Welcome to Vinsup Skill Academy</h1>
             <p className="hero-lead">
             Let’s face it: A  <a href="https://www.digitalcomputerclasses.com/top-free-high-da-pa-website-list-for-backlink-submission/" className="backlink">college degree alone</a> doesn’t always guarantee a job anymore. That’s where we come in, we are a Coimbatore based team dedicating or dedicated to teach you what actually matters in Tamil Nadu tech industry. Whether you just graduated or want to switch careers, our one month boot camp or internship camp give you the exact  <a href="https://linkbuilder.io/guest-posting-sites/" className="backlink">skills</a>  that companies are hiring for without the expensive price tag.  </p>
 
@@ -441,7 +451,7 @@ const [youtubeVideos, setYoutubeVideos] = useState([]);
 {/* SECTION 2 — Key Highlights */}
 <section className="key-highlights section section--full" id="highlights">
   <div className="section-inner">
-    <h2 id="h2" className="section-title" >We are Proud of...</h2>
+    <h2 id="h2" className="section-title" style={{color:'red'}} >We are Proud of...</h2>
 
     <div className="kh-grid">
       <div className="kh-item">
@@ -552,7 +562,7 @@ const [youtubeVideos, setYoutubeVideos] = useState([]);
 >
   <div className="section-inner">
     <h2 className="section-title">
-      Start your career in Multiple Companies
+       Launch your Career in Top Companies
     </h2>
 
     {/* Row 1 — Left to Right */}
@@ -609,7 +619,7 @@ const [youtubeVideos, setYoutubeVideos] = useState([]);
     What We Follow — <span>Job Readiness Program</span>
   </h2>
   <p className="section-sub">
-    Your dream job is just <b>7 steps</b> away with Vinsup Skill Academy !
+    Your dream job is just <b>7 steps</b> away with Vinsup Skill Academy!
   </p>
 
 

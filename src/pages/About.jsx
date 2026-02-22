@@ -7,15 +7,15 @@ import vinsupInfotech from "../assets/VINSUPINFOTECH.png";
 import srbBankers from "../assets/SRBBANKERS.png";
 import vinolya from "../assets/VINOLYA.png";
 import ramtel from "../assets/ramtel.png";
-import g1 from "../assets/gallery/1.jpg";
-import g2 from "../assets/gallery/2.jpg";
-import g3 from "../assets/gallery/3.jpg";
+import g3 from "../assets/gallery/1.png";
+import g1 from "../assets/gallery/2.jpg";
+import g2 from "../assets/gallery/3.jpg";
 import g4 from "../assets/gallery/4.jpg";
 import g5 from "../assets/gallery/5.jpg";
-import g6 from "../assets/gallery/6.jpg";
-import g7 from "../assets/gallery/7.jpg";
+import g6 from "../assets/gallery/6.png";
+import g7 from "../assets/gallery/7.PNG";
 import g8 from "../assets/gallery/8.jpg";
-import g9 from "../assets/gallery/9.jpg";
+import g9 from "../assets/gallery/9.PNG";
 import g10 from "../assets/gallery/10.jpg"; 
 
 
@@ -186,7 +186,7 @@ export default function About() {
             <article className="wc-card">
               <h3 className="wc-title">Mentorship</h3>
               <p className="wc-text">
-                Students receive continuous support, review, and guidance from industry experts.
+               Students receive continuous mentorship from experienced industry professionals who guide them through real-world challenges. From doubt clarification to career advice, our mentors ensure you stay on the right path and build confidence to succeed in your field.
               </p>
             </article>
 

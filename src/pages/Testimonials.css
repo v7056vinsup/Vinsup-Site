@@ -87,6 +87,20 @@
   height: 100%;
   border: none;
 }
+.short-video-wrapper {
+  width: 100%;
+  max-width: 320px;   /* controls size */
+  aspect-ratio: 9 / 16; /* 🔥 key fix */
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.short-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 
 /* Student info */
 .featured-meta {

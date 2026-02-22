@@ -31,6 +31,7 @@
   transform: translateX(25px);
   pointer-events: none;
   transition: 0.3s ease;
+  background-color: white;
 }
 
 /* show icons on hover */
@@ -44,9 +45,9 @@
 .social-icons img {
   width: 36px;
   height: 36px;
-  background: #fff;
+
   padding: 6px;
-  border-radius: 50%;
+
   transition: transform 0.2s ease;
 }
 
