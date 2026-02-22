@@ -13,9 +13,9 @@ import g2 from "../assets/gallery/3.jpg";
 import g4 from "../assets/gallery/4.jpg";
 import g5 from "../assets/gallery/5.jpg";
 import g6 from "../assets/gallery/6.png";
-import g7 from "../assets/gallery/7.png";
+import g7 from "../assets/gallery/7.PNG";
 import g8 from "../assets/gallery/8.jpg";
-import g9 from "../assets/gallery/9.png";
+import g9 from "../assets/gallery/9.PNG";
 import g10 from "../assets/gallery/10.jpg"; 
 
 
