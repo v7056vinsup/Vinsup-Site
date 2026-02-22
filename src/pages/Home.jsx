@@ -5,7 +5,7 @@ import ReviewsShowcase from "../components/ReviewsShowcase";
 import QuickEnquiry from "../components/QuickEnquiry";
 import Popup from "../components/Popup";
 import '../styles/Home.css'
-import daImg from "../assets/da.PNG";
+import daImg from "../assets/dA.PNG";
 import dmImg from "../assets/dm.PNG";
 import dvpImg from "../assets/dvp.PNG";
 import MarketingAlerts from "../components/MarketingAlerts";
