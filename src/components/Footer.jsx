@@ -99,7 +99,7 @@ export default function Footer() {
        {/* Column 6: Location */}
 
       <div className="copyright">
-        © {new Date().getFullYear()} Vinsup Skill Academy. All rights reserved.
+        © {new Date().getFullYear()} <a href="https://vinsupinfotech.com/">Vinsup Infotech</a>. All rights reserved.
       </div>
 
       {/* Floating action buttons (optional; looks like your reference) */}
