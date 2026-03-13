@@ -276,3 +276,15 @@
 .qe-row-inline select {
   min-width: 0 !important;
 }
+
+/* If you have something like this globally: */
+* {
+  user-select: none;
+}
+
+/* Add this exception for all form elements: */
+input, textarea, select {
+  user-select: text !important;
+  pointer-events: auto !important;
+  cursor: text !important;
+}

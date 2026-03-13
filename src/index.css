@@ -46,8 +46,21 @@ button{ cursor: pointer; }
   padding: 14px 28px;
   display: flex; align-items: center; justify-content: space-between;
 }
-body :not(input):not(textarea) {
+body {
   user-select: none;
+}
+
+input,
+textarea,
+select,
+[contenteditable],
+input *,
+textarea *,
+.qe-full-card,
+.qe-full-card * {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  pointer-events: auto !important;
 }
 /* ===============================
    BACKLINK – DISABLE POINTER UI
@@ -312,4 +325,21 @@ a.backlink:focus {
 .fab-whatsapp svg {
   width: 30px;
   height: 30px;
+}
+input,
+textarea,
+select,
+[contenteditable] {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  pointer-events: auto !important;
+  cursor: auto !important;
+} 
+
+.floating-icons {
+  gap: -6px !important;
+}
+
+.floating-icons .fab {
+  margin: -18px !important;
 }

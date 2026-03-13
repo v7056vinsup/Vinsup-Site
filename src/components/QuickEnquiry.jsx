@@ -137,7 +137,7 @@ export default function QuickEnquiry({ onSuccess }) {
           <div className="qe-row-inline">
             <label htmlFor="name">Name *</label>
             <input
-              id="name" tabIndex={-1}
+              id="name" 
               name="name"
               value={form.name}
               onChange={handleChange}
@@ -150,7 +150,7 @@ export default function QuickEnquiry({ onSuccess }) {
           <div className="qe-row-inline">
             <label htmlFor="email">Email *</label>
             <input
-              id="email" tabIndex={-1}
+              id="email" 
               name="email"
               value={form.email}
               onChange={handleChange}
@@ -163,7 +163,7 @@ export default function QuickEnquiry({ onSuccess }) {
           <div className="qe-row-inline">
             <label htmlFor="phone">Phone *</label>
             <input
-              id="phone" tabIndex={-1}
+              id="phone" 
               name="phone"
               value={form.phone}
               onChange={handleChange}
@@ -177,7 +177,7 @@ export default function QuickEnquiry({ onSuccess }) {
             <div className="qe-row-inline">
               <label htmlFor="course">Course</label>
               <select
-                id="course" tabIndex={-1}
+                id="course" 
                 name="course"
                 value={form.course}
                 onChange={handleChange}
@@ -206,7 +206,7 @@ export default function QuickEnquiry({ onSuccess }) {
           <div className="qe-row-inline">
             <label htmlFor="message">Message *</label>
             <textarea
-              id="message"
+              id="message" 
               name="message"
               value={form.message}
               onChange={handleChange}

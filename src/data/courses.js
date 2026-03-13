@@ -194,7 +194,8 @@ const courses = [
       { title: "Github", topics: ["Version Control", "Repositories & Branches", "Collaboration"] }
     ],
 
-    syllabusPdf: "/syllabus/data-verse-pro.pdf",
+    syllabusPdf: "../assets/pdf/DATA VERSE PRO DETAIL SYLLABUS BROCHURE....pdf",
+    
 
     projects: "Build production-grade ETL pipelines and analytics systems.",
 
