@@ -5,7 +5,7 @@ import "./QuickEnquiry.css";
 export default function QuickEnquiry({ onSuccess }) {
 
 
-  const submitUrl = "http://localhost:3000/api/proxy"; 
+ const submitUrl = "/api/proxy";
   const secret = "vinsup_2025_secure_key";
 
   const courses = [
