@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyDSKPUpL-31X6J_NfpBEPmyK0vSW9pIoPEAKvB_uB78-_oGmEolvQjZkMuoGdZkCdn/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyDSKPUpL-31X6J_NfpBEPmyK0vSW9pIoPEAKvB_uB78-_oGmEolvQjZkMuoGdZkCdn/exec";
 
   try {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+    const response = await fetch(scriptURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -10,8 +10,8 @@ export default async function handler(req, res) {
       body: JSON.stringify(req.body),
     });
 
-    const text = await response.text();
-    res.status(200).send(text);
+    const data = await response.text();
+    res.status(200).send(data);
 
   } catch (error) {
     res.status(500).json({ error: error.message });

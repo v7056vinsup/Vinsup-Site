@@ -60,7 +60,13 @@ import uxFigma from '../assets/frontend/uxui/FIGMA.png';
 import uxPhotoshop from '../assets/frontend/uxui/PS.png';
 import uxIllustrator from '../assets/frontend/uxui/AI.png';
 import uxBlender from '../assets/frontend/uxui/BLEN.png';
-
+// import digitalMarketingDeck from "../assets/Decks/digital-marketing-syllabus.pdf";
+// import uiuxGraphicDeck from "../assets/Decks/uiux-graphic-design-syllabus.pdf";
+// import dataAnalyticsDeck from "../assets/Decks/data-analytics-syllabus.pdf";
+// import dataVerseDeck from "../assets/Decks/data-verse-pro-syllabus.pdf";
+// import devstackDeck from "../assets/Decks/devstack-engineer-syllabus.pdf";
+// import mernDeck from "../assets/Decks/mer
+// n-stack-syllabus.pdf";
 // =====================================================
 // DIGITAL MARKETING TOOLS
 // =====================================================
@@ -194,8 +200,7 @@ const courses = [
       { title: "Github", topics: ["Version Control", "Repositories & Branches", "Collaboration"] }
     ],
 
-    syllabusPdf: "../assets/pdf/DATA VERSE PRO DETAIL SYLLABUS BROCHURE....pdf",
-    
+    syllabusPdf: "/Data Verse Pro Syllabus Brochure.pdf",
 
     projects: "Build production-grade ETL pipelines and analytics systems.",
 
@@ -335,8 +340,7 @@ const courses = [
       { title: "Statistics", topics: ["Descriptive Statistics", "Probability & Distributions", "Inferential Statistics"] }
     ],
 
-    syllabusPdf: "/syllabus/data-analytics.pdf",
-
+    syllabusPdf: "/Data Analytics Syllabus Brochure.pdf",
     projects: "Analyze real datasets and build dashboards.",
 
     roles: ["Data Analyst", "Business Analyst"],
@@ -489,8 +493,7 @@ const courses = [
       { title: "Docker", topics: ["Images & Containers", "Dockerfile", "Docker Compose"] }
     ],
 
-    syllabusPdf: "/syllabus/devstack.pdf",
-
+    syllabusPdf: "/Devstack Engineer Syllabus Brochure.pdf",
     projects: "Build and deploy fullstack applications.",
 
     roles: [
@@ -637,8 +640,7 @@ const courses = [
       { title: "React.js", topics: ["Components & Props", "State & Hooks", "Routing"] }
     ],
 
-    syllabusPdf: "/syllabus/frontend.pdf",
-
+    syllabusPdf: "/MERN Stack Syllabus Brochure.pdf",
     projects: "Build responsive websites and React apps.",
 
     roles: ["Frontend Developer", "UI Developer"],
@@ -808,8 +810,7 @@ const courses = [
       }
     ],
 
-    syllabusPdf: "/syllabus/ui-ux.pdf",
-
+    syllabusPdf: "/_UIUX & Graphic Design Syllabus Brochure.pdf",
     projects: "Design mobile and web interfaces.",
 
     roles: ["UI Designer", "UX Designer"],
@@ -973,8 +974,7 @@ const courses = [
       }
     ],
 
-    syllabusPdf: "/syllabus/digital-marketing.pdf",
-
+    syllabusPdf: "/_Digital Marketing Syllabus Brochure.pdf",
     projects: "Run live ad campaigns and SEO projects.",
 
     roles: ["Digital Marketer", "SEO Executive"],
