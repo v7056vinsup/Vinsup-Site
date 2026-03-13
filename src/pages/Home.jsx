@@ -219,6 +219,9 @@ const jrpSteps = [
 
 export default function Home() {
     const [activeStep, setActiveStep] = useState(0);
+  const [youtubeVideos, setYoutubeVideos] = useState([]);
+  const [instagram, setInstagram] = useState({});
+  const [textTestimonials, setTextTestimonials] = useState([]);
 
 const steps = [
   {
@@ -381,7 +384,6 @@ useEffect(() => {
     }, 5000); // 2 seconds
     return () => clearInterval(id);
   }, [images.length]);
-const [youtubeVideos, setYoutubeVideos] = useState([]);
   return (
     <main>
         <Popup />
@@ -668,8 +670,8 @@ const [youtubeVideos, setYoutubeVideos] = useState([]);
 
 
 <section className="qc">
-  <div class="section-inner">
-    <h2 class="section-title">Quick Enquiry Here</h2>
+  <div className="section-inner">
+    <h2 className="section-title">Quick Enquiry Here</h2>
     <QuickEnquiry />
   </div>
 </section>

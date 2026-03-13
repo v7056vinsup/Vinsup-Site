@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rn \"class=\" \"D:/Vinsup/institute-site/institute-site/src\" --include=\"*.jsx\" --include=\"*.js\" --include=\"*.tsx\" --include=\"*.ts\" 2>/dev/null | grep -v \"className=\" | grep -v \"//.*class=\" | grep -v \"classList\")",
+      "Bash(grep -rn \" class=\" \"D:/Vinsup/institute-site/institute-site/src\" 2>/dev/null | grep -v \".css:\" | grep -v \"//.*class=\" | grep -v \"className\")",
+      "Bash(grep -rn \"class=\" \"D:/Vinsup/institute-site/institute-site/src\" 2>/dev/null | grep -v \"//.*class=\" | grep -v \"className\" | grep -v \"\\\\.css:\" | grep -v \"classList\")",
+      "Bash(grep -rn \" class=\" \"D:/Vinsup/institute-site/institute-site/src\" --include=\"*.svg\" 2>/dev/null | head -20)",
+      "Bash(grep -rn \"class=\" \"D:/Vinsup/institute-site/institute-site/src\" 2>/dev/null | grep -v \"className\" | grep -v \"//.*class\" | grep -v \"\\\\.css\" | grep -v \"\\\\.svg\" | grep -v \"classList\")"
+    ]
+  }
+}
