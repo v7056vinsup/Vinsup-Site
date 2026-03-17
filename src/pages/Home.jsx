@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Counter from "../components/Counter";
 import ReviewsShowcase from "../components/ReviewsShowcase";
 import QuickEnquiry from "../components/QuickEnquiry";
-import Popup from "../components/Popup";
 import '../styles/Home.css'
 import daImg from "../assets/dA.PNG";
 import dmImg from "../assets/dm.PNG";
@@ -219,6 +218,12 @@ const jrpSteps = [
 
 export default function Home() {
     const [activeStep, setActiveStep] = useState(0);
+  const [showEnquiryModal, setShowEnquiryModal] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowEnquiryModal(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
   const [youtubeVideos, setYoutubeVideos] = useState([]);
   const [instagram, setInstagram] = useState({});
   const [textTestimonials, setTextTestimonials] = useState([]);
@@ -386,7 +391,14 @@ useEffect(() => {
   }, [images.length]);
   return (
     <main>
-        <Popup />
+      {showEnquiryModal && (
+        <div className="qe-popup-overlay" onClick={() => setShowEnquiryModal(false)}>
+          <div className="qe-popup-box" onClick={(e) => e.stopPropagation()}>
+            <button className="qe-popup-close" onClick={() => setShowEnquiryModal(false)}>✖</button>
+            <QuickEnquiry onSuccess={() => setShowEnquiryModal(false)} />
+          </div>
+        </div>
+      )}
         {/* =========================
                   MARKETING ALERTS
               ========================== */}
