@@ -78,7 +78,7 @@ export default function Footer() {
           <ul className="f-contact-list">
             <li> A,B, Gopalsamy, 140,<br/>Gopalsamy Koil St, Sridevi Nagar, Ganapathy, Coimbatore,<br/>Tamil Nadu 641006</li>
            <li>
-  <a href="tel:+918870060607">+91 88700 60607</a>
+  <a href="tel:+918248826374">+91 82488 26374</a>
 </li>
 <li>
   <a href="mailto:hrvinsup@gmail.com">hrvinsup@gmail.com</a>
@@ -106,7 +106,7 @@ export default function Footer() {
      <div className="floating-icons" role="region" aria-label="Quick contact actions">
  <a
   className="fab fab-whatsapp"
-  href="https://wa.me/918870060607"
+  href="https://wa.me/918248826374"
   target="_blank"
   rel="noreferrer"
   aria-label="WhatsApp"
@@ -120,7 +120,7 @@ export default function Footer() {
 
   <a
     className="fab fab-call"
-    href="tel:+918870060607"
+    href="tel:+918248826374"
     aria-label="Call now"
   >
     📞

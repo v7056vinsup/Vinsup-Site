@@ -44,7 +44,7 @@ export default function Contact() {
                 <span className="emoji">📞</span>
                 <div>
                   <h3>Phone</h3>
-                  <p>+91 8925 876 525</p>
+                  <p>+91 82488 26374</p>
                 </div>
               </div>
 
@@ -100,7 +100,7 @@ export default function Contact() {
 
           <div className="action-row">
             {/* CALL US */}
-            <a href="tel:+918870060607" className="action-box">
+            <a href="tel:+918248826374" className="action-box">
               <span className="action-icon">
                 {/* Phone SVG */}
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
@@ -113,13 +113,13 @@ export default function Contact() {
 
               <div>
                 <h3>Call Us</h3>
-                <p>+91 88700-60607 </p>
+                <p>+91 82488 26374</p>
               </div>
             </a>
 
             {/* WHATSAPP */}
             <a
-              href="https://wa.me/918870060607?text=Hi%20Vinsup%20Skill%20Academy"
+              href="https://wa.me/918248826374?text=Hi%20Vinsup%20Skill%20Academy"
               target="_blank"
               rel="noopener noreferrer"
               className="action-box"
