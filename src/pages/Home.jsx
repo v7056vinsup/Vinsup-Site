@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Counter from "../components/Counter";
 import ReviewsShowcase from "../components/ReviewsShowcase";
 import QuickEnquiry from "../components/QuickEnquiry";
+import HomePopupModal from "../components/HomePopupModal";
 import '../styles/Home.css'
 import daImg from "../assets/dA.PNG";
 import dmImg from "../assets/dm.PNG";
@@ -392,12 +393,7 @@ useEffect(() => {
   return (
     <main>
       {showEnquiryModal && (
-        <div className="qe-popup-overlay" onClick={() => setShowEnquiryModal(false)}>
-          <div className="qe-popup-box" onClick={(e) => e.stopPropagation()}>
-            <button className="qe-popup-close" onClick={() => setShowEnquiryModal(false)}>✖</button>
-            <QuickEnquiry onSuccess={() => setShowEnquiryModal(false)} />
-          </div>
-        </div>
+        <HomePopupModal onSuccess={() => setShowEnquiryModal(false)} />
       )}
         {/* =========================
                   MARKETING ALERTS

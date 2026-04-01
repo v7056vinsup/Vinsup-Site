@@ -284,6 +284,123 @@
 }
 
 /* ===============================
+   PHONE + OTP FLOW
+=============================== */
+.qe-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.qe-field-group .qe-row-inline {
+  margin-bottom: 0;
+}
+
+.qe-phone-wrap {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.qe-phone-wrap input {
+  flex: 1;
+  min-width: 0;
+}
+
+.qe-btn-otp {
+  flex-shrink: 0;
+  height: 46px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #25D366;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.qe-btn-otp:hover:not(:disabled) {
+  background: #1ebe5d;
+}
+
+.qe-btn-otp:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.qe-otp-row {
+  display: flex;
+  gap: 8px;
+  padding-left: calc(var(--label-width) + 14px);
+}
+
+.qe-otp-input {
+  flex: 1;
+  height: 42px;
+  padding: 0 14px;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.qe-otp-input:focus {
+  border-color: var(--brand-primary);
+}
+
+.qe-btn-verify {
+  flex-shrink: 0;
+  height: 42px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--brand-primary);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.qe-btn-verify:hover:not(:disabled) {
+  background: #001f60;
+}
+
+.qe-btn-verify:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.qe-otp-msg {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  padding-left: calc(var(--label-width) + 14px);
+  margin: 0;
+}
+
+.qe-otp-msg--ok {
+  color: #16a34a;
+}
+
+.qe-otp-note {
+  font-size: 12px;
+  color: #94a3b8;
+  text-align: center;
+  margin: 8px 0 0;
+}
+
+/* ===============================
    MOBILE
 =============================== */
 @media (max-width: 650px) {
@@ -302,6 +419,18 @@
 
   .qe-double {
     flex-direction: column;
+  }
+
+  .qe-otp-row {
+    padding-left: 0;
+  }
+
+  .qe-otp-msg {
+    padding-left: 0;
+  }
+
+  .qe-phone-wrap {
+    flex-wrap: wrap;
   }
 }
 /* ===================================================

@@ -1,0 +1,254 @@
+/* =============================================
+   HOME POPUP MODAL — WhatsApp OTP Verified
+============================================= */
+
+.hpm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 16px;
+}
+
+.hpm-box {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+  animation: hpm-in 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes hpm-in {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ---- Header ---- */
+.hpm-header {
+  background: linear-gradient(135deg, #00287A 0%, #e22027 100%);
+  padding: 24px 28px 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.hpm-brand {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.hpm-title {
+  font-size: 22px;
+  font-weight: 900;
+  margin: 8px 0 6px;
+  color: #fff;
+}
+
+.hpm-sub {
+  font-size: 13px;
+  opacity: 0.88;
+  margin: 0;
+}
+
+/* ---- Form ---- */
+.hpm-form {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---- Field ---- */
+.hpm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hpm-field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.hpm-field input {
+  height: 44px;
+  padding: 0 14px;
+  font-size: 15px;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.hpm-field input:focus {
+  border-color: #00287A;
+  background: #fff;
+}
+
+.hpm-field input:disabled {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ---- Phone Row ---- */
+.hpm-phone-row {
+  display: flex;
+  gap: 8px;
+}
+
+.hpm-phone-row input {
+  flex: 1;
+}
+
+.hpm-btn-otp {
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #25D366;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.hpm-btn-otp:hover:not(:disabled) {
+  background: #1ebe5d;
+}
+
+.hpm-btn-otp:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* ---- OTP verify row ---- */
+.hpm-otp-verify-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.hpm-otp-verify-row input {
+  flex: 1;
+  height: 42px;
+  padding: 0 14px;
+  font-size: 15px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.hpm-otp-verify-row input:focus {
+  border-color: #00287A;
+  background: #fff;
+}
+
+.hpm-btn-verify {
+  flex-shrink: 0;
+  height: 42px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #00287A;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.hpm-btn-verify:hover:not(:disabled) {
+  background: #001f60;
+}
+
+.hpm-btn-verify:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* ---- OTP message ---- */
+.hpm-otp-msg {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 0 0;
+}
+
+.hpm-otp-msg--info {
+  color: #555;
+}
+
+.hpm-otp-msg--ok {
+  color: #16a34a;
+}
+
+/* ---- Submit error ---- */
+.hpm-submit-err {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e22027;
+  margin: 0;
+}
+
+/* ---- Submit button ---- */
+.hpm-btn-submit {
+  height: 48px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(90deg, #00287A, #e22027);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 4px;
+}
+
+.hpm-btn-submit:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.hpm-btn-submit:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* ---- Note ---- */
+.hpm-note {
+  font-size: 12px;
+  color: #94a3b8;
+  text-align: center;
+  margin: 0;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 480px) {
+  .hpm-header {
+    padding: 20px 20px 16px;
+  }
+  .hpm-form {
+    padding: 20px 20px 24px;
+  }
+  .hpm-title {
+    font-size: 19px;
+  }
+}
