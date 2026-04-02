@@ -22,13 +22,6 @@ export default function QuickEnquiry({ onSuccess }) {
     message: "",
   });
 
-  // OTP state for phone verification
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpValue, setOtpValue] = useState("");
-  const [otpVerified, setOtpVerified] = useState(false);
-  const [otpMsg, setOtpMsg] = useState("");
-  const [otpLoading, setOtpLoading] = useState(false);
-
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ type: "", text: "" });
   const [errors, setErrors] = useState({});
@@ -45,67 +38,6 @@ export default function QuickEnquiry({ onSuccess }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    // Reset OTP state if phone number changes
-    if (name === "phone") {
-      setOtpSent(false);
-      setOtpVerified(false);
-      setOtpValue("");
-      setOtpMsg("");
-    }
-  }
-
-  async function sendOtp() {
-    if (!/^\d{10}$/.test(form.phone)) {
-      setOtpMsg("Enter a valid 10-digit WhatsApp number.");
-      return;
-    }
-    setOtpLoading(true);
-    setOtpMsg("Sending OTP to WhatsApp...");
-    try {
-      const resp = await fetch("/api/send-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: form.phone }),
-      });
-      const data = await resp.json();
-      if (resp.ok && data.success) {
-        setOtpSent(true);
-        setOtpMsg("OTP sent to your WhatsApp. Enter it below.");
-      } else {
-        setOtpMsg(data.message || "Failed to send OTP. Try again.");
-      }
-    } catch {
-      setOtpMsg("Network error. Please try again.");
-    } finally {
-      setOtpLoading(false);
-    }
-  }
-
-  async function verifyOtp() {
-    if (!otpValue.trim()) {
-      setOtpMsg("Enter the OTP you received.");
-      return;
-    }
-    setOtpLoading(true);
-    setOtpMsg("Verifying...");
-    try {
-      const resp = await fetch("/api/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: form.phone, otp: otpValue }),
-      });
-      const data = await resp.json();
-      if (resp.ok && data.success) {
-        setOtpVerified(true);
-        setOtpMsg("WhatsApp number verified ✅");
-      } else {
-        setOtpMsg(data.message || "Wrong OTP. Try again.");
-      }
-    } catch {
-      setOtpMsg("Network error. Please try again.");
-    } finally {
-      setOtpLoading(false);
-    }
   }
 
   function validate() {
@@ -113,7 +45,6 @@ export default function QuickEnquiry({ onSuccess }) {
     if (!form.name.trim()) err.name = "Required";
     if (!form.email.trim()) err.email = "Required";
     if (!form.phone.trim()) err.phone = "Required";
-    if (!otpVerified) err.phone = "Please verify your WhatsApp number";
     return err;
   }
 
@@ -142,10 +73,6 @@ export default function QuickEnquiry({ onSuccess }) {
       }
 
       setForm({ name: "", email: "", phone: "", course: courses[0], message: "" });
-      setOtpSent(false);
-      setOtpVerified(false);
-      setOtpValue("");
-      setOtpMsg("");
       setErrors({});
       setShowThanks(true);
       setStatus({ type: "success", text: "Sent successfully!" });
@@ -198,60 +125,16 @@ export default function QuickEnquiry({ onSuccess }) {
             {errors.email && <span className="qe-err">{errors.email}</span>}
           </div>
 
-          {/* Phone + WhatsApp OTP */}
-          <div className="qe-field-group">
-            <div className="qe-row-inline">
-              <label htmlFor="phone">Phone *</label>
-              <div className="qe-phone-wrap">
-                <input
-                  id="phone"
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="WhatsApp number"
-                  maxLength={10}
-                  disabled={otpVerified}
-                />
-                {!otpVerified && (
-                  <button
-                    type="button"
-                    className="qe-btn-otp"
-                    onClick={sendOtp}
-                    disabled={otpLoading}
-                  >
-                    {otpLoading && !otpSent ? "Sending..." : otpSent ? "Resend" : "Send OTP"}
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {otpSent && !otpVerified && (
-              <div className="qe-otp-row">
-                <input
-                  className="qe-otp-input"
-                  type="tel"
-                  value={otpValue}
-                  onChange={(e) => setOtpValue(e.target.value.replace(/[^0-9]/g, ""))}
-                  placeholder="Enter OTP"
-                  maxLength={6}
-                />
-                <button
-                  type="button"
-                  className="qe-btn-verify"
-                  onClick={verifyOtp}
-                  disabled={otpLoading}
-                >
-                  {otpLoading ? "Verifying..." : "Verify"}
-                </button>
-              </div>
-            )}
-
-            {otpMsg && (
-              <p className={`qe-otp-msg ${otpVerified ? "qe-otp-msg--ok" : ""}`}>
-                {otpMsg}
-              </p>
-            )}
-
+          {/* Phone */}
+          <div className="qe-row-inline">
+            <label htmlFor="phone">Phone *</label>
+            <input
+              id="phone"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="Phone number"
+            />
             {errors.phone && <span className="qe-err">{errors.phone}</span>}
           </div>
 
@@ -286,7 +169,7 @@ export default function QuickEnquiry({ onSuccess }) {
           </div>
 
           <div className="qe-actions">
-            <button type="submit" className="btn-primary" disabled={loading || !otpVerified}>
+            <button type="submit" className="btn-primary" disabled={loading}>
               {loading ? "Sending..." : "Submit Enquiry"}
             </button>
             <button
@@ -294,10 +177,6 @@ export default function QuickEnquiry({ onSuccess }) {
               className="btn-outline"
               onClick={() => {
                 setForm({ name: "", email: "", phone: "", course: courses[0], message: "" });
-                setOtpSent(false);
-                setOtpVerified(false);
-                setOtpValue("");
-                setOtpMsg("");
                 setErrors({});
                 setStatus({ type: "", text: "" });
               }}
@@ -305,10 +184,6 @@ export default function QuickEnquiry({ onSuccess }) {
               Clear
             </button>
           </div>
-
-          {!otpVerified && (
-            <p className="qe-otp-note">Verify your WhatsApp number to submit.</p>
-          )}
         </form>
       </div>
 
