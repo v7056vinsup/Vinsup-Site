@@ -21,6 +21,27 @@
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
   animation: hpm-in 0.3s ease;
   overflow: hidden;
+  position: relative;
+}
+
+.hpm-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: #888;
+  z-index: 10;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: color 0.2s, background 0.2s;
+}
+.hpm-close:hover {
+  color: #333;
+  background: #f0f0f0;
 }
 
 @keyframes hpm-in {
