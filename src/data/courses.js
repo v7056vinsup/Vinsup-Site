@@ -97,9 +97,9 @@ const courses = [
   ====================================================== */
   {
     slug: "data-verse-pro",
-    title: "Data Verse Pro",
+    title: "Data Scientist  with Gen AI Architect",
     category: "data",
-    badge: "Best Seller",
+    badge: "Trending Course",
     trustImage: dvpImage,
     trustImageAlt: "Industry aligned data engineering curriculum",
 

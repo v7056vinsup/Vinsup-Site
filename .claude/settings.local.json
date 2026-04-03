@@ -6,7 +6,13 @@
       "Bash(grep -rn \"class=\" \"D:/Vinsup/institute-site/institute-site/src\" 2>/dev/null | grep -v \"//.*class=\" | grep -v \"className\" | grep -v \"\\\\.css:\" | grep -v \"classList\")",
       "Bash(grep -rn \" class=\" \"D:/Vinsup/institute-site/institute-site/src\" --include=\"*.svg\" 2>/dev/null | head -20)",
       "Bash(grep -rn \"class=\" \"D:/Vinsup/institute-site/institute-site/src\" 2>/dev/null | grep -v \"className\" | grep -v \"//.*class\" | grep -v \"\\\\.css\" | grep -v \"\\\\.svg\" | grep -v \"classList\")",
-      "Bash(ls -la \"D:/Vinsup/institute-site/institute-site/public/\" && file \"D:/Vinsup/institute-site/institute-site/public/Data Analytics Syllabus Brochure.pdf\" 2>/dev/null || head -c 10 \"D:/Vinsup/institute-site/institute-site/public/Data Analytics Syllabus Brochure.pdf\" | xxd)"
+      "Bash(ls -la \"D:/Vinsup/institute-site/institute-site/public/\" && file \"D:/Vinsup/institute-site/institute-site/public/Data Analytics Syllabus Brochure.pdf\" 2>/dev/null || head -c 10 \"D:/Vinsup/institute-site/institute-site/public/Data Analytics Syllabus Brochure.pdf\" | xxd)",
+      "Bash(find /d/Vinsup/institute-site/institute-site -path */node_modules -prune -o -type f \\\\\\(-name *.jsx -o -name *.js -o -name *.html -o -name *.env* -o -name *.json \\\\\\) -print)",
+      "Bash(grep -r \"8870060607\\\\|8925876525\\\\|hrvinsup\\\\|tel:\\\\|wa\\\\.me\\\\|whatsapp\" /d/Vinsup/institute-site/institute-site/src --include=*.jsx --include=*.js --include=*.html)",
+      "Bash(grep -r \"8870060607\\\\|8925876525\\\\|hrvinsup\\\\|918\\\\|whatsapp\" /d/Vinsup/institute-site/institute-site/job-portal-backend --include=*.js)",
+      "Bash(find /d/Vinsup/institute-site/institute-site/job-portal-backend -path */node_modules -prune -o -type f -name *.js -print)",
+      "Bash(xargs grep:*)",
+      "Bash(grep -r \"91\\\\|tel:\\\\|whatsapp\\\\|wa\\\\.me\\\\|+91\\\\|8870\\\\|8925\" /d/Vinsup/institute-site/institute-site/src /d/Vinsup/institute-site/institute-site/api /d/Vinsup/institute-site/institute-site/index.html --include=*.jsx --include=*.js --include=*.html)"
     ]
   }
 }
