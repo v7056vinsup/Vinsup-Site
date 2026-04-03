@@ -46,10 +46,8 @@ export default function HomePopupModal({ onSuccess, onClose }) {
   return (
     <div className="hpm-overlay">
       <div className="hpm-box">
-        {onClose && (
-          <button className="hpm-close" onClick={onClose} aria-label="Close">&#10005;</button>
-        )}
         <div className="hpm-header">
+          <button className="hpm-close" onClick={onClose} aria-label="Close">&#10005;</button>
           <span className="hpm-brand">Vinsup Skill Academy</span>
           <h2 className="hpm-title">Get Free Counselling</h2>
           <p className="hpm-sub">Fill in your details and we'll reach out to you shortly!</p>

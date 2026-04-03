@@ -220,10 +220,8 @@ const jrpSteps = [
 export default function Home() {
     const [activeStep, setActiveStep] = useState(0);
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
-  const [popupIsReturn] = useState(() => !!sessionStorage.getItem("hasSeenPopup"));
 
   useEffect(() => {
-    sessionStorage.setItem("hasSeenPopup", "true");
     const timer = setTimeout(() => setShowEnquiryModal(true), 2000);
     return () => clearTimeout(timer);
   }, []);
@@ -397,7 +395,7 @@ useEffect(() => {
       {showEnquiryModal && (
         <HomePopupModal
           onSuccess={() => setShowEnquiryModal(false)}
-          onClose={popupIsReturn ? () => setShowEnquiryModal(false) : null}
+          onClose={() => setShowEnquiryModal(false)}
         />
       )}
         {/* =========================
