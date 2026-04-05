@@ -17,12 +17,13 @@
    CARD
 =============================== */
 .qe-full-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 18px;
   padding: 28px 26px;
-  border: 1px solid rgba(255,255,255,0.55);
-  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
 }
 
 /* ===============================

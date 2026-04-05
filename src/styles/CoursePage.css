@@ -1678,23 +1678,22 @@
 /* FORM CARD */
 
 .hero-form-card {
-  background: #ffffff;
+  background: transparent;
   border-radius: 20px;
-  padding: 28px;
+  padding: 0;
   max-width: 420px;
   margin-left: auto;
-  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15);
 }
 
 .hero-form-card h3 {
   font-size: 22px;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .hero-form-card p {
   font-size: 14px;
-  color: #64748b;
+  color: rgba(255,255,255,0.7);
   margin: 8px 0 18px;
 }
 

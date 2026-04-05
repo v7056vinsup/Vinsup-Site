@@ -6,12 +6,21 @@ export default function QuickEnquiry({ onSuccess }) {
   const secret = "vinsup_2025_secure_key";
 
   const courses = [
-    "Data Verse Pro",
-    "DevStack - Fullstack with DevOps",
+    "Data Scientist with Gen AI Architect",
     "Data Analytics",
+    "DevStack – Fullstack with DevOps",
     "Front-end Development",
     "UX UI Designing",
     "Digital Marketing",
+    "MERN Stack Development",
+    "DevOps Engineering",
+    "Cyber Security",
+    "Mobile App Development",
+    "Software Testing",
+    "AI Automation Engineering",
+    "Python Full Stack Development",
+    "Python with Database",
+    "Ethical Hacking",
   ];
 
   const [form, setForm] = useState({
