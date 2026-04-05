@@ -7,14 +7,15 @@ import logo from "../assets/logo.png"; // <-- your logo
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [isCoursesOpen, setCoursesOpen] = useState(false);
- const slugToPath = {
-  "data-verse-pro": "/courses/data-verse-pro",
-  "devstack-fullstack-devops": "/courses/devstack-fullstack-devops",   // FIXED
-  "data-analytics": "/courses/data-analytics",
-  "frontend": "/courses/frontend",
-  "ui-ux-design": "/courses/ui-ux-design",
-  "digital-marketing": "/courses/digital-marketing",
-};
+ const NAV_COURSE_SLUGS = [
+  "data-verse-pro",
+  "devstack-fullstack-devops",
+  "data-analytics",
+  "frontend",
+  "ui-ux-design",
+  "digital-marketing",
+];
+const navCourses = courses.filter(c => NAV_COURSE_SLUGS.includes(c.slug));
 
 
   return (
@@ -40,8 +41,8 @@ export default function Navbar() {
             <div className={`dropdown-panel ${isCoursesOpen ? "show" : ""}`}
  role="menu" aria-label="Courses">
               <div className="dropdown-grid">
-                {courses.map(c => (
-  <Link key={c.slug} to={slugToPath[c.slug] || "/courses"} role="menuitem">
+                {navCourses.map(c => (
+  <Link key={c.slug} to={`/courses/${c.slug}`} role="menuitem">
     {c.title}
   </Link>
 ))}
@@ -83,16 +84,15 @@ export default function Navbar() {
           <details>
   <summary>Courses</summary>
   <div className="dropdown-grid" style={{ paddingTop: 8 }}>
-    {courses.map((c, index) => (
+    {navCourses.map((c) => (
       <Link
-        key={c.slug || index}
-        to={slugToPath[c.slug] || "/courses"}
+        key={c.slug}
+        to={`/courses/${c.slug}`}
         onClick={() => setOpen(false)}
       >
         {c.title}
       </Link>
     ))}
-    
     <Link
       to="/courses"
       onClick={() => setOpen(false)}

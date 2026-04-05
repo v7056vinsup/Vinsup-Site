@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 import courses from "../data/courses";
 
+const NAV_COURSE_SLUGS = [
+  "data-verse-pro",
+  "devstack-fullstack-devops",
+  "data-analytics",
+  "frontend",
+  "ui-ux-design",
+  "digital-marketing",
+];
+const footerCourses = courses.filter(c => NAV_COURSE_SLUGS.includes(c.slug));
+
 
 // simple inline SVG icons (no extra libs)
 const Facebook = () => (
@@ -42,9 +52,10 @@ export default function Footer() {
         <div className="f-col">
           <h4 className="f-head">Courses</h4>
           <ul className="f-list">
-            {courses.map((c) => (
-              <li key={c.slug}><Link to={`/courses?show=${encodeURIComponent(c.slug)}`}>{c.title}</Link></li>
+            {footerCourses.map((c) => (
+              <li key={c.slug}><Link to={`/courses/${c.slug}`}>{c.title}</Link></li>
             ))}
+            <li><Link to="/courses" style={{ fontWeight: 600 }}>View all courses →</Link></li>
           </ul>
         </div>
 

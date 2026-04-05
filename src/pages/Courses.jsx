@@ -14,8 +14,9 @@ import "../styles/CoursesPremium.css";
 ========================= */
 const filters = [
   { label: "All", value: "all" },
-  { label: "Data", value: "data" },
+  { label: "Data & AI", value: "data" },
   { label: "Development", value: "dev" },
+  { label: "Security", value: "security" },
   { label: "Design", value: "design" },
   { label: "Marketing", value: "marketing" }
 ];
@@ -135,9 +136,13 @@ export default function Courses() {
           >
             {course.badge && (
               <span className="course-badge">
-                {course.badge === "best-seller"
+                {course.badge === "best-seller" || course.badge === "Best Seller"
                   ? "🔥 Best Seller"
-                  : "⭐ Popular"}
+                  : course.badge === "Trending Course"
+                  ? "🔥 Trending"
+                  : course.badge === "Popular"
+                  ? "⭐ Popular"
+                  : `⭐ ${course.badge}`}
               </span>
             )}
 

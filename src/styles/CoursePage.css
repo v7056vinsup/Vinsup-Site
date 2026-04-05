@@ -1524,11 +1524,9 @@
 
 .hero-premium {
   padding: 96px 0 120px;
-  background: radial-gradient(
-    circle at top left,
-    #eef2ff,
-    #ffffff 60%
-  );
+  background:
+    radial-gradient(80% 120% at 80% 120%, rgba(0,40,122,0.35) 0%, rgba(0,40,122,0) 60%),
+    linear-gradient(165deg, #1b1f5a 0%, #4a0fa2 60%, #351a91 100%);
   overflow: visible;
 }
 
@@ -1548,18 +1546,18 @@
   font-size: clamp(36px, 4vw, 56px);
   font-weight: 800;
   line-height: 1.15;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .hero-left h1 span {
-  color: #2563eb;
+  color: #ffb9c0;
 }
 
 .hero-sub {
   margin-top: 16px;
   font-size: 18px;
   max-width: 560px;
-  color: #475569;
+  color: rgba(255,255,255,0.85);
 }
 
 /* BADGE */
@@ -1568,8 +1566,9 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #eef2ff;
-  color: #2563eb;
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.35);
   padding: 8px 14px;
   border-radius: 999px;
   font-weight: 600;
@@ -1595,25 +1594,25 @@
 
 .trust-item svg {
   font-size: 20px;
-  color: #2563eb;
+  color: #ffb9c0;
 }
 
 .trust-item strong {
   display: block;
   font-size: 16px;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .trust-item span {
   font-size: 13px;
-  color: #64748b;
+  color: rgba(255,255,255,0.7);
 }
 
 .trust-divider {
   width: 1px;
   height: 28px;
-  background: #e5e7eb;
+  background: rgba(255,255,255,0.2);
 }
 
 /* META CHIPS */
@@ -1630,10 +1629,11 @@
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background: #f1f5f9;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 999px;
   font-size: 14px;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 /* CTA BUTTONS */
@@ -1660,8 +1660,8 @@
 
 .btn-outline-lg {
   background: transparent;
-  border: 2px solid #2563eb;
-  color: #2563eb;
+  border: 2px solid rgba(255,255,255,0.6);
+  color: #ffffff;
   padding: 14px 24px;
   border-radius: 999px;
   font-weight: 600;
@@ -1669,6 +1669,10 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+}
+.btn-outline-lg:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
 }
 
 /* FORM CARD */
