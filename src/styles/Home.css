@@ -81,12 +81,11 @@ header,
  /* REPLACE WITH THIS */
 
   .hero-carousel {
-    aspect-ratio: 16 /7.5 !important;  /* taller to fit the image */
+    aspect-ratio: 16 / 8 !important;  /* reduced height to eliminate extra space */
     margin-top: -60px;
-    background: #060d2e;
+    background: transparent;  /* removed dark background */
     height: auto !important;
   }
-
 
   .hero-slide img {
     object-fit: contain !important;

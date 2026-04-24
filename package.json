@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.83.0",
+    "axios": "^1.15.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "framer-motion": "^12.29.2",

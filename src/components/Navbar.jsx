@@ -1,51 +1,65 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import courses from "../data/courses.js";
-import logo from "../assets/logo.png"; // <-- your logo
-
-
+import logo from "../assets/logo.png";
+import "../styles/Navbar.css";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [isCoursesOpen, setCoursesOpen] = useState(false);
- const NAV_COURSE_SLUGS = [
-  "data-verse-pro",
-  "devstack-fullstack-devops",
-  "data-analytics",
-  "frontend",
-  "ui-ux-design",
-  "digital-marketing",
-];
-const navCourses = courses.filter(c => NAV_COURSE_SLUGS.includes(c.slug));
+  const [disableHover, setDisableHover] = useState(false);
 
+  const NAV_COURSE_SLUGS = [
+    "data-verse-pro",
+    "devstack-fullstack-devops",
+    "data-analytics",
+    "frontend",
+    "ui-ux-design",
+    "digital-marketing",
+  ];
+
+  const navCourses = courses.filter((c) =>
+    NAV_COURSE_SLUGS.includes(c.slug)
+  );
+
+  // ✅ handle click
+  const handleCourseClick = () => {
+    setCoursesOpen(false);
+    setDisableHover(true);
+
+    // re-enable hover after navigation settles
+    setTimeout(() => setDisableHover(false), 300);
+  };
 
   return (
     <header className="navbar">
-      <div className="nav-inner" style={{ display:"flex", justifyContent:"space-between" }}>
-        {/* Left: Logo + (optional) name */}
+      <div
+        className="nav-inner"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        {/* Logo */}
         <Link className="brand" to="/" aria-label="Home">
-  <img src={logo} alt="Logo" />
-</Link>
+          <img src={logo} alt="Logo" />
+        </Link>
 
-        {/* Right: Menus */}
+        {/* Desktop Menu */}
         <nav className="nav-links" aria-label="Main">
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
 
-          {/* Courses dropdown */}
-          <div className="dropdown"  onMouseEnter={() => setCoursesOpen(true)}
-  onMouseLeave={() => setCoursesOpen(false)}>
-           
-            <button className="dropdown-btn" aria-haspopup="true" aria-expanded={isCoursesOpen}>
+          {/* Courses Dropdown */}
+          <div className="dropdown">
+            <button className="dropdown-btn">
               <span>Courses ▾</span>
             </button>
-            <div className={`dropdown-panel ${isCoursesOpen ? "show" : ""}`}
- role="menu" aria-label="Courses">
+
+            <div className="dropdown-panel" role="menu">
               <div className="dropdown-grid">
-                {navCourses.map(c => (
-  <Link key={c.slug} to={`/courses/${c.slug}`} role="menuitem">
-    {c.title}
-  </Link>
-))}
+                {navCourses.map((c) => (
+                  <Link key={c.slug} to={`/courses/${c.slug}`}>
+                    {c.title}
+                  </Link>
+                ))}
+
                 <Link to="/courses" style={{ marginTop: 6, fontWeight: 600 }}>
                   View all courses →
                 </Link>
@@ -53,20 +67,21 @@ const navCourses = courses.filter(c => NAV_COURSE_SLUGS.includes(c.slug));
             </div>
           </div>
 
-          <Link to="/testimonials">Testimonials</Link>
-          <Link to="/placements">Placements</Link>
-          <Link to="/blog">What's Happening</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/testimonials">
+            Testimonials
+          </Link>
+          <Link to="/placements">
+            Placements
+          </Link>
+          <Link to="/playbook">
+            Play Book
+          </Link>
+          <Link to="/contact">
+            Contact
+          </Link>
         </nav>
 
-        {/* Rightmost: Auth */}
-        {/* <div className="nav-cta">
-          <Link className="link" to="/login">Login</Link> 
-          
-          <Link className="btn" to="/register">Register</Link>
-        </div> */}
-
-        {/* Mobile menu */}
+        {/* Mobile Menu Toggle */}
         <button
           className="menu-toggle"
           onClick={() => setOpen((v) => !v)}
@@ -76,42 +91,52 @@ const navCourses = courses.filter(c => NAV_COURSE_SLUGS.includes(c.slug));
         </button>
       </div>
 
-      {/* Mobile drawer (white background) */}
+      {/* Mobile Drawer */}
       <div className={`mobile-drawer ${open ? "open" : ""}`}>
         <div className="group">
-          <Link to="/" onClick={()=>setOpen(false)}>Home</Link>
-          <Link to="/about" onClick={()=>setOpen(false)}>About</Link>
-          <details>
-  <summary>Courses</summary>
-  <div className="dropdown-grid" style={{ paddingTop: 8 }}>
-    {navCourses.map((c) => (
-      <Link
-        key={c.slug}
-        to={`/courses/${c.slug}`}
-        onClick={() => setOpen(false)}
-      >
-        {c.title}
-      </Link>
-    ))}
-    <Link
-      to="/courses"
-      onClick={() => setOpen(false)}
-      style={{ marginTop: 6, fontWeight: 600 }}
-    >
-      View all courses →
-    </Link>
-  </div>
-</details>
+          <Link to="/" onClick={() => setOpen(false)}>
+            Home
+          </Link>
+          <Link to="/about" onClick={() => setOpen(false)}>
+            About
+          </Link>
 
-          <Link to="/testimonials" onClick={()=>setOpen(false)}>Testimonials</Link>
-           <Link to="/placements" onClick={()=>setOpen(false)}>Placements</Link>
-          <Link to="/blog" onClick={()=>setOpen(false)}>Events</Link>
-          <Link to="/contact" onClick={()=>setOpen(false)}>Contact</Link>
+          <details>
+            <summary>Courses</summary>
+            <div className="dropdown-grid" style={{ paddingTop: 8 }}>
+              {navCourses.map((c) => (
+                <Link
+                  key={c.slug}
+                  to={`/courses/${c.slug}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {c.title}
+                </Link>
+              ))}
+
+              <Link
+                to="/courses"
+                onClick={() => setOpen(false)}
+                style={{ marginTop: 6, fontWeight: 600 }}
+              >
+                View all courses →
+              </Link>
+            </div>
+          </details>
+
+          <Link to="/testimonials">
+            Testimonials
+          </Link>
+          <Link to="/placements">
+            Placements
+          </Link>
+          <Link to="/playbook">
+            Play Book
+          </Link>
+          <Link to="/contact">
+            Contact
+          </Link>
         </div>
-        {/* <div className="group">
-          <Link to="/login" onClick={()=>setOpen(false)}>Login</Link>
-          <Link to="/register" onClick={()=>setOpen(false)}>Register</Link>
-        </div> */}
       </div>
     </header>
   );

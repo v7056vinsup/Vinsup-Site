@@ -5,6 +5,7 @@ import { LoadingContext } from "./components/LoadingContext";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Loader from "./components/Loader";
+import PlayBook from "./pages/PlayBook.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 // import Preloader from "./components/Preloader";
 
@@ -72,6 +73,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/courses/:slug" element={<CourseDetails />} />
+          <Route path="/playbook" element={<PlayBook />} />
 
           {/* course pages */}
           
