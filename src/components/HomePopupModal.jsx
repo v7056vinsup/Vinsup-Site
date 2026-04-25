@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HomePopupModal.css";
 
 const SUBMIT_URL = "/api/proxy";
 const SECRET = "vinsup_2025_secure_key";
 
-export default function HomePopupModal({ onSuccess }) {
+export default function HomePopupModal({ onSuccess, onClose }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
 
   const [submitting, setSubmitting] = useState(false);
   const [submitMsg, setSubmitMsg] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const hasSubmitted = localStorage.getItem('homePopupSubmitted');
+    if (hasSubmitted === 'true') {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +46,13 @@ export default function HomePopupModal({ onSuccess }) {
         body: JSON.stringify({ name, phone, city, source: "Home Popup", secret: SECRET }),
       });
       if (resp.ok) {
+        localStorage.setItem('homePopupSubmitted', 'true');
+        setName("");
+        setPhone("");
+        setCity("");
+        setIsVisible(false);
         if (typeof onSuccess === "function") onSuccess();
+        if (typeof onClose === "function") onClose();
       } else {
         setSubmitMsg("Submission failed. Please try again.");
       }
@@ -42,6 +62,13 @@ export default function HomePopupModal({ onSuccess }) {
       setSubmitting(false);
     }
   }
+
+  const handleClose = () => {
+    setIsVisible(false);
+    if (typeof onClose === "function") onClose();
+  };
+
+  if (!isVisible) return null;
 
   return (
     <div className="hpm-overlay">

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Testimonials.css";
 import QuickEnquiry from "../components/QuickEnquiry";
 import Loader from "../components/Loader";
+import HomePopupModal from "../components/HomePopupModal";
 
 
 const API_URL =
@@ -225,6 +226,7 @@ export default function Testimonials() {
           <QuickEnquiry />
         </div>
       </section>
+      <HomePopupModal />
     </main>
      </>
   );

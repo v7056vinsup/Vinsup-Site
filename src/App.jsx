@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { LoadingContext } from "./components/LoadingContext";
 
 import Navbar from "./components/Navbar.jsx";
@@ -8,7 +8,6 @@ import Loader from "./components/Loader";
 import PlayBook from "./pages/PlayBook.jsx";
 import PlayBookDetails from "./pages/PlayBookDetails.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import HomePopupModal from "./components/HomePopupModal";
 // import Preloader from "./components/Preloader";
 
 // Pages
@@ -41,29 +40,9 @@ import Placements from "./pages/Placements.jsx";
 
 export default function App() {
   const { loading } = useContext(LoadingContext);
-  const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    const hasSubmitted = localStorage.getItem('homePopupSubmitted');
-    if (!hasSubmitted) {
-      const timer = setTimeout(() => setShowPopup(true), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  const handlePopupSuccess = () => {
-    localStorage.setItem('homePopupSubmitted', 'true');
-    setShowPopup(false);
-  };
 
   return (
     <div className="app-shell">
-      {showPopup && (
-        <HomePopupModal
-          onSuccess={handlePopupSuccess}
-          onClose={() => {}} // Disable close button
-        />
-      )}
       {loading && <Loader />}
       <ScrollToTop />
       <Navbar />

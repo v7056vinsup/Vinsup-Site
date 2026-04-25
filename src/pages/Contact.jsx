@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import QuickEnquiry from "../components/QuickEnquiry";
+import HomePopupModal from "../components/HomePopupModal";
 import "./Contact.css";
 
 export default function Contact() {
@@ -151,10 +152,9 @@ export default function Contact() {
           <QuickEnquiry />
         </div>
       </section>
-      
 
+      <HomePopupModal />
 
-      
     </main>
   );
 }

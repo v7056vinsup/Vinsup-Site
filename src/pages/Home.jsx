@@ -675,7 +675,7 @@ useEffect(() => {
   </div>
 </section>
 
-    
+      <HomePopupModal />
     </main>
   );
 }
