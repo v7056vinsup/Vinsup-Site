@@ -219,12 +219,6 @@ const jrpSteps = [
 
 export default function Home() {
     const [activeStep, setActiveStep] = useState(0);
-  const [showEnquiryModal, setShowEnquiryModal] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowEnquiryModal(true), 2000);
-    return () => clearTimeout(timer);
-  }, []);
   const [youtubeVideos, setYoutubeVideos] = useState([]);
   const [instagram, setInstagram] = useState({});
   const [textTestimonials, setTextTestimonials] = useState([]);
@@ -392,12 +386,6 @@ useEffect(() => {
   }, [images.length]);
   return (
     <main>
-      {showEnquiryModal && (
-        <HomePopupModal
-          onSuccess={() => setShowEnquiryModal(false)}
-          onClose={() => setShowEnquiryModal(false)}
-        />
-      )}
         {/* =========================
                   MARKETING ALERTS
               ========================== */}

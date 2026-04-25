@@ -4,7 +4,7 @@ import "./HomePopupModal.css";
 const SUBMIT_URL = "/api/proxy";
 const SECRET = "vinsup_2025_secure_key";
 
-export default function HomePopupModal({ onSuccess, onClose }) {
+export default function HomePopupModal({ onSuccess }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
@@ -47,10 +47,9 @@ export default function HomePopupModal({ onSuccess, onClose }) {
     <div className="hpm-overlay">
       <div className="hpm-box">
         <div className="hpm-header">
-          <button className="hpm-close" onClick={onClose} aria-label="Close">&#10005;</button>
           <span className="hpm-brand">Vinsup Skill Academy</span>
           <h2 className="hpm-title">Get Free Counselling</h2>
-          <p className="hpm-sub">Fill in your details and we'll reach out to you shortly!</p>
+          <p className="hpm-sub">Please fill in your details to access the website. We'll reach out to you shortly!</p>
         </div>
 
         <form className="hpm-form" onSubmit={handleSubmit} noValidate>

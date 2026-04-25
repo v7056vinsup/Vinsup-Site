@@ -1,0 +1,271 @@
+.playbook-details-container {
+  padding: 40px;
+  background: #f7f9fc;
+  min-height: 100vh;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.2s;
+  margin-bottom: 30px;
+}
+
+.back-button:hover {
+  background: #f0f7ff;
+  border-color: #0066ff;
+  color: #0066ff;
+}
+
+.title-section {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0;
+}
+
+.title-section.mobile {
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.category-badge {
+  background: linear-gradient(135deg, #e6f0ff 0%, #f0f7ff 100%);
+  color: #0066ff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: bold;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.title.mobile {
+  font-size: 28px;
+}
+
+.date-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #666;
+  font-size: 15px;
+}
+
+.content-row {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 60px;
+  align-items: center;
+}
+
+.content-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.content-row.mobile {
+  flex-direction: column;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+.content-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.content-image.mobile {
+  height: 250px;
+}
+
+.text-container {
+  flex: 1;
+}
+
+.content-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.content-card.mobile {
+  padding: 24px;
+}
+
+.content-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+}
+
+.content-card-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.gradient-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  color: #fff;
+}
+
+.gradient-card.mobile {
+  padding: 24px;
+}
+
+.gradient-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.gradient-card-text {
+  font-size: 16px;
+  line-height: 1.8;
+  opacity: 0.95;
+}
+
+.bordered-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e6f0ff;
+}
+
+.bordered-card.mobile {
+  padding: 24px;
+}
+
+.cta-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+  transition: all 0.3s;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+}
+
+.additional-info-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.additional-info-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1a1a2e;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.additional-info-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.no-data-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.no-data-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #0066ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .playbook-details-container {
+    padding: 20px;
+  }
+
+  .content-row {
+    flex-direction: column;
+  }
+
+  .content-row.reverse {
+    flex-direction: column;
+  }
+
+  .content-image {
+    height: 250px;
+  }
+
+  .content-card,
+  .gradient-card,
+  .bordered-card,
+  .additional-info-card {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .title-section {
+    margin-bottom: 30px;
+    padding: 0 10px;
+  }
+}

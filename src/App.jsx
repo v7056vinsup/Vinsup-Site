@@ -6,7 +6,9 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Loader from "./components/Loader";
 import PlayBook from "./pages/PlayBook.jsx";
+import PlayBookDetails from "./pages/PlayBookDetails.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import HomePopupModal from "./components/HomePopupModal";
 // import Preloader from "./components/Preloader";
 
 // Pages
@@ -39,24 +41,29 @@ import Placements from "./pages/Placements.jsx";
 
 export default function App() {
   const { loading } = useContext(LoadingContext);
+  const [showPopup, setShowPopup] = useState(false);
 
-  // 🔥 THE MAIN PRELOADER LOGIC
-  // const [showPreloader, setShowPreloader] = useState(true);
+  useEffect(() => {
+    const hasSubmitted = localStorage.getItem('homePopupSubmitted');
+    if (!hasSubmitted) {
+      const timer = setTimeout(() => setShowPopup(true), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setShowPreloader(false);
-  //   }, 2000); // show for 2 seconds
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // if (showPreloader) {
-  //   return <Preloader />; // 🔥 SHOW ONLY PRELOADER
-  // }
+  const handlePopupSuccess = () => {
+    localStorage.setItem('homePopupSubmitted', 'true');
+    setShowPopup(false);
+  };
 
   return (
     <div className="app-shell">
+      {showPopup && (
+        <HomePopupModal
+          onSuccess={handlePopupSuccess}
+          onClose={() => {}} // Disable close button
+        />
+      )}
       {loading && <Loader />}
       <ScrollToTop />
       <Navbar />
@@ -74,6 +81,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/courses/:slug" element={<CourseDetails />} />
           <Route path="/playbook" element={<PlayBook />} />
+          <Route path="/playbook/:id" element={<PlayBookDetails />} />
 
           {/* course pages */}
           

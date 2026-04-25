@@ -1,12 +1,13 @@
 import { useEffect, useState, useMemo, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 
 export default function PlayBook() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [selectedCard, setSelectedCard] = useState(null);
   const containerRef = useRef(null);
   const [categories, setCategories] = useState(["All Categories"]);
 
@@ -98,6 +99,15 @@ export default function PlayBook() {
     return url;
   };
 
+  // Get image from either direct Image field or first section
+  const getImageUrl = (item) => {
+    if (item.Image) return convertDriveUrl(item.Image);
+    if (item.Sections && item.Sections.length > 0 && item.Sections[0].image) {
+      return convertDriveUrl(item.Sections[0].image);
+    }
+    return null;
+  };
+
   // Filter (NOTE: only current page data)
   const filteredData = useMemo(() => {
     if (selectedCategory === "All Categories") return data;
@@ -179,7 +189,7 @@ export default function PlayBook() {
         {filteredData.map((item, index) => (
           <div
             key={index}
-            onClick={() => setSelectedCard(item)}
+            onClick={() => navigate(`/playbook/${index}`, { state: { card: item } })}
             style={{
               background: "#fff",
               borderRadius: "12px",
@@ -198,9 +208,12 @@ export default function PlayBook() {
             }}
           >
             <img
-              src={convertDriveUrl(item.Image)}
+              src={getImageUrl(item) || ""}
               alt=""
               style={{ width: "100%", height: "220px", objectFit: "cover" }}
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
             />
 
             <div style={{ padding: "16px" }}>
@@ -368,120 +381,6 @@ export default function PlayBook() {
           </svg>
         </button>
       </div>
-
-      {/* Modal for complete card data */}
-      {selectedCard && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(0,0,0,0.6)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-            padding: "20px",
-          }}
-          onClick={() => setSelectedCard(null)}
-        >
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: "16px",
-              maxWidth: "600px",
-              width: "100%",
-              maxHeight: "90vh",
-              overflowY: "auto",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div style={{ position: "relative" }}>
-              <img
-                src={convertDriveUrl(selectedCard.Image)}
-                alt=""
-                style={{ width: "100%", height: "350px", objectFit: "cover", borderRadius: "16px 16px 0 0" }}
-              />
-              <button
-                onClick={() => setSelectedCard(null)}
-                style={{
-                  position: "absolute",
-                  top: "16px",
-                  right: "16px",
-                  background: "rgba(255,255,255,0.95)",
-                  border: "none",
-                  borderRadius: "50%",
-                  width: "40px",
-                  height: "40px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "24px",
-                  fontWeight: "bold",
-                  color: "#333",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-                }}
-              >
-                ×
-              </button>
-            </div>
-
-            <div style={{ padding: "24px" }}>
-              <span
-                style={{
-                  background: "#e6f0ff",
-                  color: "#0066ff",
-                  padding: "6px 14px",
-                  borderRadius: "20px",
-                  fontSize: "13px",
-                  fontWeight: "500",
-                }}
-              >
-                {selectedCard.Category}
-              </span>
-
-              <h2 style={{ marginTop: "16px", fontSize: "24px", fontWeight: "bold", color: "#333" }}>
-                {selectedCard.Title}
-              </h2>
-
-              <p style={{ fontSize: "14px", color: "#999", marginTop: "8px" }}>
-                {formatDate(selectedCard.Date)}
-              </p>
-
-              <div style={{ marginTop: "20px", lineHeight: "1.6", color: "#555" }}>
-                <p style={{ fontSize: "16px" }}>{selectedCard.Description}</p>
-              </div>
-
-              {selectedCard.Link && (
-                <a
-                  href={selectedCard.Link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-block",
-                    marginTop: "24px",
-                    padding: "12px 24px",
-                    background: "#0066ff",
-                    color: "#fff",
-                    textDecoration: "none",
-                    borderRadius: "8px",
-                    fontWeight: "500",
-                    transition: "background 0.2s",
-                  }}
-                  onMouseEnter={(e) => e.target.style.background = "#0052cc"}
-                  onMouseLeave={(e) => e.target.style.background = "#0066ff"}
-                >
-                  View Details
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
