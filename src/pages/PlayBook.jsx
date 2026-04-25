@@ -103,7 +103,7 @@ export default function PlayBook() {
   const getImageUrl = (item) => {
     if (item.Image) return convertDriveUrl(item.Image);
     if (item.Sections && item.Sections.length > 0 && item.Sections[0].image) {
-      return convertDriveUrl(item.Sections[0].image);
+      return convertDriveUrl(item.CoverImage);
     }
     return null;
   };

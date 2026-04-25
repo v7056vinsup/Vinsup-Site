@@ -97,7 +97,9 @@
 
 .content-image {
   width: 100%;
-  height: 400px;
+  /* height: auto;
+  max-height: 250px; */
+  /* aspect-ratio: 1983 / 793; */
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -243,6 +245,7 @@
 
   .content-row {
     flex-direction: column;
+    gap: 20px;
   }
 
   .content-row.reverse {
@@ -250,7 +253,10 @@
   }
 
   .content-image {
-    height: 250px;
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    aspect-ratio: auto;
   }
 
   .content-card,
