@@ -75,8 +75,9 @@ export default function HomePopupModal({ onSuccess, onClose }) {
       <div className="hpm-box">
         <div className="hpm-header">
           <span className="hpm-brand">Vinsup Skill Academy</span>
-          <h2 className="hpm-title">Get Free Counselling</h2>
-          <p className="hpm-sub">Please fill in your details to access the website. We'll reach out to you shortly!</p>
+          <h2 className="hpm-title">Get Free Career Guidance</h2>
+          <p className="hpm-sub">Please fill in your details to access the website</p>
+          <p className="hpm-sub">We’re gearing up to connect with you— explore our website</p>
         </div>
 
         <form className="hpm-form" onSubmit={handleSubmit} noValidate>
@@ -115,7 +116,7 @@ export default function HomePopupModal({ onSuccess, onClose }) {
           {submitMsg && <p className="hpm-submit-err">{submitMsg}</p>}
 
           <button type="submit" className="hpm-btn-submit" disabled={submitting}>
-            {submitting ? "Submitting..." : "Get Free Counselling"}
+            {submitting ? "Submitting..." : "Get Free Career Guidance"}
           </button>
         </form>
       </div>
