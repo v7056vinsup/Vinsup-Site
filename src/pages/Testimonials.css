@@ -247,7 +247,7 @@ html, body {
   display: inline-block;
   background: linear-gradient(135deg, rgba(0,40,122,0.1), rgba(255,77,46,0.1));
   border: 1px solid rgba(0,40,122,0.18);
-  color: var(--navy);
+  color: var(--white);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -271,7 +271,7 @@ html, body {
 }
 .ts-title--light { color: var(--white); }
 .ts-section__desc {
-  color: var(--muted);
+  color: var(--white);
   font-size: 17px;
   max-width: 520px;
   margin: 0 auto;
