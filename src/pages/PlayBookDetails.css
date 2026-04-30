@@ -237,6 +237,26 @@
   cursor: pointer;
 }
 
+.quote-block {
+  margin: 12px 0;
+  padding-left: 12px;
+  border-left: 3px solid #6366f1;
+}
+
+.quote-line {
+  font-style: italic;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.content-card-text ul {
+  padding-left: 20px;
+}
+
+.content-card-text li {
+  margin-bottom: 6px;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .playbook-details-container {

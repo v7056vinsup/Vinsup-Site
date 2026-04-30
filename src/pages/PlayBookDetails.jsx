@@ -369,7 +369,44 @@ export default function PlayBookDetails() {
               {section.title && (
                 <h3 className="content-card-title">{section.title}</h3>
               )}
-              <p className="content-card-text">{section.text}</p>
+              {/* <p className="content-card-text">{section.text}</p> */}
+              {Array.isArray(section.text) ? (
+  section.text.map((block, i) => {
+    if (block.type === "paragraph") {
+      return (
+        <p key={i} className="content-card-text">
+          {block.value}
+        </p>
+      );
+    }
+
+    if (block.type === "quote") {
+      return (
+        <div key={i} className="quote-block">
+          {block.value.map((q, idx) => (
+            <p key={idx} className="quote-line">
+              "{q}"
+            </p>
+          ))}
+        </div>
+      );
+    }
+
+    if (block.type === "list") {
+      return (
+        <ul key={i} className="content-card-text">
+          {block.value.map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      );
+    }
+
+    return null;
+  })
+) : (
+  <p className="content-card-text">{section.text}</p>
+)}
             </div>
           </motion.div>
         </motion.div>
