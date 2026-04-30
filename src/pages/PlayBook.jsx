@@ -230,10 +230,10 @@ export default function PlayBook() {
               </span>
 
               <h3 style={{ marginTop: "10px" }}>{item.Title}</h3>
-
+{/* 
               <p style={{ fontSize: "14px", color: "#666" }}>
                 {item.Description}
-              </p>
+              </p> */}
 
               <p style={{ fontSize: "12px", color: "#999" }}>
                 {formatDate(item.Date)}
