@@ -93,6 +93,67 @@ export default function PlayBookDetails() {
   });
 };
 
+  const renderSummaryCards = (blocks) => {
+    if (!Array.isArray(blocks)) return null;
+
+    // Group blocks: title starts a new group, others attach to current group
+    const groups = [];
+    let current = null;
+
+    blocks.forEach((block) => {
+      if (block.type === "title") {
+        if (current) groups.push(current);
+        current = { title: block.value, content: [] };
+      } else {
+        if (!current) current = { title: null, content: [] };
+        current.content.push(block);
+      }
+    });
+    if (current) groups.push(current);
+
+    return groups.map((group, i) => (
+      <motion.div
+        key={i}
+        className={`summary-card ${!group.title ? "summary-card-no-title" : ""}`}
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.95 + i * 0.1 }}
+      >
+        {group.title && (
+          <div className="summary-card-title-side">
+            <h4 className="summary-card-label">{group.title}</h4>
+          </div>
+        )}
+        <div className="summary-card-content-side">
+          {group.content.map((block, j) => {
+            if (block.type === "paragraph") {
+              return <p key={j} className="summary-card-text">{block.value}</p>;
+            }
+            if (block.type === "list") {
+              return (
+                <ul key={j} className="summary-card-list">
+                  {block.value.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              );
+            }
+            if (block.type === "quote") {
+              return (
+                <div key={j} className="summary-card-quote">
+                  {block.value.map((q, idx) => (
+                    <p key={idx} className="summary-card-quote-line">"{q}"</p>
+                  ))}
+                </div>
+              );
+            }
+            return null;
+          })}
+        </div>
+      </motion.div>
+    ));
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -262,11 +323,22 @@ export default function PlayBookDetails() {
           transition={{ delay: 0.9 }}
           className="bottom-description-card"
         >
-          <h3 className="bottom-description-title">
-            Summary
-          </h3>
-          <div className="bottom-description-text">
-            {renderBlocks(card.Description)}
+          {/* <div className="bottom-description-header">
+            <div className="bottom-description-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <h3 className="bottom-description-title">
+              Summary
+            </h3>
+          </div> */}
+          <div className="bottom-description-cards">
+            {renderSummaryCards(card.Description)}
           </div>
         </motion.div>
       )}

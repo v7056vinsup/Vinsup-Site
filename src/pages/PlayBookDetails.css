@@ -138,11 +138,11 @@
 }
 
 .gradient-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #fff;
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  color: #333;
 }
 
 .gradient-card.mobile {
@@ -158,7 +158,7 @@
 .gradient-card-text {
   font-size: 16px;
   line-height: 1.8;
-  opacity: 0.95;
+  color: #555;
 }
 
 .bordered-card {
@@ -238,23 +238,239 @@
 }
 
 .quote-block {
-  margin: 12px 0;
-  padding-left: 12px;
-  border-left: 3px solid #6366f1;
+  margin: 16px 0;
+  padding: 16px 20px;
+  border-left: 4px solid #6366f1;
+  background: linear-gradient(135deg, #f0f0ff 0%, #f8f7ff 100%);
+  border-radius: 0 12px 12px 0;
 }
 
 .quote-line {
   font-style: italic;
-  margin-bottom: 6px;
-  color: #555;
+  margin-bottom: 8px;
+  color: #4a4a6a;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
-.content-card-text ul {
-  padding-left: 20px;
+.quote-line:last-child {
+  margin-bottom: 0;
 }
 
-.content-card-text li {
-  margin-bottom: 6px;
+.content-card-text ul,
+ul.content-card-text {
+  padding-left: 0;
+  list-style: none;
+}
+
+.content-card-text li,
+ul.content-card-text > li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.content-card-text li::before,
+ul.content-card-text > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0066ff, #6366f1);
+}
+
+.content-card-text li:last-child,
+ul.content-card-text > li:last-child {
+  margin-bottom: 0;
+}
+
+/* ===============================
+   BOTTOM DESCRIPTION CARD
+================================ */
+.bottom-description-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.bottom-description-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0066ff, #6366f1, #764ba2);
+  border-radius: 24px 24px 0 0;
+}
+
+.bottom-description-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 0;
+}
+
+.bottom-description-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e6f0ff 0%, #f0e6ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0066ff;
+  flex-shrink: 0;
+}
+
+.bottom-description-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.bottom-description-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e0e6f0, transparent);
+  margin: 24px 0;
+}
+
+.bottom-description-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+}
+
+/* ===============================
+   SUMMARY HORIZONTAL CARDS
+================================ */
+.bottom-description-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  background: #fafbff;
+  border: 1px solid #e8ecf4;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.1);
+  border-color: rgba(0, 102, 255, 0.2);
+}
+
+.summary-card-no-title {
+  background: #fafbff;
+}
+
+/* Title side — top, width fits content only */
+.summary-card-title-side {
+  background: linear-gradient(135deg, #0066ff 0%, #4f46e5 100%);
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 20px 20px 0;
+  border-radius: 10px;
+}
+
+.summary-card-label {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Content side — below title */
+.summary-card-content-side {
+  padding: 24px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-card-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+  margin: 0;
+}
+
+.summary-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-card-list li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.summary-card-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0066ff, #6366f1);
+}
+
+.summary-card-list li:last-child {
+  margin-bottom: 0;
+}
+
+.summary-card-quote {
+  border-left: 3px solid #6366f1;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  border-radius: 0 10px 10px 0;
+}
+
+.summary-card-quote-line {
+  font-style: italic;
+  color: #4a4a6a;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 6px;
+}
+
+.summary-card-quote-line:last-child {
+  margin-bottom: 0;
+}
+
+/* ===============================
+   CONTENT CARD SUBTITLE
+================================ */
+.content-card-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 20px 0 10px;
 }
 
 /* Responsive styles */
@@ -293,5 +509,62 @@
   .title-section {
     margin-bottom: 30px;
     padding: 0 10px;
+  }
+
+  .bottom-description-card {
+    padding: 24px;
+    border-radius: 18px;
+  }
+
+  .bottom-description-header {
+    gap: 10px;
+  }
+
+  .bottom-description-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .bottom-description-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .bottom-description-title {
+    font-size: 20px;
+  }
+
+  .bottom-description-divider {
+    margin: 16px 0;
+  }
+
+  .bottom-description-text {
+    font-size: 14px;
+  }
+
+  .bottom-description-cards {
+    gap: 10px;
+  }
+
+  .summary-card-title-side {
+    padding: 8px 16px;
+    margin: 16px 16px 0;
+    border-radius: 8px;
+  }
+
+  .summary-card-label {
+    font-size: 15px;
+  }
+
+  .summary-card-content-side {
+    padding: 16px 20px;
+    gap: 10px;
+  }
+
+  .summary-card-text,
+  .summary-card-list li,
+  .summary-card-quote-line {
+    font-size: 14px;
   }
 }
