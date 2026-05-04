@@ -255,6 +255,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import "./Placements.css";
+import HomePopupModal from "../components/HomePopupModal";
 
 // ─── SVG Icons (UNCHANGED) ────────────────────────────────────────────────────
 const IconGradCap = () => (
@@ -498,6 +499,8 @@ export default function Placements() {
       {modalPhoto && (
         <Modal photo={modalPhoto} photos={photos} onClose={closeModal} />
       )}
+
+      <HomePopupModal />
     </div>
   );
 }
