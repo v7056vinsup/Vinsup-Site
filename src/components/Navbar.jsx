@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import courses from "../data/courses.js";
 import logo from "../assets/logo.png";
 import "../styles/Navbar.css";
 export default function Navbar() {
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [isCoursesOpen, setCoursesOpen] = useState(false);
   const [disableHover, setDisableHover] = useState(false);
@@ -30,6 +31,13 @@ export default function Navbar() {
     setTimeout(() => setDisableHover(false), 300);
   };
 
+  // Check if link is active
+  const isActive = (path) => {
+    if (path === "/" && location.pathname === "/") return true;
+    if (path !== "/" && location.pathname.startsWith(path)) return true;
+    return false;
+  };
+
   return (
     <header className="navbar">
       <div
@@ -43,11 +51,11 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <nav className="nav-links" aria-label="Main">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
+          <Link to="/" className={isActive("/") ? "active" : ""}>Home</Link>
+          <Link to="/about" className={isActive("/about") ? "active" : ""}>About</Link>
 
           {/* Courses Dropdown */}
-          <div className="dropdown">
+          <div className={`dropdown ${isActive("/courses") ? "active" : ""}`}>
             <button className="dropdown-btn">
               <span>Courses ▾</span>
             </button>
@@ -55,28 +63,36 @@ export default function Navbar() {
             <div className="dropdown-panel" role="menu">
               <div className="dropdown-grid">
                 {navCourses.map((c) => (
-                  <Link key={c.slug} to={`/courses/${c.slug}`}>
+                  <Link 
+                    key={c.slug} 
+                    to={`/courses/${c.slug}`}
+                    className={isActive(`/courses/${c.slug}`) ? "active" : ""}
+                  >
                     {c.title}
                   </Link>
                 ))}
 
-                <Link to="/courses" style={{ marginTop: 6, fontWeight: 600 }}>
+                <Link 
+                  to="/courses" 
+                  style={{ marginTop: 6, fontWeight: 600 }}
+                  className={isActive("/courses") ? "active" : ""}
+                >
                   View all courses →
                 </Link>
               </div>
             </div>
           </div>
 
-          <Link to="/testimonials">
+          <Link to="/testimonials" className={isActive("/testimonials") ? "active" : ""}>
             Testimonials
           </Link>
-          <Link to="/placements">
+          <Link to="/placements" className={isActive("/placements") ? "active" : ""}>
             Placements
           </Link>
-          <Link to="/playbook">
+          <Link to="/playbook" className={isActive("/playbook") ? "active" : ""}>
             Play Book
           </Link>
-          <Link to="/contact">
+          <Link to="/contact" className={isActive("/contact") ? "active" : ""}>
             Contact
           </Link>
         </nav>
@@ -94,10 +110,10 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${open ? "open" : ""}`}>
         <div className="group">
-          <Link to="/" onClick={() => setOpen(false)}>
+          <Link to="/" onClick={() => setOpen(false)} className={isActive("/") ? "active" : ""}>
             Home
           </Link>
-          <Link to="/about" onClick={() => setOpen(false)}>
+          <Link to="/about" onClick={() => setOpen(false)} className={isActive("/about") ? "active" : ""}>
             About
           </Link>
 
@@ -109,6 +125,7 @@ export default function Navbar() {
                   key={c.slug}
                   to={`/courses/${c.slug}`}
                   onClick={() => setOpen(false)}
+                  className={isActive(`/courses/${c.slug}`) ? "active" : ""}
                 >
                   {c.title}
                 </Link>
@@ -118,22 +135,23 @@ export default function Navbar() {
                 to="/courses"
                 onClick={() => setOpen(false)}
                 style={{ marginTop: 6, fontWeight: 600 }}
+                className={isActive("/courses") ? "active" : ""}
               >
                 View all courses →
               </Link>
             </div>
           </details>
 
-          <Link to="/testimonials">
+          <Link to="/testimonials" className={isActive("/testimonials") ? "active" : ""}>
             Testimonials
           </Link>
-          <Link to="/placements">
+          <Link to="/placements" className={isActive("/placements") ? "active" : ""}>
             Placements
           </Link>
-          <Link to="/playbook">
+          <Link to="/playbook" className={isActive("/playbook") ? "active" : ""}>
             Play Book
           </Link>
-          <Link to="/contact">
+          <Link to="/contact" className={isActive("/contact") ? "active" : ""}>
             Contact
           </Link>
         </div>

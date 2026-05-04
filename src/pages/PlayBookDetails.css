@@ -379,6 +379,120 @@ ul.content-card-text > li:last-child {
   background: #fafbff;
 }
 
+/* Enhanced Final Thoughts card */
+.summary-card-final-thought {
+  background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 50%, #fef7ff 100%);
+  border: 1px solid #e0e7ff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Decorative gradient overlay */
+.summary-card-final-thought::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Top accent bar with gradient */
+.summary-card-final-thought::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899, #f43f5e);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.summary-card-final-thought:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.summary-card-final-thought:hover::after {
+  transform: scale(1.1);
+  transition: transform 0.4s ease;
+}
+
+/* Enhanced title badge */
+.summary-card-final-thought .summary-card-title-side {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+  margin: 20px 20px 0;
+  padding: 12px 24px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.summary-card-final-thought .summary-card-label {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+/* Enhanced content area */
+.summary-card-final-thought .summary-card-content-side {
+  padding: 28px 32px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced text styles in Final Thoughts */
+.summary-card-final-thought .summary-card-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+  font-weight: 400;
+}
+
+.summary-card-final-thought .summary-card-list li {
+  font-size: 16px;
+  color: #374151;
+  padding-left: 26px;
+  margin-bottom: 12px;
+}
+
+.summary-card-final-thought .summary-card-list li::before {
+  width: 10px;
+  height: 10px;
+  top: 10px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.summary-card-final-thought .summary-card-quote {
+  background: linear-gradient(135deg, #f3f0ff 0%, #faf5ff 100%);
+  border-left: 4px solid #a855f7;
+  border-radius: 0 16px 16px 0;
+  padding: 16px 20px;
+  margin-top: 8px;
+}
+
+.summary-card-final-thought .summary-card-quote-line {
+  color: #4c1d95;
+  font-size: 16px;
+}
+
 /* Title side — top, width fits content only */
 .summary-card-title-side {
   background: linear-gradient(135deg, #0066ff 0%, #4f46e5 100%);

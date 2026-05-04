@@ -114,7 +114,9 @@ export default function PlayBookDetails() {
     return groups.map((group, i) => (
       <motion.div
         key={i}
-        className={`summary-card ${!group.title ? "summary-card-no-title" : ""}`}
+        className={`summary-card ${!group.title ? "summary-card-no-title" : ""} ${
+          group.title === "Final Thoughts:" ? "summary-card-final-thought" : ""
+        }`}
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.95 + i * 0.1 }}

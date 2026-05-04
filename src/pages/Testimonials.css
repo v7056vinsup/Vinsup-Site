@@ -281,7 +281,22 @@ html, body {
 /* ═══════════════════════════════════════════
    YOUTUBE VIDEO CARDS
 ═══════════════════════════════════════════ */
-.t-yt-section { background: var(--surface); }
+.t-yt-section { 
+  background: var(--surface);
+  color: var(--ink);
+}
+
+/* Darker text for video testimonials section */
+.t-yt-section,
+.t-yt-section *,
+.t-yt-section .t-section__tag,
+.t-yt-section .t-section__title,
+.t-yt-section .t-section__desc,
+.t-yt-section .t-vc__title,
+.t-yt-section .t-vc__meta,
+.t-yt-section .t-vc__text {
+  color: var(--ink) !important;
+}
 
 .t-yt-grid {
   display: grid;
@@ -573,9 +588,37 @@ html, body {
 /* ═══════════════════════════════════════════
    INSTAGRAM / PLACED / INTERNSHIP GRIDS
 ═══════════════════════════════════════════ */
-.t-insta-section  { background: var(--white); }
+.t-insta-section  { 
+  background: var(--white);
+  color: var(--ink);
+}
+
+/* Darker text for social report/Instagram section */
+.t-insta-section,
+.t-insta-section *,
+.t-insta-section .t-section__tag,
+.t-insta-section .t-section__title,
+.t-insta-section .t-section__desc,
+.t-insta-section .t-ic__text,
+.t-insta-section .t-ic__meta {
+  color: var(--ink) !important;
+}
 .t-placed-section { /* dark via ts-section--dark */ }
-.t-intern-section { background: var(--surface); }
+.t-intern-section { 
+  background: var(--surface);
+  color: var(--ink);
+}
+
+/* Darker text for internship journey section */
+.t-intern-section,
+.t-intern-section *,
+.t-intern-section .t-section__tag,
+.t-intern-section .t-section__title,
+.t-intern-section .t-section__desc,
+.t-intern-section .t-ic__text,
+.t-intern-section .t-ic__meta {
+  color: var(--ink) !important;
+}
 
 .t-insta-grid {
   display: grid;
