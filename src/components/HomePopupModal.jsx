@@ -21,7 +21,7 @@ export default function HomePopupModal({ onSuccess, onClose }) {
 
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 8000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);

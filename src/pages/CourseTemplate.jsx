@@ -30,6 +30,7 @@ import QuickEnquiry from "../components/QuickEnquiry";
 import ToolsMarquee from "../components/ToolsMarquee";
 import CompaniesMarqueeAnimated from "../components/CompaniesMarqueeAnimated";
 import UpcomingBatches from "./UpcomingBatches";
+import HomePopupModal from "../components/HomePopupModal";
 
 import "../styles/CoursePage.css";
 
@@ -686,6 +687,7 @@ useEffect(() => {
         </div>
       )}
 
+      <HomePopupModal />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import courses from "../data/courses";
 import MarketingAlerts from "../components/MarketingAlerts";
 import UpcomingBatches from "./UpcomingBatches";
 import QuickEnquiry from "../components/QuickEnquiry";
+import HomePopupModal from "../components/HomePopupModal";
 
 import "../styles/CoursesPremium.css";
 
@@ -221,6 +222,7 @@ export default function Courses() {
 
     
 
+    <HomePopupModal />
     </main>
   );
 }
