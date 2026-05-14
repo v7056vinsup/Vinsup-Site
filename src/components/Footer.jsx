@@ -87,13 +87,18 @@ export default function Footer() {
         <div className="f-col f-contact">
           <h4 className="f-head">Get in Touch</h4>
           <ul className="f-contact-list">
-            <li> A,B, Gopalsamy, 140,<br/>Gopalsamy Koil St, Sridevi Nagar, Ganapathy, Coimbatore,<br/>Tamil Nadu 641006</li>
+            <li>Vinsup Infotech PVT LTD</li>
+            <li>Registered Address: 369/4 Krishnan Koil Street, Aygudi<br/>Tenkasi, Tamil Nadu 627852</li>
+            {/* coimbatore address */}
+            <li>Coimbatore Address: 148, AB Gopalsamy Koil St,<br/> Sridevi Nagar, Ganapathy, Coimbatore,<br/>Tamil Nadu 641006</li>
            <li>
-  <a href="tel:+918248826374">+91 8248826374</a>
-</li>
-<li>
-  <a href="mailto:hrvinsup@gmail.com">hrvinsup@gmail.com</a>
-</li>
+          <a href="tel:+918248826374">+91 8248826374</a>
+          {/* gst number */}
+          <p>GST: 33AAICV6095P1ZI</p>
+            </li>
+            <li>
+              <a href="mailto:hrvinsup@gmail.com">hrvinsup@gmail.com</a>
+            </li>
 
           </ul><div className="map-wrap">
   <iframe
@@ -110,7 +115,7 @@ export default function Footer() {
        {/* Column 6: Location */}
 
       <div className="copyright">
-        © {new Date().getFullYear()} <a href="https://vinsupinfotech.com/">Vinsup Infotech</a>. All rights reserved.
+        © {new Date().getFullYear()} <a href="https://vinsupinfotech.com/">Vinsup Infotech PVT LTD</a>. All rights reserved.
       </div>
 
       {/* Floating action buttons (optional; looks like your reference) */}
