@@ -1,0 +1,98 @@
+/* PrivacyPolicy.css */
+
+.privacy-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f1f5ff, #eef2ff);
+  padding: 60px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.privacy-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.privacy-header h1 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.privacy-header p {
+  font-size: 16px;
+  color: #64748b;
+}
+
+.privacy-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 45px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.last-updated {
+  margin-bottom: 25px;
+  color: #2563eb;
+}
+
+.privacy-card h3 {
+  margin-top: 35px;
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #0f172a;
+  border-left: 5px solid #2563eb;
+  padding-left: 12px;
+}
+
+.privacy-card p {
+  color: #475569;
+  line-height: 1.9;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+.contact-box {
+  margin-top: 20px;
+  background: #f8fafc;
+  border: 1px solid #dbeafe;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.contact-box p {
+  margin-bottom: 10px;
+}
+
+strong {
+  color: #1e293b;
+}
+
+@media (max-width: 768px) {
+  .privacy-page {
+    padding: 30px 15px;
+  }
+
+  .privacy-card {
+    padding: 25px;
+    border-radius: 18px;
+  }
+
+  .privacy-header h1 {
+    font-size: 30px;
+  }
+
+  .privacy-card h3 {
+    font-size: 19px;
+  }
+
+  .privacy-card p {
+    font-size: 15px;
+  }
+}

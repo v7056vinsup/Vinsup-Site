@@ -7,10 +7,6 @@ export default function Terms() {
       <div className="terms-container">
         <div className="terms-header">
           <h1>Terms & Conditions</h1>
-          <p>
-            Please read these terms carefully before using our website and
-            services.
-          </p>
         </div>
 
         <div className="terms-card">
