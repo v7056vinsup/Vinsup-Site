@@ -29,7 +29,10 @@ export default function PlayBook() {
     )
       .then((res) => res.json())
       .then((res) => {
-        setData(res.data);
+        const sortedData = [...res.data].sort(
+          (a, b) => new Date(b.Date) - new Date(a.Date)
+        );
+        setData(sortedData);
         setTotal(res.total);
     //     if (res.categories && res.categories.length > 0) {
     //       setCategories(["All Categories", ...res.categories]);
