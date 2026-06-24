@@ -49,6 +49,67 @@ export default function Navbar() {
           <img src={logo} alt="Logo" />
         </Link>
 
+        <style>
+{`
+@keyframes heartbeatGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255,59,48,0.4);
+  }
+
+  15% {
+    transform: scale(1.12);
+    box-shadow: 0 0 25px rgba(255,59,48,0.9);
+  }
+
+  30% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255,59,48,0.4);
+  }
+
+  45% {
+    transform: scale(1.12);
+    box-shadow: 0 0 35px rgba(255,59,48,1);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255,59,48,0.4);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255,59,48,0.4);
+  }
+}
+`}
+</style>
+
+          <a
+          href="https://oppofest.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+  background: "linear-gradient(135deg,#ff3b30,#ff6a00)",
+  color: "#fff",
+  textDecoration: "none",
+  padding: "8px 14px",
+  borderRadius: "999px",
+  fontWeight: "700",
+  fontSize: "14px",
+  whiteSpace: "nowrap",
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "6px",
+  animation: "heartbeatGlow 1.8s infinite",
+  boxShadow: "0 0 15px rgba(255,59,48,0.5)",
+  border: "1px solid rgba(255,255,255,0.15)",
+  cursor: "pointer",
+}}
+        >
+          🏎️ OPPO FEST
+        </a>
+
         {/* Desktop Menu */}
         <nav className="nav-links" aria-label="Main">
           <Link to="/" className={isActive("/") ? "active" : ""}>Home</Link>
@@ -89,6 +150,9 @@ export default function Navbar() {
           <Link to="/placements" className={isActive("/placements") ? "active" : ""}>
             Placements
           </Link>
+          {/* <Link to="/alumni" className={isActive("/alumni") || isActive("/alumini") ? "active" : ""}>
+            Alumni
+          </Link> */}
           <Link to="/playbook" className={isActive("/playbook") ? "active" : ""}>
             Play Book
           </Link>
@@ -145,13 +209,16 @@ export default function Navbar() {
           <Link to="/testimonials" className={isActive("/testimonials") ? "active" : ""}>
             Testimonials
           </Link>
-          <Link to="/placements" className={isActive("/placements") ? "active" : ""}>
+          <Link to="/placements" className={isActive("/placements") ? "active" : ""} onClick={() => setOpen(false)}>
             Placements
           </Link>
-          <Link to="/playbook" className={isActive("/playbook") ? "active" : ""}>
+          {/* <Link to="/alumni" className={isActive("/alumni") || isActive("/alumini") ? "active" : ""} onClick={() => setOpen(false)}>
+            Alumni
+          </Link> */}
+          <Link to="/playbook" className={isActive("/playbook") ? "active" : ""} onClick={() => setOpen(false)}>
             Play Book
           </Link>
-          <Link to="/contact" className={isActive("/contact") ? "active" : ""}>
+          <Link to="/contact" className={isActive("/contact") ? "active" : ""} onClick={() => setOpen(false)}>
             Contact
           </Link>
         </div>
