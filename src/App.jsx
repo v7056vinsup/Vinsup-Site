@@ -37,7 +37,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Terms from "./pages/Terms.jsx";
 import RefundPolicy from "./pages/RefundPolicy.jsx";
 import Placements from "./pages/Placements.jsx";
-import Alumini from "./pages/Alumini.jsx";
+// import Alumini from "./pages/Alumini.jsx";
 
 export default function App() {
   const { loading } = useContext(LoadingContext);
@@ -56,8 +56,8 @@ export default function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/placements" element={<Placements />} />
-          <Route path="/alumni" element={<Alumini />} />
-          <Route path="/alumini" element={<Alumini />} />
+          {/* <Route path="/alumni" element={<Alumini />} />
+          <Route path="/alumini" element={<Alumini />} /> */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
