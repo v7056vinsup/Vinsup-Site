@@ -1,0 +1,103 @@
+/* ── Typography Fallbacks ── */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+.text-white { color: #ffffff; }
+.text-gray-400 { color: #9ca3af; }
+.text-red-500 { color: #ef4444; }
+
+.uppercase { text-transform: uppercase; }
+
+/* ── Container Layouts ── */
+.timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* gap-3 */
+}
+
+@media (min-width: 640px) {
+  .timer-container {
+    gap: 1rem; /* sm:gap-4 */
+  }
+}
+
+.time-block-wrapper {
+  display: flex;
+  flex-col: column;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── 3D / Box Display Units ── */
+.time-box-container {
+  position: relative;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.race-border {
+  border: 1px solid rgba(224, 27, 27, 0.3);
+}
+
+.glow-red {
+  box-shadow: 0 0 15px rgba(224, 27, 27, 0.4);
+}
+
+.time-box {
+  border-radius: 0.5rem; /* rounded-lg */
+  width: 4rem;           /* w-16 */
+  height: 4rem;          /* h-16 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .time-box {
+    width: 5rem;  /* sm:w-20 */
+    height: 5rem; /* sm:h-20 */
+  }
+}
+
+.time-value {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: bold;
+}
+
+@media (min-width: 640px) {
+  .time-value {
+    font-size: 1.875rem; /* sm:text-3xl */
+  }
+}
+
+/* Horizontal Slice Design Line */
+.box-splitter {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(153, 27, 27, 0.4); /* bg-red-800/40 */
+}
+
+/* Text Sub-labels */
+.time-label {
+  font-size: 0.75rem; /* text-xs */
+  margin-top: 0.5rem; /* mt-2 */
+  letter-spacing: 0.1em; /* tracking-widest */
+}
+
+/* Separator Dots Alignment */
+.timer-colon {
+  font-size: 1.5rem; /* text-2xl */
+  margin-top: -24px; /* mt-[-24px] alignment correction offset */
+}

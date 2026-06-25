@@ -1,0 +1,271 @@
+// import { motion } from "framer-motion";
+// import BookingForm from "./BookingForm";
+
+// export default function BookingSection({ sectionRef }) {
+//   return (
+//     <section ref={sectionRef} id="booking" className="py-20 px-4 relative">
+//       {/* Background accent */}
+//       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-600/5 blur-3xl" />
+//       </div>
+
+//       <div className="max-w-6xl mx-auto relative z-10">
+//         <div className="text-center mb-14">
+//           <motion.p
+//             initial={{ opacity: 0 }}
+//             whileInView={{ opacity: 1 }}
+//             viewport={{ once: true }}
+//             className="font-orbitron text-red-500 text-sm tracking-[0.3em] mb-3 uppercase"
+//           >
+//             Exclusive Offer by Vinsup Skill Academy
+//           </motion.p>
+//           <motion.h2
+//             initial={{ opacity: 0, y: 20 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             viewport={{ once: true }}
+//             className="font-orbitron text-4xl md:text-5xl font-black text-white"
+//           >
+//             GET YOUR <span className="text-gradient-red">TICKET</span>
+//           </motion.h2>
+//           <motion.p
+//             initial={{ opacity: 0 }}
+//             whileInView={{ opacity: 1 }}
+//             viewport={{ once: true }}
+//             transition={{ delay: 0.2 }}
+//             className="font-rajdhani text-gray-400 mt-3 text-lg"
+//           >
+//             ⚠️ Limited passes available — secure yours before they're gone!
+//           </motion.p>
+//           <div className="track-line w-40 mx-auto mt-5" />
+//         </div>
+
+//         <div className="grid lg:grid-cols-1 gap-10 items-start">
+//           {/* Left: offer details */}
+//           <motion.div
+//             initial={{ opacity: 0, x: -30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.6 }}
+//             className="space-y-5"
+//           >
+//             {/* Price card */}
+//             <div className="glass-card race-border rounded-2xl p-6 glow-red">
+//               <div className="flex items-center justify-between mb-4">
+//                 <div className="flex-1">
+//                   <p className="font-orbitron text-gray-400 text-xs tracking-widest mb-3">EXCLUSIVE PRICING</p>
+//                   <div className="grid grid-cols-2 gap-3">
+//                     <div className="bg-red-600/10 border border-red-500/30 rounded-xl p-3 text-center">
+//                       <p className="font-orbitron text-gray-400 text-xs mb-1">🎓 STUDENTS</p>
+//                       <p className="font-orbitron text-3xl font-black text-white">₹99</p>
+//                       <p className="font-rajdhani text-gray-500 text-xs line-through">₹999</p>
+//                       <p className="font-rajdhani text-green-400 text-xs font-bold">Save ₹900!</p>
+//                     </div>
+//                     <div className="bg-yellow-600/10 border border-yellow-500/30 rounded-xl p-3 text-center">
+//                       <p className="font-orbitron text-gray-400 text-xs mb-1">👤 Visitor</p>
+//                       <p className="font-orbitron text-3xl font-black text-white">₹249</p>
+//                       <p className="font-rajdhani text-gray-500 text-xs line-through">₹999</p>
+//                       <p className="font-rajdhani text-green-400 text-xs font-bold">Save ₹750!</p>
+//                     </div>
+//                   </div>
+//                 </div>
+//                 <div className="text-4xl animate-float ml-3">🏎️</div>
+//               </div>
+//               <div className="track-line" />
+//               <p className="font-rajdhani text-gray-300 text-sm mt-4">
+//                 Regular price on BookMyShow is ₹999. This exclusive offer is only for Vinsup Gateway Users —
+//                 first come, first served!
+//               </p>
+//             </div>
+
+//             {/* Group offer */}
+//             {/* <div className="glass-card border border-yellow-500/30 rounded-2xl p-5 glow-gold">
+//               <div className="flex items-start gap-3">
+//                 <span className="text-3xl">🎉</span>
+//                 <div>
+//                   <h4 className="font-orbitron text-yellow-400 font-bold mb-1">GROUP OFFER</h4>
+//                   <p className="font-rajdhani text-gray-300">
+//                     Buy <strong className="text-white">10 tickets</strong> and get{" "}
+//                     <strong className="text-yellow-400">1 ticket FREE!</strong>
+//                   </p>
+//                   <p className="font-rajdhani text-gray-400 text-sm mt-1">
+//                     Applied automatically at checkout.
+//                   </p>
+//                 </div>
+//               </div>
+//             </div> */}
+
+//             {/* What's included */}
+//             <div className="glass-card race-border rounded-2xl p-5">
+//               <h4 className="font-orbitron text-white font-bold mb-4 text-sm">WHAT'S INCLUDED</h4>
+//               <ul className="space-y-2">
+//                 {[
+//                   "Full event access (1PM–6PM)",
+//                   "Supercar & Drift Show viewing",
+//                   "F2 Cars & Monster Truck display",
+//                   "Superbike showcases",
+//                   "Food stalls & merchandise",
+//                   "Non-stop entertainment",
+//                 ].map((item, i) => (
+//                   <li key={i} className="flex items-center gap-3 font-rajdhani text-gray-300 text-sm">
+//                     <span className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0" />
+//                     {item}
+//                   </li>
+//                 ))}
+//               </ul>
+//             </div>
+
+//             {/* Payment methods */}
+//             <div className="glass-card race-border rounded-2xl p-4">
+//               <p className="font-orbitron text-gray-400 text-xs tracking-widest mb-3">PAYMENT METHODS</p>
+//               <div className="flex flex-wrap gap-2">
+//                 {["UPI", "Debit Card", "Credit Card", "Net Banking"].map((m) => (
+//                   <span
+//                     key={m}
+//                     className="bg-gray-800 border border-gray-700 rounded-md px-3 py-1 font-rajdhani text-gray-300 text-xs"
+//                   >
+//                     {m}
+//                   </span>
+//                 ))}
+//               </div>
+//               <p className="font-rajdhani text-gray-500 text-xs mt-3 flex items-center gap-1">
+//                 🔒 Powered by Jodo — 100% secure payments
+//               </p>
+//             </div>
+//           </motion.div>
+
+//           {/* Right: booking form */}
+//           {/* <motion.div
+//             initial={{ opacity: 0, x: 30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.6, delay: 0.1 }}
+//           >
+//             <BookingForm />
+//           </motion.div> */}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+
+import { motion } from "framer-motion";
+import BookingForm from "./BookingForm";
+import "./BookingSection.css"; // Imported custom normal CSS stylesheet
+
+export default function BookingSection({ sectionRef }) {
+  return (
+    <section ref={sectionRef} id="booking" className="booking-section">
+      {/* Background accent */}
+      <div className="bg-accent-container">
+        <div className="radial-glow" />
+      </div>
+
+      <div className="max-container">
+        <div className="text-center header-wrapper">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="font-orbitron text-red-500 sub-heading uppercase"
+          >
+            Exclusive Offer by Vinsup Skill Academy
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-orbitron main-heading font-black text-white"
+          >
+            GET YOUR <span className="text-gradient-red">TICKET</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="font-rajdhani text-gray-400 warning-tagline"
+          >
+            ⚠️ Limited passes available — secure yours before they're gone!
+          </motion.p>
+          <div className="track-line" />
+        </div>
+
+        <div className="content-grid">
+          {/* Left: offer details */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="details-column"
+          >
+            {/* Price card */}
+            <div className="glass-card race-border card-box p-6-override glow-red">
+              <div className="price-layout-row">
+                <div style={{ flex: 1 }}>
+                  <p className="font-orbitron text-gray-400 pricing-title">EXCLUSIVE PRICING</p>
+                  <div className="price-box-grid">
+                    <div className="badge-pricing-unit student-variant text-center">
+                      <p className="font-orbitron text-gray-400 unit-label">🎓 STUDENTS</p>
+                      <p className="font-orbitron unit-cost font-black text-white">₹99</p>
+                      <p className="font-rajdhani text-gray-500 unit-label line-through">₹999</p>
+                      <p className="font-rajdhani text-green-400 unit-savings font-bold">Save ₹900!</p>
+                    </div>
+                    <div className="badge-pricing-unit visitor-variant text-center">
+                      <p className="font-orbitron text-gray-400 unit-label">👤 VISITOR</p>
+                      <p className="font-orbitron unit-cost font-black text-white">₹249</p>
+                      <p className="font-rajdhani text-gray-500 unit-label line-through">₹999</p>
+                      <p className="font-rajdhani text-green-400 unit-savings font-bold">Save ₹750!</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="animate-float float-emoji"></div>
+              </div>
+              <div className="track-line" style={{ margin: '0' }} />
+              <p className="font-rajdhani text-gray-300 offer-description text-sm">
+                Regular price on BookMyShow is ₹999. This exclusive offer is only for Vinsup Gateway Users —
+                first come, first served!
+              </p>
+            </div>
+
+            {/* What's included */}
+            <div className="glass-card race-border card-box p-6-override">
+              <h4 className="font-orbitron text-white font-bold mb-4 text-sm" style={{ marginTop: 0 }}>WHAT'S INCLUDED</h4>
+              <ul className="list-wrapper">
+                {[
+                  "Full event access (1PM–6PM)",
+                  "Supercar & Drift Show viewing",
+                  "F2 Cars & Monster Truck display",
+                  "Superbike showcases",
+                  "Food stalls & merchandise",
+                  "Non-stop entertainment",
+                ].map((item, i) => (
+                  <li key={i} className="list-item font-rajdhani text-gray-300">
+                    <span className="list-dot" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Payment methods */}
+            <div className="glass-card race-border card-box p-4-override">
+              <p className="font-orbitron text-gray-400 pricing-title">PAYMENT METHODS</p>
+              <div className="payment-methods-row">
+                {["UPI", "Debit Card", "Credit Card", "Net Banking"].map((m) => (
+                  <span key={m} className="font-rajdhani payment-chip text-gray-300">
+                    {m}
+                  </span>
+                ))}
+              </div>
+              <p className="font-rajdhani text-gray-500 payment-footer-note">
+                🔒 Powered by Jodo — 100% secure payments
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}

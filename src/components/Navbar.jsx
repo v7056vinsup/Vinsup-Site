@@ -85,11 +85,9 @@ export default function Navbar() {
 `}
 </style>
 
-          <a
-          href="https://oppofest.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
+          <Link
+            to="/oppofest"
+            style={{
   background: "linear-gradient(135deg,#ff3b30,#ff6a00)",
   color: "#fff",
   textDecoration: "none",
@@ -108,7 +106,7 @@ export default function Navbar() {
 }}
         >
           🏎️ OPPO FEST
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <nav className="nav-links" aria-label="Main">

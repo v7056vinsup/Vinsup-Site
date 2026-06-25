@@ -22,7 +22,7 @@ import Register from "./pages/Register.jsx";
 import CourseDetails from "./pages/CourseDetails.jsx";
 import Careers from "./pages/Careers.jsx";
 import SocialExpand from "./components/SocialExpand.jsx";
-
+import Oppo from "./oppoFest/components/Oppo.jsx";
 
 
 import Blog from "./pages/Blog.jsx";
@@ -37,6 +37,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Terms from "./pages/Terms.jsx";
 import RefundPolicy from "./pages/RefundPolicy.jsx";
 import Placements from "./pages/Placements.jsx";
+import Alumini from "./pages/Alumini.jsx";
 
 export default function App() {
   const { loading } = useContext(LoadingContext);
@@ -55,6 +56,8 @@ export default function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/placements" element={<Placements />} />
+          <Route path="/alumni" element={<Alumini />} />
+          <Route path="/alumini" element={<Alumini />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -78,6 +81,7 @@ export default function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/oppofest" element={<Oppo />} />
         </Routes>
       </main>
 
