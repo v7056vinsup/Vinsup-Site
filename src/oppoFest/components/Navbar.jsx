@@ -408,10 +408,8 @@ export default function Navbar({
 
                 <button
                   onClick={() => {
-                    window.open(
-                      "https://pay.jodo.in/pages/zsQ6BRVfrLGHZyYh",
-                      "_blank"
-                    );
+                    window.location.href =
+                      "https://pay.jodo.in/pages/zsQ6BRVfrLGHZyYh";
                     setShowPassModal(false);
                   }}
                   className="pass-option-btn general-pass-btn font-bold"
