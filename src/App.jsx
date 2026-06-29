@@ -22,7 +22,7 @@ import Register from "./pages/Register.jsx";
 import CourseDetails from "./pages/CourseDetails.jsx";
 import Careers from "./pages/Careers.jsx";
 import SocialExpand from "./components/SocialExpand.jsx";
-import Oppo from "./oppoFest/components/Oppo.jsx";
+// import Oppo from "./oppoFest/components/Oppo.jsx";
 
 
 import Blog from "./pages/Blog.jsx";
@@ -81,7 +81,7 @@ export default function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/oppofest" element={<Oppo />} />
+          {/* <Route path="/oppofest" element={<Oppo />} /> */}
         </Routes>
       </main>
 
