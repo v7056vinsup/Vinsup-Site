@@ -156,8 +156,8 @@
 /* ─── PHOTO GRID — 3 columns ──────────────────────────────────────────────── */
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
 }
 
 /* ─── PHOTO CARD ──────────────────────────────────────────────────────────── */
@@ -195,7 +195,7 @@
 /* ─── IMAGE — grayscale ↔ color ───────────────────────────────────────────── */
 .photo-img-wrap {
   position: relative;
-  aspect-ratio: 1/1;   /* taller cards */
+  aspect-ratio: 0.9 / 1;
   overflow: hidden;
   background: #d1d5db;
 }
@@ -205,7 +205,7 @@
   object-position: top center;
   display: block;
   /* Default: black & white */
-  filter: grayscale(100%);
+  filter: grayscale(0%);
   transition: filter 0.7s ease, transform 0.5s cubic-bezier(.22,1,.36,1);
 }
 /* Color — when scrolled into view (brief flash) or hovered */

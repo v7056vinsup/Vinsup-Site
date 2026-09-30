@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import courses from "../data/courses";
+import courses, { getCourseRouteHref } from "../data/courses";
 import MarketingAlerts from "../components/MarketingAlerts";
 import UpcomingBatches from "./UpcomingBatches";
 import QuickEnquiry from "../components/QuickEnquiry";
 import HomePopupModal from "../components/HomePopupModal";
 
 import "../styles/CoursesPremium.css";
+
+const COURSE_DISPLAY_LABELS = {
+  "data-verse-pro": "AI integrated data-verse-pro",
+  "devstack-fullstack-devops": "AI integrated devstack-fullstack-devops",
+  "data-analytics": "AI integrated data-analytics",
+  frontend: "AI integrated frontend",
+  "ui-ux-design": "AI integrated ui-ux-design",
+  "digital-marketing": "AI integrated digital-marketing",
+};
 
 /* =========================
    FILTER CONFIG
@@ -147,7 +156,7 @@ export default function Courses() {
               </span>
             )}
 
-            <h3>{course.title}</h3>
+            <h3>{COURSE_DISPLAY_LABELS[course.slug] || course.title}</h3>
             <p className="course-short">{course.short}</p>
 
             <div className="course-meta">
@@ -165,7 +174,7 @@ export default function Courses() {
 
             <div className="course-actions">
               <Link
-                to={`/courses/${course.slug}`}
+                to={getCourseRouteHref(course)}
                 className="btn-primary-premium"
               >
                 View Course

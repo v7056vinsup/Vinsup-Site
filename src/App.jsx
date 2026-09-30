@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { LoadingContext } from "./components/LoadingContext";
+import "./lib/testimonialsCache";
+import "./lib/placementsCache";
 
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";

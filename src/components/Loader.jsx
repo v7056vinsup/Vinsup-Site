@@ -64,7 +64,7 @@ const MILESTONES = [
 const CURVE_PATH =
   "M150,240 C220,240 280,120 350,120 S480,240 550,240 S680,120 750,120 S880,240 950,240";
 
-export default function AdvancedJourneyLoader({ onComplete }) {
+export default function AdvancedJourneyLoader({ onComplete, speed = 10 }) {
   const [progress, setProgress] = useState(0);
   const pathRef = useRef(null);
   const [pathLength, setPathLength] = useState(0);
@@ -76,18 +76,26 @@ export default function AdvancedJourneyLoader({ onComplete }) {
   }, []);
 
   useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => onComplete && onComplete(), 500);
+          setTimeout(() => onComplete && onComplete(), 150);
           return 100;
         }
         return prev + 1;
       });
-    }, 25);
+    }, speed);
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, [onComplete, speed]);
 
   const activeIndex = Math.floor(progress / 20);
 

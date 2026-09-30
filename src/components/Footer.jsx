@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
-import courses from "../data/courses";
+import courses, { getCourseRouteHref, getCourseRouteSlug } from "../data/courses";
 
 const NAV_COURSE_SLUGS = [
-  "data-verse-pro",
-  "devstack-fullstack-devops",
-  "data-analytics",
-  "frontend",
-  "ui-ux-design",
-  "digital-marketing",
+  "AI integrated data-verse-pro",
+  "AI integrated devstack-fullstack-devops",
+  "AI integrated data-analytics",
+  "AI integrated frontend",
+  "AI integrated ui-ux-design",
+  "AI integrated digital-marketing",
 ];
-const footerCourses = courses.filter(c => NAV_COURSE_SLUGS.includes(c.slug));
+const footerCourses = courses.filter((c) => {
+  const routeSlugs = [c.slug, c.navSlug].filter(Boolean);
+  return routeSlugs.some((slug) => NAV_COURSE_SLUGS.includes(slug));
+});
 
 
 // simple inline SVG icons (no extra libs)
@@ -53,7 +56,7 @@ export default function Footer() {
           <h4 className="f-head">Courses</h4>
           <ul className="f-list">
             {footerCourses.map((c) => (
-              <li key={c.slug}><Link to={`/courses/${c.slug}`}>{c.title}</Link></li>
+              <li key={getCourseRouteSlug(c)}><Link to={getCourseRouteHref(c)}>{c.title}</Link></li>
             ))}
             <li><Link to="/courses" style={{ fontWeight: 600 }}>View all courses →</Link></li>
           </ul>
@@ -87,29 +90,39 @@ export default function Footer() {
         <div className="f-col f-contact">
           <h4 className="f-head">Get in Touch</h4>
           <ul className="f-contact-list">
-            <li>Vinsup Infotech PVT LTD</li>
-            <li>Registered Address: 369/4 Krishnan Koil Street, Aygudi<br/>Tenkasi, Tamil Nadu 627852</li>
-            {/* coimbatore address */}
+            {/* Coimbatore Address */}
             <li>Coimbatore Address: 148, AB Gopalsamy Koil St,<br/> Sridevi Nagar, Ganapathy, Coimbatore,<br/>Tamil Nadu 641006</li>
-           <li>
-          <a href="tel:+918248826374">+91 8248826374</a>
-          {/* gst number */}
-          <p>GST: 33AAICV6095P1ZI</p>
+            <li>
+              <a href="tel:+918248826374">+91 8248826374</a>
+              {/* gst number */}
+              <p>GST: 33AAICV6095P1ZI</p>
             </li>
             <li>
               <a href="mailto:hrvinsup@gmail.com">hrvinsup@gmail.com</a>
             </li>
+          </ul>
+          <div className="map-wrap">
+            <iframe
+              className="map-frame"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.0301951658284!2d76.97409037504568!3d11.036361389128652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85963b47c9905%3A0xccf88b0cf54e457e!2sVINSUP%20SKILL%20ACADEMY!5e0!3m2!1sen!2sin!4v1771679150601!5m2!1sen!2sin"
+              title="Vinsup Skill Academy Location"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
 
-          </ul><div className="map-wrap">
-  <iframe
-    className="map-frame"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.0301951658284!2d76.97409037504568!3d11.036361389128652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85963b47c9905%3A0xccf88b0cf54e457e!2sVINSUP%20SKILL%20ACADEMY!5e0!3m2!1sen!2sin!4v1771679150601!5m2!1sen!2sin"
-    title="Vinsup Skill Academy Location"
-    loading="lazy"
-    allowFullScreen
-    referrerPolicy="no-referrer-when-downgrade"
-  />
-</div>
+        {/* Row 2: Registered Address at Left Corner */}
+        <div className="f-col f-registered">
+          <h4 className="f-head">Registered Office</h4>
+          <ul className="f-contact-list">
+            <li>Vinsup Infotech PVT LTD</li>
+            <li>
+              Registered Address: 369/4 Krishnan Koil Street, Aygudi<br/>
+              Tenkasi, Tamil Nadu 627852
+            </li>
+          </ul>
         </div>
       </div>
        {/* Column 6: Location */}

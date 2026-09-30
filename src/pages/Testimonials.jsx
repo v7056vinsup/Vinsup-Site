@@ -2,9 +2,23 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import "./Testimonials.css";
 import QuickEnquiry from "../components/QuickEnquiry";
 import Loader from "../components/Loader";
+import CustomSelect from "../components/CustomSelect";
+import {
+  getTestimonialsCache,
+  prefetchTestimonials,
+  subscribeTestimonials,
+} from "../lib/testimonialsCache";
 
-const API_URL =
-  "https://script.google.com/macros/s/AKfycbzS5oJOJ5QwKyuvdYEn21DCXNAN93aoeo48hN1rKscC7A5uLFogQ0QCzCxCMMjrSuO6/exec";
+const instagramEmbedSrc = (url) => {
+  if (!url) return "";
+  try {
+    const u = new URL(url);
+    const path = u.pathname.replace(/\/+$/, "");
+    return `https://www.instagram.com${path}/embed`;
+  } catch {
+    return `${String(url).split("?")[0].replace(/\/$/, "")}/embed`;
+  }
+};
 
 /* ── tiny helpers ── */
 const convertToEmbed = (url) => {
@@ -39,16 +53,22 @@ const Section = ({ tag, title, desc, dark, children, className = "" }) => (
   </section>
 );
 
-/* ── Instagram embed card ── */
-const InstaCard = ({ url, index }) => (
-  <div className="insta-card reveal" style={{ animationDelay: `${index * 70}ms` }}>
+/* ── Instagram embed card — native iframe so posts start loading immediately ── */
+const InstaCard = ({ url, index, isVisible = true }) => (
+  <div
+    className="insta-card reveal"
+    style={{
+      animationDelay: `${index * 70}ms`,
+      display: isVisible ? undefined : "none",
+    }}
+  >
     <div className="insta-card__inner">
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={url}
-        data-instgrm-version="14"
-        data-instgrm-captioned
-        style={{ margin: 0, width: "100%" }}
+      <iframe
+        src={instagramEmbedSrc(url)}
+        title="Instagram post"
+        loading="eager"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+        allowFullScreen
       />
     </div>
     <div className="insta-card__glow" />
@@ -56,45 +76,58 @@ const InstaCard = ({ url, index }) => (
 );
 
 export default function Testimonials() {
-  const [youtubeVideos, setYoutubeVideos] = useState([]);
-  const [instagram, setInstagram] = useState({});
-  const [placed, setPlaced] = useState({});
-  const [internship, setInternship] = useState({});
-  const [textTestimonials, setTextTestimonials] = useState([]);
+  const [youtubeVideos, setYoutubeVideos] = useState(
+    () => getTestimonialsCache()?.youtube || []
+  );
+  const [instagram, setInstagram] = useState(() => {
+    const d = getTestimonialsCache()?.instagram;
+    return d && Object.keys(d).length > 0 ? d : {};
+  });
+  const [placed, setPlaced] = useState(() => {
+    const d = getTestimonialsCache()?.placed;
+    return d && Object.keys(d).length > 0 ? d : {};
+  });
+  const [internship, setInternship] = useState(
+    () => getTestimonialsCache()?.internship || {}
+  );
+  const [textTestimonials, setTextTestimonials] = useState(
+    () => getTestimonialsCache()?.text || []
+  );
   const [activeVideo, setActiveVideo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [recordTypeFilter, setRecordTypeFilter] = useState("All Types");
+  const [courseFilter, setCourseFilter] = useState("All Courses");
   const heroRef = useRef(null);
   const timerRef = useRef(null);
 
-  /* fetch */
+  /* Shared cache-first fetch (started at app boot). Cards stay mounted
+     under the loader so Instagram iframes begin loading immediately. */
   useEffect(() => {
-    fetch(API_URL)
-      .then((r) => r.json())
-      .then((d) => {
-        setYoutubeVideos(d.youtube || []);
-        setInstagram(d.instagram || {});
-        setPlaced(d.placed || {});
-        setInternship(d.internship || {});
-        setTextTestimonials(d.text || []);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+    const applyData = (d) => {
+      if (!d) return;
+      setYoutubeVideos(d.youtube || []);
+      if (d.instagram && Object.keys(d.instagram).length > 0) {
+        setInstagram(d.instagram);
+      }
+      if (d.placed && Object.keys(d.placed).length > 0) {
+        setPlaced(d.placed);
+      }
+      setInternship(d.internship || {});
+      setTextTestimonials(d.text || []);
+    };
 
-  /* instagram embed script */
-  useEffect(() => {
-    if (!window.instgrm) {
-      const s = document.createElement("script");
-      s.src = "https://www.instagram.com/embed.js";
-      s.async = true;
-      s.onload = () => window.instgrm?.Embeds.process();
-      document.body.appendChild(s);
-    } else {
-      window.instgrm?.Embeds.process();
-    }
-  }, [instagram, placed, internship]);
+    applyData(getTestimonialsCache());
+    const unsub = subscribeTestimonials(applyData);
+    prefetchTestimonials().catch(console.error);
+
+    const maxTimer = setTimeout(() => setLoading(false), 1500);
+    return () => {
+      unsub();
+      clearTimeout(maxTimer);
+    };
+  }, []);
 
   /* carousel */
   const next = useCallback(
@@ -130,15 +163,120 @@ export default function Testimonials() {
     );
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, [loading, youtubeVideos, textTestimonials, instagram, placed, internship]);
+  }, [
+    loading,
+    youtubeVideos,
+    textTestimonials,
+    instagram,
+    placed,
+    internship,
+    recordTypeFilter,
+    courseFilter,
+  ]);
 
-  if (loading) return <Loader />;
+  /* ── Reel filter helpers ── */
+  const allInstaPosts = Object.entries(instagram).flatMap(([catKey, vids]) =>
+    (vids || []).map((v) => ({
+      url: v.video_url || "",
+      course: (v.course || catKey || "").trim() || "Uncategorized",
+    }))
+  ).filter((p) => p.url);
 
-  const instaEntries = (obj) =>
-    Object.entries(obj).flatMap(([, vids]) => vids.map((v) => v.video_url));
+  const courseMatch = (postCourse, filter) => {
+    if (filter === "All Courses" || !filter) return true;
+    if (!postCourse) return false;
+    const p = postCourse.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const f = filter.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (p === f || p.includes(f) || f.includes(p)) return true;
+    const aliases = {
+      fullstackdevelopment: ["fullstack", "mern", "webdev", "devstack"],
+      dataanalytics: ["analytics", "dataanalysis"],
+      datascience: ["datascientist", "machinelearning", "ml", "ai"],
+      uiuxdesign: ["uiux", "ui", "ux", "design", "figma"],
+      digitalmarketing: ["marketing", "seo", "sem"],
+    };
+    return Object.entries(aliases).some(
+      ([key, vals]) =>
+        (f === key || vals.some((v) => f.includes(v) || v.includes(f))) &&
+        (p === key || vals.some((v) => p.includes(v) || v.includes(p)))
+    );
+  };
+
+  const allPlacedPosts = Object.entries(placed).flatMap(([catKey, vids]) =>
+    (vids || []).map((v) => ({
+      url: v.video_url || "",
+      course: (v.course || catKey || "").trim() || "Uncategorized",
+    }))
+  ).filter((p) => p.url);
+
+  const allInternshipPosts = Object.entries(internship).flatMap(([catKey, vids]) =>
+    (vids || []).map((v) => ({
+      url: v.video_url || "",
+      course: (v.course || catKey || "").trim() || "Uncategorized",
+    }))
+  ).filter((p) => p.url);
+
+  const recordTypeOptions = [
+    "All Types",
+    "Student Reels",
+    "Placement Stories",
+    "Internship Experience Reels",
+  ];
+  const availableCoursePosts =
+    recordTypeFilter === "Student Reels"
+      ? allInstaPosts
+      : recordTypeFilter === "Placement Stories"
+        ? allPlacedPosts
+        : recordTypeFilter === "Internship Experience Reels"
+          ? allInternshipPosts
+          : [...allInstaPosts, ...allPlacedPosts, ...allInternshipPosts];
+  const availableCourseNames = [
+    ...new Set(
+      availableCoursePosts
+        .map((post) => post.course)
+        .filter((course) => course && course.toLowerCase() !== "uncategorized")
+    ),
+  ];
+  const knownCourses = [
+    "React",
+    "Full Stack Development",
+    "Data Analytics",
+    "Data Science",
+    "UI / UX Design",
+    "Digital Marketing",
+  ];
+  const courseFilterOptions = [
+    "All Courses",
+    ...(availableCourseNames.length ? availableCourseNames : knownCourses),
+  ];
+  const applyCourseFilter = (posts) =>
+    courseFilter === "All Courses"
+      ? posts
+      : posts.filter((post) => courseMatch(post.course, courseFilter));
+  const filteredInstaPosts = applyCourseFilter(allInstaPosts);
+  const filteredPlacedPosts = applyCourseFilter(allPlacedPosts);
+  const filteredInternshipPosts = applyCourseFilter(allInternshipPosts);
+
 
   return (
-    <main className="t-page">
+    <>
+      {loading && <Loader onComplete={() => setLoading(false)} />}
+      <main
+        className="t-page"
+        aria-hidden={loading}
+        style={
+          loading
+            ? {
+                opacity: 0,
+                position: "fixed",
+                inset: 0,
+                pointerEvents: "none",
+                overflow: "auto",
+                zIndex: 0,
+              }
+            : undefined
+        }
+      >
 
       {/* ══ HERO ══ */}
       <section className="t-hero" ref={heroRef}>
@@ -179,43 +317,71 @@ export default function Testimonials() {
         desc="Unscripted stories from learners who transformed their careers."
         className="t-yt-section"
       >
+        <div className="t-testimonial-filters">
+          <div className="t-filter-select">
+            <span className="t-filter-label">Type</span>
+            <CustomSelect
+              options={recordTypeOptions}
+              value={recordTypeFilter}
+              onChange={(value) => {
+                setRecordTypeFilter(value);
+                setCourseFilter("All Courses");
+              }}
+              placeholder="All types"
+            />
+          </div>
+          <div className="t-filter-select">
+            <span className="t-filter-label">Course</span>
+            <CustomSelect
+              options={courseFilterOptions}
+              value={courseFilter}
+              onChange={setCourseFilter}
+              placeholder="All courses"
+            />
+          </div>
+        </div>
         <div className="t-yt-grid">
-          {youtubeVideos.map((yt, i) => (
-            <div
-              className="t-vc reveal"
-              key={i}
-              style={{ animationDelay: `${i * 75}ms` }}
-            >
-              <div className="t-vc__media">
-                {activeVideo === i ? (
-                  <iframe
-                    src={`${convertToEmbed(yt.video_url)}?autoplay=1&rel=0`}
-                    allowFullScreen
-                    allow="autoplay"
-                    title={yt.name}
-                  />
-                ) : (
-                  <button className="t-vc__thumb" onClick={() => setActiveVideo(i)}>
-                    <img src={getThumbnail(yt.video_url)} alt={yt.name} />
-                    <div className="t-vc__fog" />
-                    <span className="t-vc__play">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </span>
-                    <span className="t-vc__label">Student Story</span>
-                  </button>
-                )}
+          {loading && youtubeVideos.length === 0
+            ? Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="t-skeleton t-skeleton-card" style={{ animationDelay: `${i * 120}ms` }} />
+            ))
+            : youtubeVideos.map((yt, i) => (
+              <div
+                className="t-vc reveal"
+                key={i}
+                style={{ animationDelay: `${i * 75}ms` }}
+              >
+                <div className="t-vc__media">
+                  {activeVideo === i ? (
+                    <iframe
+                      src={`${convertToEmbed(yt.video_url)}?autoplay=1&rel=0`}
+                      allowFullScreen
+                      allow="autoplay"
+                      title={yt.name}
+                    />
+                  ) : (
+                    <button className="t-vc__thumb" onClick={() => setActiveVideo(i)}>
+                      <img src={getThumbnail(yt.video_url)} alt={yt.name} />
+                      <div className="t-vc__fog" />
+                      <span className="t-vc__play">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </span>
+                      <span className="t-vc__label">Student Story</span>
+                    </button>
+                  )}
+                </div>
+                <div className="t-vc__meta">
+                  <Stars />
+                  <h4>{yt.name}</h4>
+                  <p>{yt.course}</p>
+                  <span className="t-vc__verified">✓ Verified</span>
+                </div>
+                <div className="t-vc__sheen" />
               </div>
-              <div className="t-vc__meta">
-                <Stars />
-                <h4>{yt.name}</h4>
-                <p>{yt.course}</p>
-                <span className="t-vc__verified">✓ Verified</span>
-              </div>
-              <div className="t-vc__sheen" />
-            </div>
-          ))}
+            ))
+          }
         </div>
       </Section>
 
@@ -282,18 +448,62 @@ export default function Testimonials() {
       )} */}
 
       {/* ══ INSTAGRAM ══ */}
-      {instaEntries(instagram).length > 0 && (
-        <Section tag="Social Proof" title="Student Reels on Instagram" className="t-insta-section">
-          <div className="t-insta-grid t-insta-grid--2">
-            {instaEntries(instagram).map((url, i) => (
-              <InstaCard key={i} url={url} index={i} />
-            ))}
-          </div>
+      {(recordTypeFilter === "All Types" || recordTypeFilter === "Student Reels") &&
+        (loading || allInstaPosts.length > 0) && (
+        <Section
+          tag="Social Proof"
+          title="Student Reels on Instagram"
+          desc="Real student experiences and feedback across all our learning programs."
+          className="t-insta-section"
+        >
+          {/* Skeleton while loading and no posts yet */}
+          {loading && allInstaPosts.length === 0 ? (
+            <div className="t-skeleton-grid">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="t-skeleton t-skeleton-card--tall" style={{ animationDelay: `${i * 150}ms` }} />
+              ))}
+            </div>
+          ) : (
+            <>
+              {filteredInstaPosts.length === 0 && (
+                <div className="t-filter-empty">
+                  <p>
+                    No student reels found for{" "}
+                    <strong>{courseFilter}</strong> yet.
+                  </p>
+                  <button
+                    type="button"
+                    className="t-filter-empty__btn"
+                    onClick={() => setCourseFilter("All Courses")}
+                  >
+                    View All Reels
+                  </button>
+                </div>
+              )}
+
+              <div
+                className={`t-insta-grid ${filteredInstaPosts.length === 1
+                  ? "t-insta-grid--1"
+                  : filteredInstaPosts.length === 2
+                    ? "t-insta-grid--2"
+                    : "t-insta-grid--3"
+                  }`}
+                style={{
+                  display: filteredInstaPosts.length === 0 ? "none" : undefined,
+                }}
+              >
+                {filteredInstaPosts.map((post, i) => (
+                  <InstaCard key={post.url} url={post.url} index={i} />
+                ))}
+              </div>
+            </>
+          )}
         </Section>
       )}
 
       {/* ══ PLACED ══ */}
-      {instaEntries(placed).length > 0 && (
+      {(recordTypeFilter === "All Types" || recordTypeFilter === "Placement Stories") &&
+        (loading || allPlacedPosts.length > 0) && (
         <Section
           tag="Placement Stories"
           title="Placed Student Testimonials"
@@ -301,25 +511,77 @@ export default function Testimonials() {
           dark
           className="t-placed-section"
         >
-          <div className="t-insta-grid t-insta-grid--3">
-            {instaEntries(placed).map((url, i) => (
-              <InstaCard key={i} url={url} index={i} />
+          {filteredPlacedPosts.length === 0 && (
+            <div className="t-filter-empty">
+              <p>
+                No placement reels found for{" "}
+                <strong>{courseFilter}</strong> yet.
+              </p>
+              <button
+                type="button"
+                className="t-filter-empty__btn"
+                onClick={() => setCourseFilter("All Courses")}
+              >
+                View All Reels
+              </button>
+            </div>
+          )}
+
+          <div
+            className={`t-insta-grid ${filteredPlacedPosts.length === 1
+              ? "t-insta-grid--1"
+              : filteredPlacedPosts.length === 2
+                ? "t-insta-grid--2"
+                : "t-insta-grid--3"
+              }`}
+            style={{
+              display: filteredPlacedPosts.length === 0 ? "none" : undefined,
+            }}
+          >
+            {filteredPlacedPosts.map((post, i) => (
+              <InstaCard key={post.url} url={post.url} index={i} />
             ))}
           </div>
         </Section>
       )}
 
       {/* ══ INTERNSHIP ══ */}
-      {instaEntries(internship).length > 0 && (
+      {(recordTypeFilter === "All Types" || recordTypeFilter === "Internship Experience Reels") &&
+        allInternshipPosts.length > 0 && (
         <Section
           tag="Internship Journeys"
           title="Internship Experience Reels"
           desc="Real-world experience that shapes careers from day one."
           className="t-intern-section"
         >
-          <div className="t-insta-grid t-insta-grid--3">
-            {instaEntries(internship).map((url, i) => (
-              <InstaCard key={i} url={url} index={i} />
+          {filteredInternshipPosts.length === 0 && (
+            <div className="t-filter-empty">
+              <p>
+                No internship reels found for <strong>{courseFilter}</strong> yet.
+              </p>
+              <button
+                type="button"
+                className="t-filter-empty__btn"
+                onClick={() => setCourseFilter("All Courses")}
+              >
+                View All Reels
+              </button>
+            </div>
+          )}
+
+          <div
+            className={`t-insta-grid ${filteredInternshipPosts.length === 1
+              ? "t-insta-grid--1"
+              : filteredInternshipPosts.length === 2
+                ? "t-insta-grid--2"
+                : "t-insta-grid--3"
+              }`}
+            style={{
+              display: filteredInternshipPosts.length === 0 ? "none" : undefined,
+            }}
+          >
+            {filteredInternshipPosts.map((post, i) => (
+              <InstaCard key={post.url} url={post.url} index={i} />
             ))}
           </div>
         </Section>
@@ -337,5 +599,6 @@ export default function Testimonials() {
       </section>
 
     </main>
+    </>
   );
 }

@@ -376,13 +376,14 @@ section.key-highlights .kh-label {
 .about-image {
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 }
 
 .about-image img,
 .image-placeholder {
   width: 100%;
   max-width: 520px;
-  max-height: 300px;
+  max-height: 250px;
   object-fit: contain;
   height: auto;
   border-radius: 20px;

@@ -256,6 +256,12 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import "./Placements.css";
 import HomePopupModal from "../components/HomePopupModal";
+import {
+  getPlacementsCache,
+  loadPlacementsPage,
+  prefetchPlacements,
+  subscribePlacements,
+} from "../lib/placementsCache";
 
 // ─── SVG Icons (UNCHANGED) ────────────────────────────────────────────────────
 const IconGradCap = () => (
@@ -389,7 +395,12 @@ function PhotoCard({ photo, index, onOpen }) {
         onClick={() => onOpen(photo)}
       >
         <div className="photo-img-wrap">
-          <img src={photo.src} alt="" loading="lazy" onError={handleImageError} />
+          <img
+            src={photo.src}
+            alt=""
+            loading={index < 9 ? "eager" : "lazy"}
+            onError={handleImageError}
+          />
           <div className="card-caption">{photo.name}</div>
         </div>
       </div>
@@ -397,72 +408,66 @@ function PhotoCard({ photo, index, onOpen }) {
   );
 }
 
-// ─── Convert Google Drive URL to embeddable format ─────────────────────────────
-const convertDriveUrl = (url) => {
-  if (!url) return url;
-  // Extract file ID from various Google Drive URL formats
-  const match = url.match(/[-\w]{25,}/);
-  if (match) {
-    const fileId = match[0];
-    const convertedUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
-    return convertedUrl;
-  }
-  return url;
-};
-
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function Placements() {
   const [heroIn, setHeroIn] = useState(false);
   const [modalPhoto, setModalPhoto] = useState(null);
   const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(
+    () => getPlacementsCache()?.hasMore ?? true
+  );
+  const [loadingMore, setLoadingMore] = useState(false);
   const loaderRef = useRef(null);
+  const fetchingRef = useRef(false);
 
-  // 🔥 NEW STATE (backend)
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState(
+    () => getPlacementsCache()?.photos || []
+  );
 
   useEffect(() => { setTimeout(() => setHeroIn(true), 80); }, []);
 
-  const LIMIT = 3;
-
-  // ✅ FETCH FROM APPS SCRIPT
   useEffect(() => {
-    fetch(
-       `https://script.google.com/macros/s/AKfycbwYgJrzucfmhP2hM0sy_xIZtizsXTW7CHlzqvpLsOQxuG3uXd73cWUWf9QSAD7Hf3o0/exec?page=${page}&limit=${LIMIT}`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        const mapped = res.data.map((item, i) => ({
-          id: item.Id || `${page}-${i}`,
-          name: item.Name,
-          src: convertDriveUrl(item.Image),
-          index: photos.length + i,
-        }));
-        // setPhotos(mapped);
-        setPhotos((prev) => [...prev, ...mapped]);
-        if (mapped.length < LIMIT) {
-          setHasMore(false);
-        }
-      })
-      .catch((err) => console.error(err));
+    const apply = (d) => {
+      if (!d) return;
+      setPhotos(d.photos || []);
+      setHasMore(Boolean(d.hasMore));
+    };
+
+    apply(getPlacementsCache());
+    const unsub = subscribePlacements(apply);
+    prefetchPlacements().catch(console.error);
+    return unsub;
+  }, []);
+
+  useEffect(() => {
+    if (page <= 1) return;
+    if (fetchingRef.current) return;
+    fetchingRef.current = true;
+    setLoadingMore(true);
+    loadPlacementsPage(page)
+      .catch(console.error)
+      .finally(() => {
+        fetchingRef.current = false;
+        setLoadingMore(false);
+      });
   }, [page]);
 
   useEffect(() => {
     if (!loaderRef.current) return;
+    if (!hasMore || photos.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+        if (entries[0].isIntersecting && hasMore && !fetchingRef.current) {
           setPage((prev) => prev + 1);
         }
       },
-      { rootMargin: '100px' }
+      { rootMargin: "200px" }
     );
 
     observer.observe(loaderRef.current);
-
     return () => observer.disconnect();
-  }, [hasMore]);
+  }, [hasMore, photos.length]);
 
   const openModal = (photo) => setModalPhoto(photo);
   const closeModal = () => setModalPhoto(null);
@@ -490,9 +495,11 @@ export default function Placements() {
             <PhotoCard key={p.id || i} photo={p} index={i} onOpen={openModal} />
           ))}
         </div>
-        <div ref={loaderRef} style={{ height: "40px", margin: "20px" }}>
-          {hasMore ? "Loading more..." : "No more data"}
-        </div>
+        {hasMore && (
+          <div ref={loaderRef} style={{ height: "40px", margin: "20px", textAlign: "center" }}>
+            {photos.length === 0 || loadingMore ? "Loading more..." : null}
+          </div>
+        )}
       </section>
 
       {/* MODAL */}

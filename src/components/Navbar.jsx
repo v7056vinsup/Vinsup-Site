@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import courses from "../data/courses.js";
+import courses, { getCourseRouteHref, getCourseRouteSlug } from "../data/courses.js";
 import logo from "../assets/logo.png";
 import "../styles/Navbar.css";
+import { prefetchTestimonials } from "../lib/testimonialsCache";
+import { prefetchPlacements } from "../lib/placementsCache";
 export default function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
@@ -10,17 +12,27 @@ export default function Navbar() {
   const [disableHover, setDisableHover] = useState(false);
 
   const NAV_COURSE_SLUGS = [
-    "data-verse-pro",
-    "devstack-fullstack-devops",
-    "data-analytics",
-    "frontend",
-    "ui-ux-design",
-    "digital-marketing",
+    "AI integrated data-verse-pro",
+    "AI integrated devstack-fullstack-devops",
+    "AI integrated data-analytics",
+    "AI integrated frontend",
+    "AI integrated ui-ux-design",
+    "AI integrated digital-marketing",
   ];
 
-  const navCourses = courses.filter((c) =>
-    NAV_COURSE_SLUGS.includes(c.slug)
-  );
+  const NAV_COURSE_LABELS = {
+    "data-verse-pro": "AI integrated data-verse-pro",
+    "devstack-fullstack-devops": "AI integrated devstack-fullstack-devops",
+    "data-analytics": "AI integrated data-analytics",
+    frontend: "AI integrated frontend",
+    "ui-ux-design": "AI integrated ui-ux-design",
+    "digital-marketing": "AI integrated digital-marketing",
+  };
+
+  const navCourses = courses.filter((c) => {
+    const routeSlugs = [c.slug, c.navSlug].filter(Boolean);
+    return routeSlugs.some((slug) => NAV_COURSE_SLUGS.includes(slug));
+  });
 
   // ✅ handle click
   const handleCourseClick = () => {
@@ -64,11 +76,11 @@ export default function Navbar() {
               <div className="dropdown-grid">
                 {navCourses.map((c) => (
                   <Link 
-                    key={c.slug} 
-                    to={`/courses/${c.slug}`}
-                    className={isActive(`/courses/${c.slug}`) ? "active" : ""}
+                    key={getCourseRouteSlug(c)} 
+                    to={getCourseRouteHref(c)}
+                    className={isActive(getCourseRouteHref(c)) ? "active" : ""}
                   >
-                    {c.title}
+                    {NAV_COURSE_LABELS[c.slug] || c.title}
                   </Link>
                 ))}
 
@@ -83,10 +95,20 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link to="/testimonials" className={isActive("/testimonials") ? "active" : ""}>
+          <Link
+            to="/testimonials"
+            className={isActive("/testimonials") ? "active" : ""}
+            onMouseEnter={() => prefetchTestimonials()}
+            onFocus={() => prefetchTestimonials()}
+          >
             Testimonials
           </Link>
-          <Link to="/placements" className={isActive("/placements") ? "active" : ""}>
+          <Link
+            to="/placements"
+            className={isActive("/placements") ? "active" : ""}
+            onMouseEnter={() => prefetchPlacements()}
+            onFocus={() => prefetchPlacements()}
+          >
             Placements
           </Link>
           {/* <Link to="/alumni" className={isActive("/alumni") || isActive("/alumini") ? "active" : ""}>
@@ -125,12 +147,12 @@ export default function Navbar() {
             <div className="dropdown-grid" style={{ paddingTop: 8 }}>
               {navCourses.map((c) => (
                 <Link
-                  key={c.slug}
-                  to={`/courses/${c.slug}`}
+                  key={getCourseRouteSlug(c)}
+                  to={getCourseRouteHref(c)}
                   onClick={() => setOpen(false)}
-                  className={isActive(`/courses/${c.slug}`) ? "active" : ""}
+                  className={isActive(getCourseRouteHref(c)) ? "active" : ""}
                 >
-                  {c.title}
+                  {NAV_COURSE_LABELS[c.slug] || c.title}
                 </Link>
               ))}
 
@@ -145,10 +167,22 @@ export default function Navbar() {
             </div>
           </details>
 
-          <Link to="/testimonials" className={isActive("/testimonials") ? "active" : ""}>
+          <Link
+            to="/testimonials"
+            className={isActive("/testimonials") ? "active" : ""}
+            onMouseEnter={() => prefetchTestimonials()}
+            onFocus={() => prefetchTestimonials()}
+            onClick={() => setOpen(false)}
+          >
             Testimonials
           </Link>
-          <Link to="/placements" className={isActive("/placements") ? "active" : ""} onClick={() => setOpen(false)}>
+          <Link
+            to="/placements"
+            className={isActive("/placements") ? "active" : ""}
+            onMouseEnter={() => prefetchPlacements()}
+            onFocus={() => prefetchPlacements()}
+            onClick={() => setOpen(false)}
+          >
             Placements
           </Link>
           {/* <Link to="/alumni" className={isActive("/alumni") || isActive("/alumini") ? "active" : ""} onClick={() => setOpen(false)}>

@@ -91,12 +91,23 @@ import company4 from '../assets/companies/company4.jpeg';
 // =====================================================
 // COURSES DATA
 // =====================================================
+export const normalizeCourseSlug = (slug = "") =>
+  decodeURIComponent(String(slug)).replace(/%20/g, " ").trim().toLowerCase();
+
+export const getCourseRouteSlug = (course) => course?.navSlug || course?.slug || "";
+
+export const getCourseRouteHref = (course) =>
+  `/courses/${encodeURIComponent(getCourseRouteSlug(course))}`;
+
+const extendedDurationSlugs = new Set(["data-verse-pro", "devstack-fullstack-devops"]);
+
 const courses = [
   /* =====================================================
      DATA VERSE PRO
   ====================================================== */
   {
     slug: "data-verse-pro",
+    navSlug: "AI integrated data-verse-pro",
     title: "Data Scientist  with Gen AI Architect",
     category: "data",
     badge: "Trending Course",
@@ -257,6 +268,7 @@ const courses = [
   ====================================================== */
   {
     slug: "data-analytics",
+    navSlug: "AI integrated data-analytics",
     title: "Data Analytics",
     category: "data",
     badge: "Popular",
@@ -396,6 +408,7 @@ const courses = [
   ====================================================== */
   {
     slug: "devstack-fullstack-devops",
+    navSlug: "AI integrated devstack-fullstack-devops",
     title: "DevStack – Fullstack with DevOps",
     category: "dev",
     badge: "Hot Program",
@@ -560,6 +573,7 @@ const courses = [
   ====================================================== */
   {
     slug: "frontend",
+    navSlug: "AI integrated frontend",
     title: "Front-end Development",
     category: "dev",
     trustImage: fsdImage,
@@ -696,6 +710,7 @@ const courses = [
   ====================================================== */
   {
     slug: "ui-ux-design",
+    navSlug: "AI integrated ui-ux-design",
     title: "UI / UX Design",
     category: "design",
     trustImage: uxImage,
@@ -866,6 +881,7 @@ const courses = [
   ====================================================== */
   {
     slug: "digital-marketing",
+    navSlug: "AI integrated digital-marketing",
     title: "Digital Marketing",
     category: "marketing",
     trustImage: dmImage,
@@ -1595,6 +1611,9 @@ const courses = [
       { q: "What jobs can I apply for?", a: "You can apply for Ethical Hacker, Penetration Tester, Bug Bounty Hunter, Security Consultant, and Red Team Engineer positions." }
     ]
   }
-];
+].map((course) => ({
+  ...course,
+  duration: extendedDurationSlugs.has(course.slug) ? "5+ Months" : "3+ Months"
+}));
 
 export default courses;
