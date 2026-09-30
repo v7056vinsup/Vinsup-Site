@@ -11,12 +11,12 @@ import HomePopupModal from "../components/HomePopupModal";
 import "../styles/CoursesPremium.css";
 
 const COURSE_DISPLAY_LABELS = {
-  "data-verse-pro": "AI integrated data-verse-pro",
-  "devstack-fullstack-devops": "AI integrated devstack-fullstack-devops",
-  "data-analytics": "AI integrated data-analytics",
-  frontend: "AI integrated frontend",
-  "ui-ux-design": "AI integrated ui-ux-design",
-  "digital-marketing": "AI integrated digital-marketing",
+  "data-verse-pro": "AI integrated Data-Verse-pro",
+  "devstack-fullstack-devops": "AI integrated Devstack-Fullstack-devops",
+  "data-analytics": "AI integrated Data-Analytics",
+  frontend: "AI integrated Frontend",
+  "ui-ux-design": "AI integrated UI-UX-Design",
+  "digital-marketing": "AI integrated Digital-Marketing",
 };
 
 /* =========================

@@ -270,52 +270,22 @@ export default function Home() {
 
   const steps = [
     {
-      title: "Job-Specific Training",
+      title: "Orientation",
       points: [
-        "Identifying student’s suitable job role",
-        "Learning technologies required for the chosen role",
-        "Understanding real company expectations",
-        "Practicing job role-specific interview questions",
-        "Working on role-focused project assignments",
-        "Customizing resume according to targeted role",
-        "Mock tests and technical challenge practice",
-        "Career roadmap guidance for growth",
-        "Continuous skill upgrade based on industry trends"
+        "Welcome and introduction to the training program",
+        "Overview of course structure, schedule, and learning resources",
+        "Understand program expectations and attendance guidelines",
+        "Meet mentors and fellow learners",
+        "Set personal learning goals and career objectives",
+        "Assess current skills and areas for growth",
+        "Choose an initial role or learning focus",
+        "Get access to tools, platforms, and support channels",
+        "Create a roadmap for the learning journey"
       ],
       image: jobRoleImg
     },
     {
-      title: "Regular Worksheets & Practical Learning",
-      points: [
-        "Daily practice worksheets based on concepts learned",
-        "Hands-on coding and real-time execution tasks",
-        "Weekly assessments to track skill progress",
-        "Mini-projects for each module",
-        "Real-world case-study analysis",
-        "Peer review and correction activities",
-        "Task submission with deadlines to build discipline",
-        "Concept revision through practice quizzes",
-        "Monthly skill evaluation tests"
-      ],
-      image: practicalImg
-    },
-    {
-      title: "Resume & Portfolio Building",
-      points: [
-        "Choosing the correct resume format (ATS-friendly)",
-        "Highlighting technical and soft skills",
-        "Writing clear and concise career objectives",
-        "Adding academic qualifications and certifications",
-        "Listing internships, projects, and achievements",
-        "Using powerful action verbs for job role descriptions",
-        "Creating a clean and professional resume design",
-        "Building an online portfolio (GitHub/Behance/Website)",
-        "Linking portfolio and LinkedIn to resume for professional identity"
-      ],
-      image: portfolioImg
-    },
-    {
-      title: "Soft Skill & Aptitude Training",
+      title: "Soft Skills and Aptitude Training",
       points: [
         "Communication and spoken English improvement sessions",
         "Vocabulary building and sentence framing exercises",
@@ -327,25 +297,55 @@ export default function Home() {
         "Confidence-building and interview body language training",
         "Group discussions and team communication activities"
       ],
+      image: practicalImg
+    },
+    {
+      title: "Job Specific Training",
+      points: [
+        "Identify the most suitable job role for each student",
+        "Learn the technologies required for the chosen role",
+        "Understand real company expectations",
+        "Practice role-specific technical interview questions",
+        "Complete project assignments focused on the target role",
+        "Customize the resume for the targeted role",
+        "Practice with mock tests and technical challenges",
+        "Get guidance on a career roadmap and next steps",
+        "Keep skills current with relevant industry trends"
+      ],
+      image: portfolioImg
+    },
+    {
+      title: "Project Building",
+      points: [
+        "Select a project based on the target job role",
+        "Plan project requirements, features, and milestones",
+        "Apply course technologies to solve a real-world problem",
+        "Build and test project components",
+        "Use version control and team workflows to manage changes",
+        "Review the work and incorporate mentor feedback",
+        "Document project setup and key technical decisions",
+        "Deploy or present a working project",
+        "Explain the project and its outcomes"
+      ],
       image: softSkillImg
     },
     {
-      title: "Internship Experience",
+      title: "Portfolio Building",
       points: [
-        "Working on real-time or industry-based projects",
-        "Learning project documentation and report preparation",
-        "Understanding teamwork and task communication",
-        "Experiencing professional work culture",
-        "Practicing time and resource management",
-        "Learning industry-relevant tools and workflows",
-        "Exposure to client requirements and review feedback",
-        "Weekly review and performance-based guidance",
-        "Certificate and experience letter for resume and portfolio"
+        "Choose an ATS-friendly resume format",
+        "Highlight relevant technical and soft skills",
+        "Write clear career objectives for the target role",
+        "Add academic qualifications and certifications",
+        "Showcase internships, projects, and achievements",
+        "Use strong action verbs to describe experience",
+        "Create a clean and professional resume design",
+        "Build an online portfolio on GitHub, Behance, or a website",
+        "Link the portfolio and LinkedIn profile from the resume"
       ],
       image: practicalImg
     },
     {
-      title: "Mock Interviews",
+      title: "Internship",
       points: [
         "Simulation of HR and Technical interview rounds",
         "Practice answering frequently asked interview questions",
@@ -360,52 +360,52 @@ export default function Home() {
       image: mockImg
     },
     {
-      title: "Placement Assistance",
+      title: "Interview Preparation",
       points: [
-        "Resume and LinkedIn profile optimization",
-        "Circulating profiles to hiring partners",
-        "Training for aptitude and technical exam rounds",
-        "Regular job opening notifications",
-        "Interview scheduling and follow-up assistance",
-        "Interview Q&A practice sessions",
-        "HR round and communication guidance",
-        "Support in offer negotiation and joining process",
-        "Continuous assistance until placement confirmation"
+        "Practice HR and technical interview rounds",
+        "Prepare answers to common interview questions",
+        "Improve voice clarity and communication style",
+        "Get feedback and corrections from mentors",
+        "Practice handling challenging questions and pressure",
+        "Improve body language and eye contact",
+        "Prepare for resume-based questions",
+        "Take part in panel and one-on-one mock interviews",
+        "Build confidence and a professional interview presence"
       ],
       image: placementImg
     },
     {
-      title: "Internship Experience",
+      title: "AI Mock Interview and Resume",
       points: [
-        "Working on real-time or industry-based projects",
-        "Learning project documentation and report preparation",
-        "Understanding teamwork and task communication",
-        "Experiencing professional work culture",
-        "Practicing time and resource management",
-        "Learning industry-relevant tools and workflows",
-        "Exposure to client requirements and review feedback",
-        "Weekly review and performance-based guidance",
-        "Certificate and experience letter for resume and portfolio"
+        "Generate practice questions tailored to the target role",
+        "Run AI-supported HR and technical interview simulations",
+        "Practice answering questions based on your resume",
+        "Receive feedback on answer clarity and relevance",
+        "Identify strengths and areas to improve",
+        "Refine resume content for the roles you are targeting",
+        "Improve resume keywords and project descriptions",
+        "Practice again using feedback from each mock interview",
+        "Track interview readiness and resume improvements"
       ],
       image: practicalImg
     },
     {
-      title: "Mock Interviews",
+      title: "Add on Certificate",
       points: [
-        "Simulation of HR and Technical interview rounds",
-        "Practice answering frequently asked interview questions",
-        "Improving voice clarity and communication style",
-        "Feedback and correction from mentors",
-        "Handling stress and uncomfortable questions",
-        "Training on body language and eye contact",
-        "Resume-based personalized questions",
-        "Panel and one-on-one interview practice",
-        "Building confidence and interview presence"
+        "Complete the required course modules and assessments",
+        "Meet the program's attendance and participation requirements",
+        "Submit practical assignments for review",
+        "Complete the required capstone or final project",
+        "Demonstrate the skills covered in the program",
+        "Receive feedback and address any completion gaps",
+        "Earn a course completion certificate",
+        "Add the certificate to your resume and LinkedIn profile",
+        "Showcase the credential alongside relevant portfolio work"
       ],
       image: mockImg
     },
     {
-      title: "Placement Assistance",
+      title: "Guaranteed Interviews",
       points: [
         "Resume and LinkedIn profile optimization",
         "Circulating profiles to hiring partners",
@@ -707,7 +707,7 @@ export default function Home() {
    ========================================================= */}
       <section className="jrp-3col section" aria-label="Job Readiness Program">
         <h2 className="section-title">
-          What We Follow — <span>Job Readiness Program</span>
+          What We Follow — <span>Interview Opportunity Program</span>
         </h2>
         <p className="section-sub">
           Your dream job is just <b>10 steps</b> away with Vinsup Skill Academy!

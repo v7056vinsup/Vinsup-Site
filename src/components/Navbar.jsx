@@ -11,28 +11,16 @@ export default function Navbar() {
   const [isCoursesOpen, setCoursesOpen] = useState(false);
   const [disableHover, setDisableHover] = useState(false);
 
-  const NAV_COURSE_SLUGS = [
-    "AI integrated data-verse-pro",
-    "AI integrated devstack-fullstack-devops",
-    "AI integrated data-analytics",
-    "AI integrated frontend",
-    "AI integrated ui-ux-design",
-    "AI integrated digital-marketing",
-  ];
-
   const NAV_COURSE_LABELS = {
-    "data-verse-pro": "AI integrated data-verse-pro",
-    "devstack-fullstack-devops": "AI integrated devstack-fullstack-devops",
-    "data-analytics": "AI integrated data-analytics",
-    frontend: "AI integrated frontend",
-    "ui-ux-design": "AI integrated ui-ux-design",
-    "digital-marketing": "AI integrated digital-marketing",
+    "data-verse-pro": "AI integrated Data-verse-pro",
+    "devstack-fullstack-devops": "AI integrated Devstack-fullstack-devops",
+    "data-analytics": "AI integrated Data-Analytics",
+    frontend: "AI integrated Frontend",
+    "ui-ux-design": "AI integrated UI-UX-design",
+    "digital-marketing": "AI integrated Digital-Marketing",
   };
 
-  const navCourses = courses.filter((c) => {
-    const routeSlugs = [c.slug, c.navSlug].filter(Boolean);
-    return routeSlugs.some((slug) => NAV_COURSE_SLUGS.includes(slug));
-  });
+  const navCourses = courses.filter((course) => course.navVisible !== false);
 
   // ✅ handle click
   const handleCourseClick = () => {
