@@ -11,7 +11,7 @@ import HomePopupModal from "../components/HomePopupModal";
 import "../styles/CoursesPremium.css";
 
 const COURSE_DISPLAY_LABELS = {
-  "data-verse-pro": "AI integrated Data-Verse-pro",
+  "data-verse-pro": "AI integrated Data Science with Gen AI",
   "devstack-fullstack-devops": "AI integrated Devstack-Fullstack-devops",
   "data-analytics": "AI integrated Data-Analytics",
   frontend: "AI integrated Frontend",
