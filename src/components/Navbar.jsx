@@ -12,7 +12,7 @@ export default function Navbar() {
   const [disableHover, setDisableHover] = useState(false);
 
   const NAV_COURSE_LABELS = {
-    "data-verse-pro": "AI integrated Data-verse-pro",
+    "data-verse-pro": "AI integrated Data-Verse-pro",
     "devstack-fullstack-devops": "AI integrated Devstack-fullstack-devops",
     "data-analytics": "AI integrated Data-Analytics",
     frontend: "AI integrated Frontend",
