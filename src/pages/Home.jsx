@@ -428,7 +428,7 @@ export default function Home() {
     { src: dvpImg, link: "/courses/data-verse-pro" },
     { src: dvsImg, link: "/courses/devstack-fullstack-devops" },
     { src: uxImg, link: "/courses/ui-ux-design" },
-    { src: fsdImg, link: "/courses/frontend" }
+    { src: fsdImg, link: "/courses/mern-stack" }
   ];
 
 

@@ -5,7 +5,7 @@ const NAV_COURSE_SLUGS = [
   "AI integrated data-verse-pro",
   "AI integrated devstack-fullstack-devops",
   "AI integrated data-analytics",
-  "AI integrated frontend",
+  "AI integrated mern-stack",
   "AI integrated ui-ux-design",
   "AI integrated digital-marketing",
 ];
@@ -40,14 +40,14 @@ export default function Footer() {
             <h3 className="f-brand-name">Vinsup Skill Academy</h3>
           </div>
           <p className="f-desc">
-            Empowering learners worldwide with cutting-edge education and personalized learning
-            experiences. Join thousands who've transformed their careers with us.
+            AI-integrated training institute in Ganapathy, Coimbatore for Data Science, Data Analytics,
+            Full Stack, UI/UX and Digital Marketing. 25,000+ learners have built their careers with us.
           </p>
 
           <div className="f-subtitle">Follow Us</div>
           <div className="f-social">
             <a className="f-social-btn" href="#" aria-label="Facebook"><Facebook/></a>
-            <a className="f-social-btn" href="#" aria-label="Instagram"><Instagram/></a>
+            <a className="f-social-btn" href="https://www.instagram.com/vinsupskillacademy/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram/></a>
           </div>
         </div>
 
@@ -69,7 +69,7 @@ export default function Footer() {
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/about">Our Mission</Link></li>
             <li><Link to="/careers">Careers</Link></li>
-            <li><Link to="/press">Press</Link></li>
+            <li><Link to="/training-institute-in-coimbatore">Training Institute in Coimbatore</Link></li>
             <li><Link to="/blog">Blog</Link></li>
           </ul>
         </div>
