@@ -6,7 +6,7 @@ export default function QuickEnquiry({ onSuccess, defaultCourse }) {
   const secret = "vinsup_2025_secure_key";
 
   const courses = [
-    "AI & Data Science Career Accelerator",
+    "Data Science with Gen AI",
     "AI-Ready Data Analytics",
     "DevStack – Fullstack with DevOps",
     "AI-Integrated MERN Stack",

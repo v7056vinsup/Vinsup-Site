@@ -13,7 +13,7 @@ export const syllabus2026 = {
      AI & DATA SCIENCE CAREER ACCELERATOR
   --------------------------------------------------- */
   "data-verse-pro": {
-    title: "AI & Data Science Career Accelerator",
+    title: "Data Science with Gen AI",
     badge: "Trending Course",
     short:
       "From Excel & SQL to ML, Deep Learning and GenAI.",
@@ -69,7 +69,7 @@ export const syllabus2026 = {
       keywords: `data science course in coimbatore, data science training coimbatore, generative ai course coimbatore, machine learning course coimbatore, AI course coimbatore, data science institute coimbatore with placement`
     },
     faq: [
-      { q: "Which is the best data science course in Coimbatore for freshers?", a: "Vinsup Skill Academy's AI & Data Science Career Accelerator is a 200-hour classroom and online program at our Ganapathy, Coimbatore campus. It starts from Excel and SQL and builds up to Machine Learning, Deep Learning, NLP and Generative AI, with five mini projects, an end-to-end capstone, internship and placement support." },
+      { q: "Which is the best data science course in Coimbatore for freshers?", a: "Vinsup Skill Academy's Data Science with Gen AI is a 200-hour classroom and online program at our Ganapathy, Coimbatore campus. It starts from Excel and SQL and builds up to Machine Learning, Deep Learning, NLP and Generative AI, with five mini projects, an end-to-end capstone, internship and placement support." },
       { q: "Does this data science course cover Generative AI, RAG and AI agents?", a: "Yes. Module 11 is fully dedicated to Generative AI: LLM fundamentals, prompt engineering, LLM APIs and local models (Ollama), embeddings and vector databases, building and evaluating RAG pipelines, a fine-tuning walkthrough, and AI agents with function calling, LangGraph and MCP." },
       { q: "Do I need coding knowledge to join?", a: "No. Python, SQL and statistics are taught from scratch. The course is designed for students, fresh graduates and career switchers, including learners from non-IT backgrounds." },
       { q: "What tools will I learn?", a: "Excel, Google Sheets, MySQL, Power BI, Looker Studio, Tableau, Python, NumPy, Pandas, Matplotlib, Seaborn, scikit-learn, XGBoost, LightGBM, TensorFlow, Keras, PyTorch, Hugging Face, LangChain, LangGraph, Streamlit, MLflow and Ollama, plus AI assistants like ChatGPT, Claude, Gemini, Copilot and Cursor." },

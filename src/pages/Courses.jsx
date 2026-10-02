@@ -11,7 +11,7 @@ import HomePopupModal from "../components/HomePopupModal";
 import "../styles/CoursesPremium.css";
 
 const COURSE_DISPLAY_LABELS = {
-  "data-verse-pro": "AI & Data Science Career Accelerator",
+  "data-verse-pro": "Data Science with Gen AI",
   "devstack-fullstack-devops": "AI integrated Devstack-Fullstack-devops",
   "data-analytics": "AI-Ready Data Analytics",
   "mern-stack": "AI-Integrated MERN Stack",
