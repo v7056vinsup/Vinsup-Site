@@ -7,7 +7,7 @@
     "proxy": "nodemon proxy.js",
     "client": "vite",
     "dev": "concurrently \"npm run proxy\" \"npm run client\"",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-seo.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

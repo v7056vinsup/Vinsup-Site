@@ -217,10 +217,11 @@ useEffect(() => {
     {/* RIGHT FORM */}
     <div className="hero-form-card">
       <QuickEnquiry
+  defaultCourse={title}
   onSuccess={() => {
     const link = document.createElement("a");
     link.href = syllabusPdf;
-    link.download = `${title}-syllabus.pdf`;
+    link.download = decodeURIComponent(syllabusPdf.split("/").pop());
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -538,9 +539,10 @@ useEffect(() => {
       {/* =================================================
           6. PROJECTS
       ================================================= */}
-      {/* {projects && (
+      {Array.isArray(projects) && projects.length > 0 && (
         <section className="cv2-projects">
           <h2 className="section-title">Projects & Portfolio</h2>
+          <p className="section-sub">Build a recruiter-ready portfolio with hands-on mini projects and a capstone.</p>
 
           {Array.isArray(projects) ? (
             <div className="cv2-project-grid">
@@ -555,7 +557,7 @@ useEffect(() => {
             <p className="cv2-project-text">{projects}</p>
           )}
         </section>
-      )} */}
+      )}
 
       {/* =================================================
           7. CAREER OUTCOMES
@@ -651,7 +653,7 @@ useEffect(() => {
       <section id="apply" className="cv2-final">
         <h2>Ready to Start Your Journey?</h2>
         <p>Talk to our advisors and find the right batch for you.</p>
-        <QuickEnquiry />
+        <QuickEnquiry defaultCourse={title} />
       </section>
 
       {/* =================================================
@@ -671,10 +673,11 @@ useEffect(() => {
             <p>Submit your details to receive the syllabus PDF.</p>
 
             <QuickEnquiry
+  defaultCourse={title}
   onSuccess={() => {
     const link = document.createElement("a");
     link.href = syllabusPdf;
-    link.download = `${title}-syllabus.pdf`;
+    link.download = decodeURIComponent(syllabusPdf.split("/").pop());
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

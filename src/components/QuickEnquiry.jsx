@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./QuickEnquiry.css";
 
-export default function QuickEnquiry({ onSuccess }) {
+export default function QuickEnquiry({ onSuccess, defaultCourse }) {
   const submitUrl = "/api/proxy";
   const secret = "vinsup_2025_secure_key";
 
   const courses = [
-    "Data Scientist with Gen AI Architect",
-    "Data Analytics",
+    "AI & Data Science Career Accelerator",
+    "AI-Ready Data Analytics",
     "DevStack – Fullstack with DevOps",
-    "Front-end Development",
-    "UX UI Designing",
-    "Digital Marketing",
-    "MERN Stack Development",
+    "AI-Integrated MERN Stack",
+    "AI-Powered UI/UX & Graphic Design",
+    "AI & Digital Marketing",
     "DevOps Engineering",
     "Cyber Security",
     "Mobile App Development",
@@ -27,7 +26,7 @@ export default function QuickEnquiry({ onSuccess }) {
     name: "",
     email: "",
     phone: "",
-    course: courses[0],
+    course: courses.includes(defaultCourse) ? defaultCourse : courses[0],
     message: "",
   });
 
@@ -81,7 +80,7 @@ export default function QuickEnquiry({ onSuccess }) {
         throw new Error(json?.message || rawText || resp.statusText);
       }
 
-      setForm({ name: "", email: "", phone: "", course: courses[0], message: "" });
+      setForm({ name: "", email: "", phone: "", course: courses.includes(defaultCourse) ? defaultCourse : courses[0], message: "" });
       setErrors({});
       setShowThanks(true);
       setStatus({ type: "success", text: "Sent successfully!" });
@@ -185,7 +184,7 @@ export default function QuickEnquiry({ onSuccess }) {
               type="button"
               className="btn-outline"
               onClick={() => {
-                setForm({ name: "", email: "", phone: "", course: courses[0], message: "" });
+                setForm({ name: "", email: "", phone: "", course: courses.includes(defaultCourse) ? defaultCourse : courses[0], message: "" });
                 setErrors({});
                 setStatus({ type: "", text: "" });
               }}

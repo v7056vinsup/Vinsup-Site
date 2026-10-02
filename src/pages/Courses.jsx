@@ -11,12 +11,12 @@ import HomePopupModal from "../components/HomePopupModal";
 import "../styles/CoursesPremium.css";
 
 const COURSE_DISPLAY_LABELS = {
-  "data-verse-pro": "AI integrated Data Science with Gen AI",
+  "data-verse-pro": "AI & Data Science Career Accelerator",
   "devstack-fullstack-devops": "AI integrated Devstack-Fullstack-devops",
-  "data-analytics": "AI integrated Data-Analytics",
-  frontend: "AI integrated Frontend",
-  "ui-ux-design": "AI integrated UI-UX-Design",
-  "digital-marketing": "AI integrated Digital-Marketing",
+  "data-analytics": "AI-Ready Data Analytics",
+  "mern-stack": "AI-Integrated MERN Stack",
+  "ui-ux-design": "AI-Powered UI/UX & Graphic Design",
+  "digital-marketing": "AI & Digital Marketing",
 };
 
 /* =========================

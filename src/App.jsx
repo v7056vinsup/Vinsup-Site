@@ -10,6 +10,8 @@ import Loader from "./components/Loader";
 import PlayBook from "./pages/PlayBook.jsx";
 import PlayBookDetails from "./pages/PlayBookDetails.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import RouteSeo from "./components/RouteSeo.jsx";
+import CoimbatoreInstitute from "./pages/CoimbatoreInstitute.jsx";
 // import Preloader from "./components/Preloader";
 
 // Pages
@@ -48,6 +50,7 @@ export default function App() {
     <div className="app-shell">
       {loading && <Loader />}
       <ScrollToTop />
+      <RouteSeo />
       <Navbar />
       <SocialExpand />    
       <main className="page-wrapper">
@@ -80,6 +83,7 @@ export default function App() {
           {/* footer links */}
           <Route path="/admissions" element={<Admissions />} />
           <Route path="/faqs" element={<FAQs />} />
+          <Route path="/training-institute-in-coimbatore" element={<CoimbatoreInstitute />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />

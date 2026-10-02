@@ -80,6 +80,11 @@ import dmMailchimp from '../assets/frontend/digitalmarketing/MAIL.png';
 import dmElementor from '../assets/frontend/digitalmarketing/ELE.png';
 import dmHrefs from '../assets/frontend/digitalmarketing/HREF.png';
 
+import dmSemrush from '../assets/frontend/digitalmarketing/SEM.png';
+import toolPandas from '../assets/tools/pandas.png';
+import devPostman from '../assets/frontend/devstack/POST.png';
+import { syllabus2026, courseAliases } from './syllabus2026';
+
 // =====================================================
 // COMPANY LOGOS
 // =====================================================
@@ -94,7 +99,8 @@ import company4 from '../assets/companies/company4.jpeg';
 export const normalizeCourseSlug = (slug = "") =>
   decodeURIComponent(String(slug)).replace(/%20/g, " ").trim().toLowerCase();
 
-export const getCourseRouteSlug = (course) => course?.navSlug || course?.slug || "";
+// Clean, keyword-friendly URLs (/courses/data-analytics). Old "AI integrated ..." URLs still resolve via navSlug/aliases.
+export const getCourseRouteSlug = (course) => course?.slug || course?.navSlug || "";
 
 export const getCourseRouteHref = (course) =>
   `/courses/${encodeURIComponent(getCourseRouteSlug(course))}`;
@@ -1611,9 +1617,49 @@ const courses = [
       { q: "What jobs can I apply for?", a: "You can apply for Ethical Hacker, Penetration Tester, Bug Bounty Hunter, Security Consultant, and Red Team Engineer positions." }
     ]
   }
-].map((course) => ({
-  ...course,
-  duration: extendedDurationSlugs.has(course.slug) ? "5+ Months" : "3+ Months"
-}));
+];
 
-export default courses;
+// Logos we have on disk; tools without a logo render a lettered badge in ToolsMarquee.
+const TOOL_LOGOS = {
+  "Excel": daExcel, "Google Sheets": null, "MySQL": daSQL, "SQL": daSQL, "Power BI": daPowerBI,
+  "Python": daPython, "NumPy": dvpNumpy, "Pandas": toolPandas, "Seaborn": dvpSeaborn,
+  "Tableau": dvpTableau, "Looker Studio": dvpLooker, "ChatGPT": dvpChatGPT, "Gemini": dvpGemini,
+  "HTML": devHTML, "CSS": devCSS, "Bootstrap": devBootstrap, "JavaScript": devJS, "React": devReact,
+  "Node.js": devNode, "Express.js": devExpress, "MongoDB": devMongo, "Git": devGit, "GitHub": devGitHub,
+  "Postman": devPostman, "Figma": uxFigma, "Photoshop": uxPhotoshop, "Illustrator": uxIllustrator,
+  "Google Ads": dmGoogleAds, "Meta Ads Manager": dmMeta, "Meta Business Suite": dmMeta,
+  "HubSpot": dmHubspot, "Shopify": dmShopify, "WordPress": dmWordPress, "Canva": dmCanva,
+  "Mailchimp": dmMailchimp, "Elementor": dmElementor, "Ahrefs": dmHrefs, "Semrush": dmSemrush
+};
+
+const applySyllabus2026 = (course) => {
+  const update = syllabus2026[course.slug];
+  if (!update) return course;
+  const { toolNames, ...rest } = update;
+  return {
+    ...course,
+    ...rest,
+    navSlug: course.navSlug || `AI integrated ${course.slug}`,
+    aliases: courseAliases[course.slug] || [],
+    tools: toolNames ? toolNames.map((name) => ({ name, img: TOOL_LOGOS[name] || null })) : course.tools
+  };
+};
+
+// "frontend" is retired: the AI-Integrated MERN Stack course replaces it (its old URLs redirect via aliases).
+const RETIRED_SLUGS = new Set(["frontend"]);
+
+// Nav / listing order
+const ORDER = ["data-verse-pro", "data-analytics", "devstack-fullstack-devops", "mern-stack", "ui-ux-design", "digital-marketing"];
+
+export default courses
+  .filter((course) => !RETIRED_SLUGS.has(course.slug))
+  .map(applySyllabus2026)
+  .map((course) => ({
+    ...course,
+    duration: extendedDurationSlugs.has(course.slug) ? "5+ Months" : "3+ Months"
+  }))
+  .sort((a, b) => {
+    const ia = ORDER.indexOf(a.slug), ib = ORDER.indexOf(b.slug);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+

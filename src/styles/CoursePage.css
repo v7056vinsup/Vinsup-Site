@@ -867,6 +867,21 @@
   box-shadow: 0 22px 50px rgba(11, 58, 164, 0.18);
 }
 
+/* Lettered badge for tools without a logo file */
+.tool-card .tool-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #0b3aa4);
+}
+
 /* Icon */
 .tool-card img {
   width: 44px;

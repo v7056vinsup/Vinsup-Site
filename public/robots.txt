@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /register
+Disallow: /apply/
+
+Sitemap: https://www.vinsupskillacademy.com/sitemap.xml
