@@ -1049,3 +1049,93 @@ section .section-inner .section-title {
     height: 100% !important;
   }
 }
+/* ===============================
+   IOP – fit the whole section in one desktop screen
+================================ */
+@media (min-width: 1025px) {
+  .jrp-3col,
+  .jrp-3col.section {
+    padding: 24px 0 28px;
+    scroll-margin-top: 90px;
+  }
+
+  .jrp-3col h2.section-title {
+    font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+    margin-bottom: 0;
+  }
+
+  .jrp-3col .section-sub {
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+
+  .jrp-grid-3 {
+    margin-top: 18px;
+    grid-template-columns: 300px 1fr 340px;
+    gap: 24px;
+  }
+
+  .jrp-left {
+    gap: 6px;
+  }
+
+  .jrp-step {
+    padding: 7px 12px;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.25;
+    border-radius: 10px;
+  }
+
+  .jrp-step-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .jrp-number {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+  .jrp-middle {
+    padding: 20px 24px;
+  }
+
+  .jrp-middle h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .jrp-middle li {
+    font-size: 15.5px;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+
+  /* the photo fills the row height instead of stretching it */
+  .jrp-right {
+    position: relative;
+    min-height: 100%;
+  }
+
+  .jrp-right img {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+/* shorter laptop screens (e.g. 1366x768 with browser bars) */
+@media (min-width: 1025px) and (max-height: 760px) {
+  .jrp-3col,
+  .jrp-3col.section { padding: 14px 0 18px; }
+  .jrp-3col h2.section-title { font-size: clamp(1.4rem, 2.1vw, 2rem); }
+  .jrp-grid-3 { margin-top: 12px; }
+  .jrp-left { gap: 4px; }
+  .jrp-step { padding: 5px 12px; font-size: 14px; }
+  .jrp-number { width: 24px; height: 24px; font-size: 12px; }
+  .jrp-middle { padding: 14px 20px; }
+  .jrp-middle h3 { font-size: 17px; margin-bottom: 6px; }
+  .jrp-middle li { font-size: 14px; line-height: 1.4; margin-bottom: 4px; }
+}
