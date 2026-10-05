@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import "./HomePopupModal.css";
+import { track, getPageInfo, EVENTS } from "../lib/analytics";
+import allCourses from "../data/courses";
 
 const SUBMIT_URL = "/api/proxy";
 const SECRET = "vinsup_2025_secure_key";
@@ -12,6 +15,24 @@ export default function HomePopupModal({ onSuccess, onClose }) {
   const [submitting, setSubmitting] = useState(false);
   const [submitMsg, setSubmitMsg] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const { pathname } = useLocation();
+  const startedRef = useRef(false);
+  const page = getPageInfo(pathname, allCourses) || { page_path: pathname };
+  const baseParams = () => ({ form_location: "popup_10s", form_name: "career_guidance_popup", page_path: page.page_path, page_name: page.page_name });
+
+  // the pop-up appeared = "before filling" for this form
+  useEffect(() => {
+    if (!isVisible) return;
+    track(EVENTS.POPUP_SHOWN, baseParams());
+    track(EVENTS.FORM_VIEW, baseParams());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
+
+  function handleFirstInput() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track(EVENTS.FORM_START, baseParams());
+  }
 
   useEffect(() => {
     const hasSubmitted = localStorage.getItem('homePopupSubmitted');
@@ -29,10 +50,12 @@ export default function HomePopupModal({ onSuccess, onClose }) {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!name.trim() || !phone.trim() || !city.trim()) {
+      track(EVENTS.FORM_ERROR, { ...baseParams(), error_type: "validation" });
       setSubmitMsg("Please fill all fields.");
       return;
     }
     if (!/^\d{10}$/.test(phone)) {
+      track(EVENTS.FORM_ERROR, { ...baseParams(), error_type: "validation" });
       setSubmitMsg("Enter a valid 10-digit phone number.");
       return;
     }
@@ -46,6 +69,8 @@ export default function HomePopupModal({ onSuccess, onClose }) {
         body: JSON.stringify({ name, phone, city, source: "Home Popup", secret: SECRET }),
       });
       if (resp.ok) {
+        // "after filling": the pop-up enquiry reached our sheet
+        track(EVENTS.LEAD, baseParams());
         localStorage.setItem('homePopupSubmitted', 'true');
         setName("");
         setPhone("");
@@ -54,9 +79,11 @@ export default function HomePopupModal({ onSuccess, onClose }) {
         if (typeof onSuccess === "function") onSuccess();
         if (typeof onClose === "function") onClose();
       } else {
+        track(EVENTS.FORM_ERROR, { ...baseParams(), error_type: "submit_failed" });
         setSubmitMsg("Submission failed. Please try again.");
       }
     } catch {
+      track(EVENTS.FORM_ERROR, { ...baseParams(), error_type: "submit_failed" });
       setSubmitMsg("Network error. Please try again.");
     } finally {
       setSubmitting(false);
@@ -80,7 +107,7 @@ export default function HomePopupModal({ onSuccess, onClose }) {
           <p className="hpm-sub">We’re gearing up to connect with you— explore our website</p>
         </div>
 
-        <form className="hpm-form" onSubmit={handleSubmit} noValidate>
+        <form className="hpm-form" onSubmit={handleSubmit} onInput={handleFirstInput} onChange={handleFirstInput} noValidate>
           <div className="hpm-field">
             <label>Full Name *</label>
             <input

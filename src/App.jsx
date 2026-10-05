@@ -11,6 +11,7 @@ import PlayBook from "./pages/PlayBook.jsx";
 import PlayBookDetails from "./pages/PlayBookDetails.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import RouteSeo from "./components/RouteSeo.jsx";
+import RouteTracking from "./components/RouteTracking.jsx";
 import CoimbatoreInstitute from "./pages/CoimbatoreInstitute.jsx";
 // import Preloader from "./components/Preloader";
 
@@ -51,6 +52,7 @@ export default function App() {
       {loading && <Loader />}
       <ScrollToTop />
       <RouteSeo />
+      <RouteTracking />
       <Navbar />
       <SocialExpand />    
       <main className="page-wrapper">

@@ -1,7 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import "./QuickEnquiry.css";
+import { track, getPageInfo, EVENTS } from "../lib/analytics";
+import allCourses from "../data/courses";
 
-export default function QuickEnquiry({ onSuccess, defaultCourse }) {
+export default function QuickEnquiry({ onSuccess, defaultCourse, formLocation }) {
+  const { pathname } = useLocation();
+  const cardRef = useRef(null);
+  const startedRef = useRef(false);
+  const page = getPageInfo(pathname, allCourses) || { page_path: pathname };
+  // where this form sits, e.g. "course_hero", "syllabus_modal", "home_bottom"
+  const location_ = formLocation || `${(page.page_type || "page")}_form`;
+  const baseParams = () => ({ form_location: location_, form_name: "quick_enquiry", page_path: page.page_path, page_name: page.page_name });
   const submitUrl = "/api/proxy";
   const secret = "vinsup_2025_secure_key";
 
@@ -35,6 +45,27 @@ export default function QuickEnquiry({ onSuccess, defaultCourse }) {
   const [errors, setErrors] = useState({});
   const [showThanks, setShowThanks] = useState(false);
 
+  // "before filling": fire once when at least half of the form is on screen
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        track(EVENTS.FORM_VIEW, baseParams());
+        obs.disconnect();
+      }
+    }, { threshold: 0.5 });
+    obs.observe(el);
+    return () => obs.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, location_]);
+
+  function handleFirstInput() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track(EVENTS.FORM_START, baseParams());
+  }
+
   useEffect(() => {
     function keyHandler(e) {
       if (e.key === "Escape") setShowThanks(false);
@@ -60,7 +91,10 @@ export default function QuickEnquiry({ onSuccess, defaultCourse }) {
     e.preventDefault();
     const err = validate();
     setErrors(err);
-    if (Object.keys(err).length) return;
+    if (Object.keys(err).length) {
+      track(EVENTS.FORM_ERROR, { ...baseParams(), error_type: "validation" });
+      return;
+    }
 
     setLoading(true);
     setStatus({ type: "", text: "" });
@@ -80,6 +114,10 @@ export default function QuickEnquiry({ onSuccess, defaultCourse }) {
         throw new Error(json?.message || rawText || resp.statusText);
       }
 
+      // "after filling": the enquiry reached our sheet
+      track(EVENTS.LEAD, { ...baseParams(), course_name: form.course });
+      startedRef.current = false;
+
       setForm({ name: "", email: "", phone: "", course: courses.includes(defaultCourse) ? defaultCourse : courses[0], message: "" });
       setErrors({});
       setShowThanks(true);
@@ -88,6 +126,7 @@ export default function QuickEnquiry({ onSuccess, defaultCourse }) {
       if (onSuccess && typeof onSuccess === "function") onSuccess();
       setTimeout(() => setShowThanks(false), 5000);
     } catch (err) {
+      track(EVENTS.FORM_ERROR, { ...baseParams(), error_type: "submit_failed" });
       setStatus({ type: "error", text: "Failed: " + err.message });
     } finally {
       setLoading(false);
@@ -96,7 +135,7 @@ export default function QuickEnquiry({ onSuccess, defaultCourse }) {
 
   return (
     <>
-      <div className="qe-full-card">
+      <div className="qe-full-card" ref={cardRef}>
         <h2 className="qe-title">Quick Enquiry Here</h2>
 
         {status.text && (
@@ -105,7 +144,7 @@ export default function QuickEnquiry({ onSuccess, defaultCourse }) {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="qe-form" noValidate>
+        <form onSubmit={handleSubmit} onInput={handleFirstInput} onChange={handleFirstInput} className="qe-form" noValidate>
 
           {/* Name */}
           <div className="qe-row-inline">

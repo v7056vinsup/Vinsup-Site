@@ -27,6 +27,7 @@ import {
 } from "react-icons/fa";
 
 import QuickEnquiry from "../components/QuickEnquiry";
+import { track, EVENTS } from "../lib/analytics";
 import ToolsMarquee from "../components/ToolsMarquee";
 import CompaniesMarqueeAnimated from "../components/CompaniesMarqueeAnimated";
 import UpcomingBatches from "./UpcomingBatches";
@@ -217,8 +218,10 @@ useEffect(() => {
     {/* RIGHT FORM */}
     <div className="hero-form-card">
       <QuickEnquiry
+  formLocation="course_hero"
   defaultCourse={title}
   onSuccess={() => {
+    track(EVENTS.SYLLABUS_DOWNLOAD, { course_name: title, file_name: decodeURIComponent(syllabusPdf.split("/").pop()) });
     const link = document.createElement("a");
     link.href = syllabusPdf;
     link.download = decodeURIComponent(syllabusPdf.split("/").pop());
@@ -653,7 +656,7 @@ useEffect(() => {
       <section id="apply" className="cv2-final">
         <h2>Ready to Start Your Journey?</h2>
         <p>Talk to our advisors and find the right batch for you.</p>
-        <QuickEnquiry defaultCourse={title} />
+        <QuickEnquiry formLocation="course_bottom" defaultCourse={title} />
       </section>
 
       {/* =================================================
@@ -673,8 +676,10 @@ useEffect(() => {
             <p>Submit your details to receive the syllabus PDF.</p>
 
             <QuickEnquiry
+  formLocation="syllabus_modal"
   defaultCourse={title}
   onSuccess={() => {
+    track(EVENTS.SYLLABUS_DOWNLOAD, { course_name: title, file_name: decodeURIComponent(syllabusPdf.split("/").pop()) });
     const link = document.createElement("a");
     link.href = syllabusPdf;
     link.download = decodeURIComponent(syllabusPdf.split("/").pop());

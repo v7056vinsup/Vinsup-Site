@@ -264,7 +264,7 @@ export default function About() {
       <section className="ql">
         <div className="section-inner">
           <h2 className="section-title">Quick Enquiry</h2>
-          <QuickEnquiry />
+          <QuickEnquiry formLocation="about_page" />
         </div>
       </section>
 

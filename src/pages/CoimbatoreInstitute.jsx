@@ -107,7 +107,7 @@ export default function CoimbatoreInstitute() {
       <section className="cbe-section cbe-enquire">
         <h2>Talk to a course advisor</h2>
         <p className="cbe-sub">Share your details and we will call you back with batch timings and fees.</p>
-        <QuickEnquiry />
+        <QuickEnquiry formLocation="coimbatore_page" />
       </section>
     </main>
   );

@@ -149,7 +149,7 @@ export default function Contact() {
       <section className="ql">
         <div className="section-inner">
           <h2 className="section-title">Quick Enquiry</h2>
-          <QuickEnquiry />
+          <QuickEnquiry formLocation="contact_page" />
         </div>
       </section>
 

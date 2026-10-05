@@ -225,7 +225,7 @@ export default function Courses() {
       Talk to our course advisors and get personalized guidance.
     </p>
 
-    <QuickEnquiry />
+    <QuickEnquiry formLocation="courses_page" />
   </div>
 </section>
 

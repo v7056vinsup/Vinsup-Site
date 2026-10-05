@@ -754,7 +754,7 @@ export default function Home() {
       <section className="qc">
         <div className="section-inner">
           <h2 className="section-title">Quick Enquiry Here</h2>
-          <QuickEnquiry />
+          <QuickEnquiry formLocation="home_bottom" />
         </div>
       </section>
 
