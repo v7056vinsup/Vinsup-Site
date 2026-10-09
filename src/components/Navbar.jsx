@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import courses, { getCourseRouteHref, getCourseRouteSlug } from "../data/courses.js";
 import logo from "../assets/logo.webp";
+import logoSm from "../assets/logo-sm.webp";
 import "../styles/Navbar.css";
 import { prefetchTestimonials } from "../lib/testimonialsCache";
 import { prefetchPlacements } from "../lib/placementsCache";
@@ -46,7 +47,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link className="brand" to="/" aria-label="Home">
-          <img src={logo} alt="Vinsup Skill Academy" width="303" height="122" fetchPriority="high" />
+          <img src={logoSm} srcSet={`${logoSm} 1x, ${logo} 2x`} alt="Vinsup Skill Academy" width="303" height="122" fetchPriority="high" />
         </Link>
 
         {/* Desktop Menu */}

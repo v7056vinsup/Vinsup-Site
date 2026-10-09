@@ -5,14 +5,26 @@
 //
 // Why: the site is a client-rendered SPA, so without this every URL serves the same
 // homepage <head>. Search engines and WhatsApp/LinkedIn previews read these tags directly.
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { getSeoForPath, staticPages, courseSeoBySlug, coursePath, SITE_URL, BUSINESS, COIMBATORE_AREAS } from "../src/data/seo.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
-const template = readFileSync(join(dist, "index.html"), "utf8");
+// Inline the small main stylesheet (~8 KB gzipped) so the first paint doesn't wait for a CSS request.
+function inlineMainCss(html) {
+  return html.replace(/<link rel="stylesheet" crossorigin href="(\/assets\/index-[^"]+\.css)">/, (tag, href) => {
+    try {
+      const css = readFileSync(join(dist, href), "utf8").replace(/<\/style/gi, "<\\/style");
+      return `<style data-inlined="${href}">${css}</style>`;
+    } catch {
+      return tag;
+    }
+  });
+}
+
+const template = inlineMainCss(readFileSync(join(dist, "index.html"), "utf8"));
 
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -48,6 +60,17 @@ function bodyFallback(path) {
   return `<article class="seo-fallback"><h1>${esc(page.title.split("|")[0].trim())}</h1><p>${esc(page.description)}</p>${areas}<h2>Courses</h2><ul>${courseLinks}</ul>${nap}</article>`;
 }
 
+
+// The first home banner is the largest thing on screen (LCP). Tell the browser about it
+// straight from the HTML so it downloads in parallel with the JavaScript.
+function homeHeroPreload() {
+  const files = readdirSync(join(dist, "assets"));
+  const sm = files.find((f) => /^dA-sm-[\w-]+\.webp$/.test(f));
+  const lg = files.find((f) => /^dA-(?!sm-)[\w-]+\.webp$/.test(f));
+  if (!sm || !lg) return "";
+  return `<link rel="preload" as="image" href="/assets/${lg}" imagesrcset="/assets/${sm} 800w, /assets/${lg} 1400w" imagesizes="100vw" fetchpriority="high">`;
+}
+
 function render(path) {
   const seo = getSeoForPath(path);
   let html = template;
@@ -66,6 +89,7 @@ function render(path) {
     const json = JSON.stringify(seo.jsonLd.length === 1 ? seo.jsonLd[0] : seo.jsonLd).replace(/</g, "\\u003c");
     html = html.replace("</head>", `  <script type="application/ld+json" id="page-jsonld">${json}</script>\n  </head>`);
   }
+  if (path === "/") html = html.replace("</head>", `${homeHeroPreload()}\n  </head>`);
   html = setTag(html, /<div id="root"><\/div>/, `<div id="root">${bodyFallback(path)}</div>`);
   return html;
 }
