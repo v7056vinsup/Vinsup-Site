@@ -3,24 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Tag Manager (consultant container: page & enquiry tags) -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KTHG586H');</script>
-    <!-- End Google Tag Manager -->
+    <!--
+      Marketing & analytics tags (unchanged IDs): GTM-KTHG586H, GTM-P8XLGSBW, GA4 G-T3S5KY1LDM,
+      Google Ads AW-18060232196 and Meta Pixel 1508499646996174.
+      Their commands are queued immediately; the scripts themselves download after the page has
+      shown (first scroll/tap/key press, or 3 s after load), so they don't slow the first paint.
+    -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1508499646996174');
-    fbq('track', 'PageView');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T3S5KY1LDM');
+      gtag('config', 'AW-18060232196');
+      dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+      !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}(window);
+      fbq('init', '1508499646996174');
+      fbq('track', 'PageView');
+
+      (function () {
+        var done = false;
+        var urls = [
+          'https://www.googletagmanager.com/gtm.js?id=GTM-KTHG586H',
+          'https://www.googletagmanager.com/gtm.js?id=GTM-P8XLGSBW',
+          'https://www.googletagmanager.com/gtag/js?id=G-T3S5KY1LDM',
+          'https://www.googletagmanager.com/gtag/js?id=AW-18060232196',
+          'https://connect.facebook.net/en_US/fbevents.js'
+        ];
+        var events = ['scroll', 'pointerdown', 'touchstart', 'keydown', 'mousemove'];
+        function loadTags() {
+          if (done) return;
+          done = true;
+          events.forEach(function (e) { window.removeEventListener(e, loadTags, { passive: true }); });
+          urls.forEach(function (src) {
+            var t = document.createElement('script');
+            t.async = true;
+            t.src = src;
+            document.head.appendChild(t);
+          });
+        }
+        events.forEach(function (e) { window.addEventListener(e, loadTags, { passive: true, once: true }); });
+        window.addEventListener('load', function () { setTimeout(loadTags, 3000); });
+      })();
+
+      document.addEventListener("contextmenu", e => e.preventDefault());
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1508499646996174&ev=PageView&noscript=1"
@@ -81,36 +109,7 @@
     />
     <meta name="twitter:image" content="https://www.vinsupskillacademy.com/og/vinsup-skill-academy.jpg" />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T3S5KY1LDM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-T3S5KY1LDM');
-    </script>
 
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-P8XLGSBW");
-
-      document.addEventListener("contextmenu", e => e.preventDefault());
-    </script>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18060232196"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'AW-18060232196');
-      </script>
     <style>
       /* Crawlable page summary written by scripts/prerender-seo.mjs; React replaces it on load */
       .seo-fallback { max-width: 960px; margin: 0 auto; padding: 120px 20px 40px; font-family: Poppins, system-ui, sans-serif; color: #0f172a; line-height: 1.6; }
