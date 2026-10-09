@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, lazy, Suspense } from "react";
 import { LoadingContext } from "./components/LoadingContext";
 import "./lib/testimonialsCache";
 import "./lib/placementsCache";
@@ -7,41 +7,41 @@ import "./lib/placementsCache";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Loader from "./components/Loader";
-import PlayBook from "./pages/PlayBook.jsx";
-import PlayBookDetails from "./pages/PlayBookDetails.jsx";
+const PlayBook = lazy(() => import("./pages/PlayBook.jsx"));
+const PlayBookDetails = lazy(() => import("./pages/PlayBookDetails.jsx"));
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import RouteSeo from "./components/RouteSeo.jsx";
 import RouteTracking from "./components/RouteTracking.jsx";
-import CoimbatoreInstitute from "./pages/CoimbatoreInstitute.jsx";
+const CoimbatoreInstitute = lazy(() => import("./pages/CoimbatoreInstitute.jsx"));
 // import Preloader from "./components/Preloader";
 
 // Pages
 import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
-import Courses from "./pages/Courses.jsx";
-import Palcements from "./pages/Placements.jsx";
-import Testimonials from "./pages/Testimonials.jsx";
-import Contact from "./pages/Contact.jsx";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
-import CourseDetails from "./pages/CourseDetails.jsx";
-import Careers from "./pages/Careers.jsx";
+const About = lazy(() => import("./pages/About.jsx"));
+const Courses = lazy(() => import("./pages/Courses.jsx"));
+const Palcements = lazy(() => import("./pages/Placements.jsx"));
+const Testimonials = lazy(() => import("./pages/Testimonials.jsx"));
+const Contact = lazy(() => import("./pages/Contact.jsx"));
+const Login = lazy(() => import("./pages/Login.jsx"));
+const Register = lazy(() => import("./pages/Register.jsx"));
+const CourseDetails = lazy(() => import("./pages/CourseDetails.jsx"));
+const Careers = lazy(() => import("./pages/Careers.jsx"));
 import SocialExpand from "./components/SocialExpand.jsx";
 // import Oppo from "./oppoFest/components/Oppo.jsx";
 
 
-import Blog from "./pages/Blog.jsx";
-import BlogDetails from "./pages/BlogDetails.jsx";
+const Blog = lazy(() => import("./pages/Blog.jsx"));
+const BlogDetails = lazy(() => import("./pages/BlogDetails.jsx"));
 
-import JobDetails from "./pages/JobDetails";
-import ApplyJob from "./pages/ApplyJob";
+const JobDetails = lazy(() => import("./pages/JobDetails"));
+const ApplyJob = lazy(() => import("./pages/ApplyJob"));
 
-import Admissions from "./pages/Admissions.jsx";
-import FAQs from "./pages/FAQs.jsx";
-import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
-import Terms from "./pages/Terms.jsx";
-import RefundPolicy from "./pages/RefundPolicy.jsx";
-import Placements from "./pages/Placements.jsx";
+const Admissions = lazy(() => import("./pages/Admissions.jsx"));
+const FAQs = lazy(() => import("./pages/FAQs.jsx"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy.jsx"));
+const Terms = lazy(() => import("./pages/Terms.jsx"));
+const RefundPolicy = lazy(() => import("./pages/RefundPolicy.jsx"));
+const Placements = lazy(() => import("./pages/Placements.jsx"));
 // import Alumini from "./pages/Alumini.jsx";
 
 export default function App() {
@@ -56,6 +56,7 @@ export default function App() {
       <Navbar />
       <SocialExpand />    
       <main className="page-wrapper">
+        <Suspense fallback={<div style={{ minHeight: "60vh" }} />}>
         <Routes>
 
           <Route path="/" element={<Home />} />
@@ -91,6 +92,7 @@ export default function App() {
           <Route path="/refund-policy" element={<RefundPolicy />} />
           {/* <Route path="/oppofest" element={<Oppo />} /> */}
         </Routes>
+        </Suspense>
       </main>
 
       <Footer />

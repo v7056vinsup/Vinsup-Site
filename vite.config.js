@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  build: {
+    // keep small images as separate cached files instead of inlining them into the JS bundle
+    assetsInlineLimit: 1024
+  },
   plugins: [react(),
     tailwindcss(),
   ],

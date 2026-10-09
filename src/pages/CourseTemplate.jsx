@@ -103,7 +103,7 @@ const [openIndex, setOpenIndex] = useState(null);
 const ref = useRef(null);
 
 const companyImages = import.meta.glob(
-  "../assets/companies/*.{png,jpg,jpeg}",
+  "../assets/companies/*.webp",
   { eager: true }
 );
 

@@ -3,63 +3,63 @@
 // =====================================================
 // COURSE IMAGES
 // =====================================================
-import dvpImage from '../assets/courses/dvp.png';
-import daImage from '../assets/courses/da.png';
-import dvsImage from '../assets/courses/dvs.png';
-import fsdImage from '../assets/courses/fsd.png';
-import uxImage from '../assets/courses/ux.png';
-import dmImage from '../assets/courses/dm.png';
+import dvpImage from '../assets/courses/dvp.webp';
+import daImage from '../assets/courses/da.webp';
+import dvsImage from '../assets/courses/dvs.webp';
+import fsdImage from '../assets/courses/fsd.webp';
+import uxImage from '../assets/courses/ux.webp';
+import dmImage from '../assets/courses/dm.webp';
 
 // =====================================================
 // DATA VERSE PRO TOOLS
 // =====================================================
-import dvpPython from '../assets/frontend/dataversepro/PY.jpeg';
-import dvpExcel from '../assets/frontend/dataversepro/EXCEL.jpeg';
+import dvpPython from '../assets/frontend/dataversepro/PY.webp';
+import dvpExcel from '../assets/frontend/dataversepro/EXCEL.webp';
 import dvpSQL from '../assets/frontend/dataversepro/SQL.png';
 import dvpNumpy from '../assets/frontend/dataversepro/NUMPY.png';
 import dvpTableau from '../assets/frontend/dataversepro/TABLE.jpg';
-import dvpJupyter from '../assets/frontend/dataversepro/JUPY.png';
+import dvpJupyter from '../assets/frontend/dataversepro/JUPY.webp';
 import dvpColab from '../assets/frontend/dataversepro/COLOB.png';
 import dvpGemini from '../assets/frontend/dataversepro/GEMNII.jpg';
-import dvpChatGPT from '../assets/frontend/dataversepro/GPT.png';
-import dvpPowerBI from '../assets/frontend/dataversepro/BI.png';
+import dvpChatGPT from '../assets/frontend/dataversepro/GPT.webp';
+import dvpPowerBI from '../assets/frontend/dataversepro/BI.webp';
 import dvpLooker from '../assets/frontend/dataversepro/LOOK.jpg';
-import dvpJira from '../assets/frontend/dataversepro/JIRA.png';
+import dvpJira from '../assets/frontend/dataversepro/JIRA.webp';
 import dvpSeaborn from '../assets/frontend/dataversepro/seaborn.svg';
 
 // =====================================================
 // DATA ANALYTICS TOOLS
 // =====================================================
-import daExcel from '../assets/frontend/dataanalytics/EXCEL.jpeg';
+import daExcel from '../assets/frontend/dataanalytics/EXCEL.webp';
 import daSQL from '../assets/frontend/dataanalytics/SQL.png';
-import daPowerBI from '../assets/frontend/dataanalytics/PBI.png';
-import daPython from '../assets/frontend/dataanalytics/PY.png';
-import daStat from '../assets/frontend/dataanalytics/STAT.jpeg';
+import daPowerBI from '../assets/frontend/dataanalytics/PBI.webp';
+import daPython from '../assets/frontend/dataanalytics/PY.webp';
+import daStat from '../assets/frontend/dataanalytics/STAT.webp';
 
 // =====================================================
 // DEVSTACK TOOLS
 // =====================================================
 import devHTML from '../assets/frontend/devstack/html.svg';
-import devCSS from '../assets/frontend/devstack/CSS.jpeg';
+import devCSS from '../assets/frontend/devstack/CSS.webp';
 import devBootstrap from '../assets/frontend/devstack/BOOT.png';
 import devJS from '../assets/frontend/devstack/js.jpg';
-import devReact from '../assets/frontend/devstack/REACT.jpeg';
+import devReact from '../assets/frontend/devstack/REACT.webp';
 import devNode from '../assets/frontend/devstack/NODE.png';
 import devExpress from '../assets/frontend/devstack/EXPRESS.png';
 import devMongo from '../assets/frontend/devstack/MONGO.jpg';
 import devGit from '../assets/frontend/devstack/GIT.png';
 import devGitHub from '../assets/frontend/devstack/GITHUB.png';
-import devJira from '../assets/frontend/devstack/JIRA.png';
+import devJira from '../assets/frontend/devstack/JIRA.webp';
 import devJenkins from '../assets/frontend/devstack/JEN.png';
-import devDocker from '../assets/frontend/devstack/DOCK.jpeg';
+import devDocker from '../assets/frontend/devstack/DOCK.webp';
 
 // =====================================================
 // UI/UX TOOLS
 // =====================================================
 import uxFigma from '../assets/frontend/uxui/FIGMA.png';
-import uxPhotoshop from '../assets/frontend/uxui/PS.png';
+import uxPhotoshop from '../assets/frontend/uxui/PS.webp';
 import uxIllustrator from '../assets/frontend/uxui/AI.png';
-import uxBlender from '../assets/frontend/uxui/BLEN.png';
+import uxBlender from '../assets/frontend/uxui/BLEN.webp';
 // import digitalMarketingDeck from "../assets/Decks/digital-marketing-syllabus.pdf";
 // import uiuxGraphicDeck from "../assets/Decks/uiux-graphic-design-syllabus.pdf";
 // import dataAnalyticsDeck from "../assets/Decks/data-analytics-syllabus.pdf";
@@ -70,14 +70,14 @@ import uxBlender from '../assets/frontend/uxui/BLEN.png';
 // =====================================================
 // DIGITAL MARKETING TOOLS
 // =====================================================
-import dmGoogleAds from '../assets/frontend/digitalmarketing/GAD.png';
+import dmGoogleAds from '../assets/frontend/digitalmarketing/GAD.webp';
 import dmMeta from '../assets/frontend/digitalmarketing/META.png';
 import dmHubspot from '../assets/frontend/digitalmarketing/HUB.png';
 import dmShopify from '../assets/frontend/digitalmarketing/123.svg';
 import dmWordPress from '../assets/frontend/digitalmarketing/WORD.png';
-import dmCanva from '../assets/frontend/digitalmarketing/CANVA.png';
+import dmCanva from '../assets/frontend/digitalmarketing/CANVA.webp';
 import dmMailchimp from '../assets/frontend/digitalmarketing/MAIL.png';
-import dmElementor from '../assets/frontend/digitalmarketing/ELE.png';
+import dmElementor from '../assets/frontend/digitalmarketing/ELE.webp';
 import dmHrefs from '../assets/frontend/digitalmarketing/HREF.png';
 
 import dmSemrush from '../assets/frontend/digitalmarketing/SEM.png';

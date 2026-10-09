@@ -5,32 +5,32 @@ import ReviewsShowcase from "../components/ReviewsShowcase";
 import QuickEnquiry from "../components/QuickEnquiry";
 import HomePopupModal from "../components/HomePopupModal";
 import '../styles/Home.css'
-import daImg from "../assets/dA.PNG";
-import dmImg from "../assets/dm.PNG";
-import dvpImg from "../assets/dvp.PNG";
+import daImg from "../assets/dA.webp";
+import dmImg from "../assets/dm.webp";
+import dvpImg from "../assets/dvp.webp";
 import MarketingAlerts from "../components/MarketingAlerts";
-import dvsImg from "../assets/dvs.PNG";
-import uxImg from "../assets/ux.PNG";
-import fsdImg from "../assets/fsd.PNG";
-import img1 from "../assets/welcome/image1.png";
-import img2 from "../assets/welcome/image2.png";
-import img3 from "../assets/welcome/image3.png";
-import img4 from "../assets/welcome/image4.png";
-import img5 from "../assets/welcome/image5.png";
-import img6 from "../assets/welcome/image6.png";
-import jobRoleImg from "../assets/jrp/IMG_6329.PNG";
-import practicalImg from "../assets/jrp/Practicaltraining.png";
-import portfolioImg from "../assets/jrp/Portfoliobuilding.png";
-import softSkillImg from "../assets/jrp/Softskill.png";
-import mockImg from "../assets/jrp/Mockinterview.png";
-import placementImg from "../assets/jrp/PlacementAssistance.png";
-import jobSpecificImg from "../assets/jrp/JobspecificTraining.png";
-import internshipImg from "../assets/jrp/step1.png";
-import certificateImg from "../assets/jrp/Practicaltraining.png";
+import dvsImg from "../assets/dvs.webp";
+import uxImg from "../assets/ux.webp";
+import fsdImg from "../assets/fsd.webp";
+import img1 from "../assets/welcome/image1.webp";
+import img2 from "../assets/welcome/image2.webp";
+import img3 from "../assets/welcome/image3.webp";
+import img4 from "../assets/welcome/image4.webp";
+import img5 from "../assets/welcome/image5.webp";
+import img6 from "../assets/welcome/image6.webp";
+import jobRoleImg from "../assets/jrp/IMG_6329.webp";
+import practicalImg from "../assets/jrp/Practicaltraining.webp";
+import portfolioImg from "../assets/jrp/Portfoliobuilding.webp";
+import softSkillImg from "../assets/jrp/Softskill.webp";
+import mockImg from "../assets/jrp/Mockinterview.webp";
+import placementImg from "../assets/jrp/PlacementAssistance.webp";
+import jobSpecificImg from "../assets/jrp/JobspecificTraining.webp";
+import internshipImg from "../assets/jrp/step1.webp";
+import certificateImg from "../assets/jrp/Practicaltraining.webp";
 
 
 
-import whoarewe from '../assets/whoarewe.png'
+import whoarewe from '../assets/whoarewe.webp'
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxl_6f8kPi0cMxa3XwE_FUhZMbUG6KolMIAFvSQb7PAgTXgSO1WB3Pv7eyyAw1NIZKN5w/exec";
 
@@ -85,7 +85,7 @@ const WHY_CARDS = [
 
 // ✅ Auto-import all company logos (png + jpg + jpeg)
 const companyImages = import.meta.glob(
-  "../assets/companies/*.{png,jpg,jpeg}",
+  "../assets/companies/*.webp",
   { eager: true }
 );
 
@@ -489,7 +489,9 @@ export default function Home() {
               <img
                 src={item.src}
                 alt={`Slide ${i + 1}`}
-                loading="lazy"
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "low"}
+                decoding="async"
               />
 
             </Link>
@@ -511,6 +513,8 @@ export default function Home() {
                   key={i}
                   src={src}
                   alt={`Slide ${i}`}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
                   className={`carousel-img ${i === index ? "active" : ""}`}
                 />
               ))}
@@ -521,7 +525,7 @@ export default function Home() {
 
             <h1>Welcome to Vinsup Skill Academy</h1>
             <p className="hero-lead">
-              Let’s face it: A  <a href="https://www.digitalcomputerclasses.com/top-free-high-da-pa-website-list-for-backlink-submission/" className="backlink">college degree alone</a> doesn’t always guarantee a job anymore. That’s where we come in, we are a Coimbatore based team dedicating or dedicated to teach you what actually matters in Tamil Nadu tech industry. Whether you just graduated or want to switch careers, our one month boot camp or internship camp give you the exact  <a href="https://linkbuilder.io/guest-posting-sites/" className="backlink">skills</a>  that companies are hiring for without the expensive price tag.  </p>
+              Let’s face it: A college degree alone doesn’t always guarantee a job anymore. That’s where we come in, we are a Coimbatore based team dedicating or dedicated to teach you what actually matters in Tamil Nadu tech industry. Whether you just graduated or want to switch careers, our one month boot camp or internship camp give you the exact skills that companies are hiring for without the expensive price tag.  </p>
 
             <div className="hero-ctas">
               <Link className="btn-primary" to="/courses">View Courses</Link>
@@ -564,12 +568,12 @@ export default function Home() {
             <div className="about-content">
               <p>
                 We are a team of industrial veterans, educators, and innovators passionate
-                about making <a href="https://www.digitalcomputerclasses.com/top-free-high-da-pa-website-list-for-backlink-submission/" className="backlink">high-quality</a> tech education accessible to everyone at an
+                about making high-quality tech education accessible to everyone at an
                 affordable price.
               </p>
 
               <p>
-                Vinsup Skill Academy was  that gap. Our missi <a href="https://linkbuilder.io/guest-posting-sites/" className="backlink">engineered to bridge</a> on is simple
+                Vinsup Skill Academy was engineered to bridge that gap. Our mission is simple
                 to empower individuals with the exact skills they need to get hired, get
                 promoted, and thrive in high-growth tech roles.
               </p>
@@ -612,14 +616,14 @@ export default function Home() {
               <span className="why-label">More than just theory</span>
               <p>
                 We don’t just teach coding—we teach you how to get hired.
-                Soft skills and <a href="https://www.techasoft.com/post" className="backlink">aptitude training </a> are included at no extra cost.
+                Soft skills and aptitude training are included at no extra cost.
               </p>
             </div>
 
             <div className="why-item">
               <span className="why-label">For the ambitious</span>
               <p>
-                Advanced tracks like <a href="https://datamites.com/data-analytics-certification-course-training/?srsltid=AfmBOooRVOfZKNJ1BXe4ji09wOAtSwHmjtDelJwWYX3UVcke01irUhde" className="backlink">Data Verse Pro </a> and Full Stack Development at 40000,
+                Advanced tracks like Data Verse Pro and Full Stack Development at 40000,
                 delivering top-tier training without leaving your city.
               </p>
             </div>

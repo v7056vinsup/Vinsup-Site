@@ -1,21 +1,21 @@
 import React ,{useEffect} from "react";
 import Counter from "../components/Counter";
 import QuickEnquiry from "../components/QuickEnquiry";
-import vinsupBuilding from "../assets/vinsup_building.Png";
-import growthImg from "../assets/growth.png";
+import vinsupBuilding from "../assets/vinsup_building.webp";
+import growthImg from "../assets/growth.webp";
 import vinsupInfotech from "../assets/VINSUPINFOTECH.png";
-import srbBankers from "../assets/SRBBANKERS.png";
-import vinolya from "../assets/VINOLYA.png";
-import ramtel from "../assets/ramtel.png";
-import g3 from "../assets/gallery/1.png";
+import srbBankers from "../assets/SRBBANKERS.webp";
+import vinolya from "../assets/VINOLYA.webp";
+import ramtel from "../assets/ramtel.webp";
+import g3 from "../assets/gallery/1.webp";
 import g1 from "../assets/gallery/2.jpg";
 import g2 from "../assets/gallery/3.jpg";
 import g4 from "../assets/gallery/4.jpg";
 import g5 from "../assets/gallery/5.jpg";
-import g6 from "../assets/gallery/6.png";
-import g7 from "../assets/gallery/7.PNG";
+import g6 from "../assets/gallery/6.webp";
+import g7 from "../assets/gallery/7.webp";
 import g8 from "../assets/gallery/8.jpg";
-import g9 from "../assets/gallery/9.PNG";
+import g9 from "../assets/gallery/9.webp";
 import g10 from "../assets/gallery/10.jpg"; 
 
 
