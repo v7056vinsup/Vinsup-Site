@@ -1,3 +1,4 @@
+import { whenIdle } from "./whenIdle";
 const CACHE_KEY = "vinsup_testimonials_cache";
 export const TESTIMONIALS_API_URL =
   "https://script.google.com/macros/s/AKfycbzS5oJOJ5QwKyuvdYEn21DCXNAN93aoeo48hN1rKscC7A5uLFogQ0QCzCxCMMjrSuO6/exec";
@@ -53,4 +54,5 @@ export function prefetchTestimonials() {
   return inflight;
 }
 
-prefetchTestimonials();
+// warm the cache after the page has loaded (not during the first paint)
+whenIdle(() => prefetchTestimonials());

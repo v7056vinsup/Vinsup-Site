@@ -1,3 +1,4 @@
+import { whenIdle } from "./whenIdle";
 const CACHE_KEY = "vinsup_placements_cache";
 export const PLACEMENTS_API_URL =
   "https://script.google.com/macros/s/AKfycbwYgJrzucfmhP2hM0sy_xIZtizsXTW7CHlzqvpLsOQxuG3uXd73cWUWf9QSAD7Hf3o0/exec";
@@ -103,4 +104,5 @@ export function prefetchPlacements() {
   return loadPlacementsPage(1);
 }
 
-prefetchPlacements();
+// warm the cache after the page has loaded (not during the first paint)
+whenIdle(() => prefetchPlacements());

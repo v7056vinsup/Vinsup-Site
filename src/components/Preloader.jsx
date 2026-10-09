@@ -1,6 +1,6 @@
 import React from "react";
 import "./Preloader.css";
-import logo from "../assets/logo.png"; // ✅ import image from src/assets
+import logo from "../assets/logo.webp"; // ✅ import image from src/assets
 
 export default function Preloader() {
   return (

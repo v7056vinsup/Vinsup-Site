@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Loader.css";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 
 // SVG icon paths for each milestone (scaled to fit in r=22 circle, centered at 0,0)
 const ICONS = [

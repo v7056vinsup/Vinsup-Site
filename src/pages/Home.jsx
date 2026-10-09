@@ -12,12 +12,24 @@ import MarketingAlerts from "../components/MarketingAlerts";
 import dvsImg from "../assets/dvs.webp";
 import uxImg from "../assets/ux.webp";
 import fsdImg from "../assets/fsd.webp";
+import daImgSm from "../assets/dA-sm.webp";
+import dmImgSm from "../assets/dm-sm.webp";
+import dvpImgSm from "../assets/dvp-sm.webp";
+import dvsImgSm from "../assets/dvs-sm.webp";
+import uxImgSm from "../assets/ux-sm.webp";
+import fsdImgSm from "../assets/fsd-sm.webp";
 import img1 from "../assets/welcome/image1.webp";
 import img2 from "../assets/welcome/image2.webp";
 import img3 from "../assets/welcome/image3.webp";
 import img4 from "../assets/welcome/image4.webp";
 import img5 from "../assets/welcome/image5.webp";
 import img6 from "../assets/welcome/image6.webp";
+import img1Sm from "../assets/welcome/image1-sm.webp";
+import img2Sm from "../assets/welcome/image2-sm.webp";
+import img3Sm from "../assets/welcome/image3-sm.webp";
+import img4Sm from "../assets/welcome/image4-sm.webp";
+import img5Sm from "../assets/welcome/image5-sm.webp";
+import img6Sm from "../assets/welcome/image6-sm.webp";
 import jobRoleImg from "../assets/jrp/IMG_6329.webp";
 import practicalImg from "../assets/jrp/Practicaltraining.webp";
 import portfolioImg from "../assets/jrp/Portfoliobuilding.webp";
@@ -31,6 +43,7 @@ import certificateImg from "../assets/jrp/Practicaltraining.webp";
 
 
 import whoarewe from '../assets/whoarewe.webp'
+import whoareweSm from '../assets/whoarewe-sm.webp'
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxl_6f8kPi0cMxa3XwE_FUhZMbUG6KolMIAFvSQb7PAgTXgSO1WB3Pv7eyyAw1NIZKN5w/exec";
 
@@ -43,14 +56,8 @@ const API_URL =
 /* ===== Why Choose Us (9 cards) ===== */
 /* Unique inline SVG icons per card */
 
-const carouselImages = [
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6
-];
+const carouselImages = [img1, img2, img3, img4, img5, img6];
+const carouselImagesSm = [img1Sm, img2Sm, img3Sm, img4Sm, img5Sm, img6Sm];
 
 const WhyIcon = ({ k }) => {
   const common = { width: 28, height: 28, fill: "none", stroke: "currentColor", strokeWidth: 2 };
@@ -416,12 +423,12 @@ export default function Home() {
 
 
   const images = [
-    { src: daImg, link: "/courses/data-analytics" },
-    { src: dmImg, link: "/courses/digital-marketing" },
-    { src: dvpImg, link: "/courses/data-verse-pro" },
-    { src: dvsImg, link: "/courses/devstack-fullstack-devops" },
-    { src: uxImg, link: "/courses/ui-ux-design" },
-    { src: fsdImg, link: "/courses/mern-stack" }
+    { src: daImg, srcSm: daImgSm, link: "/courses/data-analytics" },
+    { src: dmImg, srcSm: dmImgSm, link: "/courses/digital-marketing" },
+    { src: dvpImg, srcSm: dvpImgSm, link: "/courses/data-verse-pro" },
+    { src: dvsImg, srcSm: dvsImgSm, link: "/courses/devstack-fullstack-devops" },
+    { src: uxImg, srcSm: uxImgSm, link: "/courses/ui-ux-design" },
+    { src: fsdImg, srcSm: fsdImgSm, link: "/courses/mern-stack" }
   ];
 
 
@@ -485,9 +492,13 @@ export default function Home() {
             }}
             aria-hidden={i !== index}
           >
-            <Link to={item.link}>
+            <Link to={item.link} tabIndex={i === index ? 0 : -1}>
               <img
                 src={item.src}
+                srcSet={`${item.srcSm} 800w, ${item.src} 1400w`}
+                sizes="100vw"
+                width="1400"
+                height="306"
                 alt={`Slide ${i + 1}`}
                 loading={i === 0 ? "eager" : "lazy"}
                 fetchPriority={i === 0 ? "high" : "low"}
@@ -512,6 +523,8 @@ export default function Home() {
                 <img
                   key={i}
                   src={src}
+                  srcSet={`${carouselImagesSm[i]} 720w, ${src} 1400w`}
+                  sizes="(max-width: 900px) 100vw, 50vw"
                   alt={`Slide ${i}`}
                   loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
@@ -581,7 +594,7 @@ export default function Home() {
 
             <div className="about-image">
               <div className="image-placeholder">
-                <img src={whoarewe} alt="" />
+                <img src={whoarewe} srcSet={`${whoareweSm} 800w, ${whoarewe} 1400w`} sizes="(max-width: 900px) 100vw, 50vw" width="1400" height="818" loading="lazy" decoding="async" alt="Students at Vinsup Skill Academy, Coimbatore" />
               </div>
             </div>
 
